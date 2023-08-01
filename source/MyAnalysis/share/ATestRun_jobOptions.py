@@ -86,17 +86,17 @@ import AthenaPoolCnvSvc.ReadAthenaPool
 #     '/gpfs/fs7001/youhei/L2MuonSA/dataset_aod_official/data22_13p6TeV.00440499.physics_EnhancedBias.recon.AOD.r14651_r14652_tid33311798_00/AOD.33311798._001270.pool.root.1',
 #     '/gpfs/fs7001/youhei/L2MuonSA/dataset_aod_official/data22_13p6TeV.00440499.physics_EnhancedBias.recon.AOD.r14651_r14652_tid33311798_00/AOD.33311798._001330.pool.root.1']
 
-ServiceMgr.EventSelector.InputCollections = [
-    '/gpfs/fs7001/youhei/L2MuonSA/dataset_aod_official/data22_13p6TeV.00440499.physics_EnhancedBias.merge.AOD.r14651_r14652_p5664_tid33311800_00/AOD.33311800._000006.pool.root.1']
-    #'/gpfs/fs7001/youhei/L2MuonSA/dataset_aod_official/data22_13p6TeV.00440499.physics_EnhancedBias.merge.AOD.r14651_r14652_p5664_tid33311800_00/AOD.33311800._000014.pool.root.1',
-    #'/gpfs/fs7001/youhei/L2MuonSA/dataset_aod_official/data22_13p6TeV.00440499.physics_EnhancedBias.merge.AOD.r14651_r14652_p5664_tid33311800_00/AOD.33311800._000022.pool.root.1',
-    #'/gpfs/fs7001/youhei/L2MuonSA/dataset_aod_official/data22_13p6TeV.00440499.physics_EnhancedBias.merge.AOD.r14651_r14652_p5664_tid33311800_00/AOD.33311800._000027.pool.root.1',
-    #'/gpfs/fs7001/youhei/L2MuonSA/dataset_aod_official/data22_13p6TeV.00440499.physics_EnhancedBias.merge.AOD.r14651_r14652_p5664_tid33311800_00/AOD.33311800._000058.pool.root.1',
-    #'/gpfs/fs7001/youhei/L2MuonSA/dataset_aod_official/data22_13p6TeV.00440499.physics_EnhancedBias.merge.AOD.r14651_r14652_p5664_tid33311800_00/AOD.33311800._000064.pool.root.1',
-    #'/gpfs/fs7001/youhei/L2MuonSA/dataset_aod_official/data22_13p6TeV.00440499.physics_EnhancedBias.merge.AOD.r14651_r14652_p5664_tid33311800_00/AOD.33311800._000085.pool.root.1',
-    #'/gpfs/fs7001/youhei/L2MuonSA/dataset_aod_official/data22_13p6TeV.00440499.physics_EnhancedBias.merge.AOD.r14651_r14652_p5664_tid33311800_00/AOD.33311800._000115.pool.root.1',
-    #'/gpfs/fs7001/youhei/L2MuonSA/dataset_aod_official/data22_13p6TeV.00440499.physics_EnhancedBias.merge.AOD.r14651_r14652_p5664_tid33311800_00/AOD.33311800._000129.pool.root.1',
-    #'/gpfs/fs7001/youhei/L2MuonSA/dataset_aod_official/data22_13p6TeV.00440499.physics_EnhancedBias.merge.AOD.r14651_r14652_p5664_tid33311800_00/AOD.33311800._000139.pool.root.1']
+#ServiceMgr.EventSelector.InputCollections = [
+#    '/gpfs/fs7001/youhei/L2MuonSA/dataset_aod_official/data22_13p6TeV.00440499.physics_EnhancedBias.merge.AOD.r14651_r14652_p5664_tid33311800_00/AOD.33311800._000006.pool.root.1',
+#    '/gpfs/fs7001/youhei/L2MuonSA/dataset_aod_official/data22_13p6TeV.00440499.physics_EnhancedBias.merge.AOD.r14651_r14652_p5664_tid33311800_00/AOD.33311800._000014.pool.root.1',
+#    '/gpfs/fs7001/youhei/L2MuonSA/dataset_aod_official/data22_13p6TeV.00440499.physics_EnhancedBias.merge.AOD.r14651_r14652_p5664_tid33311800_00/AOD.33311800._000022.pool.root.1',
+#    '/gpfs/fs7001/youhei/L2MuonSA/dataset_aod_official/data22_13p6TeV.00440499.physics_EnhancedBias.merge.AOD.r14651_r14652_p5664_tid33311800_00/AOD.33311800._000027.pool.root.1',
+#    '/gpfs/fs7001/youhei/L2MuonSA/dataset_aod_official/data22_13p6TeV.00440499.physics_EnhancedBias.merge.AOD.r14651_r14652_p5664_tid33311800_00/AOD.33311800._000058.pool.root.1',
+#    '/gpfs/fs7001/youhei/L2MuonSA/dataset_aod_official/data22_13p6TeV.00440499.physics_EnhancedBias.merge.AOD.r14651_r14652_p5664_tid33311800_00/AOD.33311800._000064.pool.root.1',
+#    '/gpfs/fs7001/youhei/L2MuonSA/dataset_aod_official/data22_13p6TeV.00440499.physics_EnhancedBias.merge.AOD.r14651_r14652_p5664_tid33311800_00/AOD.33311800._000085.pool.root.1',
+#    '/gpfs/fs7001/youhei/L2MuonSA/dataset_aod_official/data22_13p6TeV.00440499.physics_EnhancedBias.merge.AOD.r14651_r14652_p5664_tid33311800_00/AOD.33311800._000115.pool.root.1',
+#    '/gpfs/fs7001/youhei/L2MuonSA/dataset_aod_official/data22_13p6TeV.00440499.physics_EnhancedBias.merge.AOD.r14651_r14652_p5664_tid33311800_00/AOD.33311800._000129.pool.root.1',
+#    '/gpfs/fs7001/youhei/L2MuonSA/dataset_aod_official/data22_13p6TeV.00440499.physics_EnhancedBias.merge.AOD.r14651_r14652_p5664_tid33311800_00/AOD.33311800._000139.pool.root.1']
 
 #ServiceMgr.EventSelector.InputCollections = [
 #    '/gpfs/fs8001/toyamash/valid1.601190.PhPy8EG_AZNLO_Zmumu.recon.AOD.e8514_e8528_s4111_s4114_r14706_tid33639678_00/AOD.33639678._000001.pool.root.1',
@@ -110,13 +110,23 @@ ServiceMgr.EventSelector.InputCollections = [
 #    '/gpfs/fs8001/toyamash/valid1.601190.PhPy8EG_AZNLO_Zmumu.recon.AOD.e8514_e8528_s4111_s4114_r14706_tid33639678_00/AOD.33639678._000001.poo9.root.1',
 #    '/gpfs/fs8001/toyamash/valid1.601190.PhPy8EG_AZNLO_Zmumu.recon.AOD.e8514_e8528_s4111_s4114_r14706_tid33639678_00/AOD.33639678._000001.poo10.root.1']
 
-
+ServiceMgr.EventSelector.InputCollections = [
+    '/gpfs/fs8001/toyamash/L2mt/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185._lb0296._0011.1',
+    '/gpfs/fs8001/toyamash/L2mt/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185._lb0423._0011.1',
+    '/gpfs/fs8001/toyamash/L2mt/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185._lb0704._0007.1',
+    '/gpfs/fs8001/toyamash/L2mt/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185._lb0366._0001.1',
+    '/gpfs/fs8001/toyamash/L2mt/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185._lb0500._0007.1',
+    '/gpfs/fs8001/toyamash/L2mt/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185._lb0782._0001.1',
+    '/gpfs/fs8001/toyamash/L2mt/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185._lb0394._0001.1',
+    '/gpfs/fs8001/toyamash/L2mt/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185._lb0623._0004.1',
+    '/gpfs/fs8001/toyamash/L2mt/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185._lb0411._0011.1',
+    '/gpfs/fs8001/toyamash/L2mt/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185._lb0630._0010.1']
 
 # output file
 ServiceMgr += CfgMgr.THistSvc()
 ServiceMgr.THistSvc.Output += [
     #"ANALYSIS DATAFILE='MyxAODAnalysis_valid1.601190.PhPy8EG_AZNLO_Zmumu.output.root' OPT='RECREATE'"
-    "ANALYSIS DATAFILE='MyxAODAnalysis_forl2mt.output.root' OPT='RECREATE'"
+    "ANALYSIS DATAFILE='MyxAODAnalysis_forl2mt.output_20230731.root' OPT='RECREATE'"
     ]
 ServiceMgr.THistSvc.MaxFileSize=-1 #speeds up jobs that output lots of histograms
 

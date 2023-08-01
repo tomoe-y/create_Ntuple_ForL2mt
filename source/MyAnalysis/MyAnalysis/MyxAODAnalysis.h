@@ -39,6 +39,7 @@ class MyxAODAnalysis : public EL::AnaAlgorithm
   float m_mcEventWeight = 0;
   float m_actualInteractionsPerCrossing = 0;
   float m_averageInteractionsPerCrossing = 0;
+  bool m_pass_HLT_mu10_l2mt_L1MU10BOM = 0;
 
   std::unique_ptr<std::vector<float>> m_muon_e;
   std::unique_ptr<std::vector<float>> m_muon_pt;
@@ -106,11 +107,6 @@ class MyxAODAnalysis : public EL::AnaAlgorithm
   std::unique_ptr<std::vector< std::vector< float>>> m_muon_seg_py;
   std::unique_ptr<std::vector< std::vector< float>>> m_muon_seg_pz;
 
-  std::unique_ptr<std::vector<float>> m_l1_eta;
-  std::unique_ptr<std::vector<float>> m_l1_phi;
-  std::unique_ptr<std::vector<float>> m_l1_dRoff;
-  std::unique_ptr<std::vector<int>> m_l1_BOM;
-
   std::unique_ptr<std::vector<float>> m_l2sa_e;
   std::unique_ptr<std::vector<float>> m_l2sa_pt;
   std::unique_ptr<std::vector<float>> m_l2sa_eta;
@@ -174,47 +170,53 @@ class MyxAODAnalysis : public EL::AnaAlgorithm
   std::unique_ptr<std::vector<float>> m_l2cb_phi;
   std::unique_ptr<std::vector<bool>> m_l2cb_pass;
 
-  // for l2mt
-  std::unique_ptr<std::vector<float>> m_l2mt_e;
-  std::unique_ptr<std::vector<float>> m_l2mt_pt;
-  std::unique_ptr<std::vector<float>> m_l2mt_eta;
-  std::unique_ptr<std::vector<float>> m_l2mt_phi;
-  std::unique_ptr<std::vector<float>> m_l2mt_etaMS;
-  std::unique_ptr<std::vector<float>> m_l2mt_phiMS;
-  std::unique_ptr<std::vector<bool>> m_l2mt_pass;
+  std::unique_ptr<std::vector<std::vector<float>>> m_l1_eta;
+  std::unique_ptr<std::vector<std::vector<float>>> m_l1_phi;
+  std::unique_ptr<std::vector<std::vector<float>>> m_l1_dRoff;
+  std::unique_ptr<std::vector<std::vector<int>>>   m_l1_BOM;
+  std::unique_ptr<std::vector<std::vector<int>>>   m_l1_thrNum;
 
-  std::unique_ptr<std::vector< std::vector< float >>> m_l2mt_superPointR;
-  std::unique_ptr<std::vector< std::vector< float >>> m_l2mt_superPointZ;
-  std::unique_ptr<std::vector< std::vector< float >>> m_l2mt_superPointSlope;
-  std::unique_ptr<std::vector< std::vector< float >>> m_l2mt_superPointIntercept;
-  std::unique_ptr<std::vector< std::vector< float >>> m_l2mt_superPointChi2;
+  // for l2mt
+  std::unique_ptr<std::vector<std::vector<float>>> m_l2mt_e;
+  std::unique_ptr<std::vector<std::vector<float>>> m_l2mt_pt;
+  std::unique_ptr<std::vector<std::vector<float>>> m_l2mt_eta;
+  std::unique_ptr<std::vector<std::vector<float>>> m_l2mt_phi;
+  std::unique_ptr<std::vector<std::vector<float>>> m_l2mt_etaMS;
+  std::unique_ptr<std::vector<std::vector<float>>> m_l2mt_phiMS;
+  std::unique_ptr<std::vector<std::vector<bool>>> m_l2mt_pass;
+
+  std::unique_ptr<std::vector<std::vector< std::vector< float >>>> m_l2mt_superPointR;
+  std::unique_ptr<std::vector<std::vector< std::vector< float >>>> m_l2mt_superPointZ;
+  std::unique_ptr<std::vector<std::vector< std::vector< float >>>> m_l2mt_superPointSlope;
+  std::unique_ptr<std::vector<std::vector< std::vector< float >>>> m_l2mt_superPointIntercept;
+  std::unique_ptr<std::vector<std::vector< std::vector< float >>>> m_l2mt_superPointChi2;
 
   // sTGC clusters
-  std::unique_ptr<std::vector< std::vector< unsigned int >>> m_l2mt_stgcClusterLayer;
-  std::unique_ptr<std::vector< std::vector< int >>>          m_l2mt_stgcClusterIsOutlier;
-  std::unique_ptr<std::vector< std::vector< int >>>          m_l2mt_stgcClusterType;
-  std::unique_ptr<std::vector< std::vector< float >>>        m_l2mt_stgcClusterEta;
-  std::unique_ptr<std::vector< std::vector< float >>>        m_l2mt_stgcClusterPhi;
-  std::unique_ptr<std::vector< std::vector< float >>>        m_l2mt_stgcClusterR;
-  std::unique_ptr<std::vector< std::vector< float >>>        m_l2mt_stgcClusterZ;
-  std::unique_ptr<std::vector< std::vector< float >>>        m_l2mt_stgcClusterResidualR;
-  std::unique_ptr<std::vector< std::vector< float >>>        m_l2mt_stgcClusterResidualPhi;
-  std::unique_ptr<std::vector< std::vector< int >>>          m_l2mt_stgcClusterStationEta;
-  std::unique_ptr<std::vector< std::vector< int >>>          m_l2mt_stgcClusterStationPhi;
-  std::unique_ptr<std::vector< std::vector< int >>>          m_l2mt_stgcClusterStationName;
+  std::unique_ptr<std::vector<std::vector< std::vector< unsigned int >>>> m_l2mt_stgcClusterLayer;
+  std::unique_ptr<std::vector<std::vector< std::vector< int >>>>          m_l2mt_stgcClusterIsOutlier;
+  std::unique_ptr<std::vector<std::vector< std::vector< int >>>>          m_l2mt_stgcClusterType;
+  std::unique_ptr<std::vector<std::vector< std::vector< float >>>>        m_l2mt_stgcClusterEta;
+  std::unique_ptr<std::vector<std::vector< std::vector< float >>>>        m_l2mt_stgcClusterPhi;
+  std::unique_ptr<std::vector<std::vector< std::vector< float >>>>        m_l2mt_stgcClusterR;
+  std::unique_ptr<std::vector<std::vector< std::vector< float >>>>        m_l2mt_stgcClusterZ;
+  std::unique_ptr<std::vector<std::vector< std::vector< float >>>>        m_l2mt_stgcClusterResidualR;
+  std::unique_ptr<std::vector<std::vector< std::vector< float >>>>        m_l2mt_stgcClusterResidualPhi;
+  std::unique_ptr<std::vector<std::vector< std::vector< int >>>>          m_l2mt_stgcClusterStationEta;
+  std::unique_ptr<std::vector<std::vector< std::vector< int >>>>          m_l2mt_stgcClusterStationPhi;
+  std::unique_ptr<std::vector<std::vector< std::vector< int >>>>          m_l2mt_stgcClusterStationName;
 
   // MM clusters
-  std::unique_ptr<std::vector< std::vector< unsigned int >>> m_l2mt_mmClusterLayer;
-  std::unique_ptr<std::vector< std::vector< int >>>          m_l2mt_mmClusterIsOutlier;
-  std::unique_ptr<std::vector< std::vector< float >>>        m_l2mt_mmClusterEta;
-  std::unique_ptr<std::vector< std::vector< float >>>        m_l2mt_mmClusterPhi;
-  std::unique_ptr<std::vector< std::vector< float >>>        m_l2mt_mmClusterR;
-  std::unique_ptr<std::vector< std::vector< float >>>        m_l2mt_mmClusterZ;
-  std::unique_ptr<std::vector< std::vector< float >>>        m_l2mt_mmClusterResidualR;
-  std::unique_ptr<std::vector< std::vector< float >>>        m_l2mt_mmClusterResidualPhi;
-  std::unique_ptr<std::vector< std::vector< int >>>          m_l2mt_mmClusterStationEta;
-  std::unique_ptr<std::vector< std::vector< int >>>          m_l2mt_mmClusterStationPhi;
-  std::unique_ptr<std::vector< std::vector< int >>>          m_l2mt_mmClusterStationName;
+  std::unique_ptr<std::vector<std::vector< std::vector< unsigned int >>>> m_l2mt_mmClusterLayer;
+  std::unique_ptr<std::vector<std::vector< std::vector< int >>>>          m_l2mt_mmClusterIsOutlier;
+  std::unique_ptr<std::vector<std::vector< std::vector< float >>>>        m_l2mt_mmClusterEta;
+  std::unique_ptr<std::vector<std::vector< std::vector< float >>>>        m_l2mt_mmClusterPhi;
+  std::unique_ptr<std::vector<std::vector< std::vector< float >>>>        m_l2mt_mmClusterR;
+  std::unique_ptr<std::vector<std::vector< std::vector< float >>>>        m_l2mt_mmClusterZ;
+  std::unique_ptr<std::vector<std::vector< std::vector< float >>>>        m_l2mt_mmClusterResidualR;
+  std::unique_ptr<std::vector<std::vector< std::vector< float >>>>        m_l2mt_mmClusterResidualPhi;
+  std::unique_ptr<std::vector<std::vector< std::vector< int >>>>          m_l2mt_mmClusterStationEta;
+  std::unique_ptr<std::vector<std::vector< std::vector< int >>>>          m_l2mt_mmClusterStationPhi;
+  std::unique_ptr<std::vector<std::vector< std::vector< int >>>>          m_l2mt_mmClusterStationName;
 
   std::unique_ptr<std::vector<std::string>>                  m_chain;
   std::unique_ptr<std::vector< std::vector<int>>>            m_typeVec;

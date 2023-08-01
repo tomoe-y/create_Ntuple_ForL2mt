@@ -75,6 +75,7 @@ StatusCode MyxAODAnalysis :: initialize ()
   mytree->Branch ("mcEventWeight", &m_mcEventWeight);
   mytree->Branch ("actualInteractionsPerCrossing", &m_actualInteractionsPerCrossing);
   mytree->Branch ("averageInteractionsPerCrossing", &m_averageInteractionsPerCrossing);
+  mytree->Branch ("pass_HLT_mu10_l2mt_L1MU10BOM", &m_pass_HLT_mu10_l2mt_L1MU10BOM);
 
   m_muon_e = std::make_unique<std::vector<float>>();
   m_muon_pt = std::make_unique<std::vector<float>>();
@@ -201,54 +202,64 @@ StatusCode MyxAODAnalysis :: initialize ()
   m_l2cb_phi = std::make_unique<std::vector<float>>();
   m_l2cb_pass = std::make_unique<std::vector<bool>>();
 
-  m_l1_eta = std::make_unique<std::vector<float>>();
-  m_l1_phi = std::make_unique<std::vector<float>>();
-  m_l1_dRoff = std::make_unique<std::vector<float>>();
-  m_l1_BOM = std::make_unique<std::vector<int>>();
+  m_l1_eta = std::make_unique<std::vector<std::vector<float>>>();
+  m_l1_phi = std::make_unique<std::vector<std::vector<float>>>();
+  m_l1_dRoff = std::make_unique<std::vector<std::vector<float>>>();
+  m_l1_BOM = std::make_unique<std::vector<std::vector<int>>>();
+  m_l1_thrNum = std::make_unique<std::vector<std::vector<int>>>();
 
-  m_l2mt_e = std::make_unique<std::vector<float>>();
-  m_l2mt_pt = std::make_unique<std::vector<float>>();
-  m_l2mt_eta = std::make_unique<std::vector<float>>();
-  m_l2mt_phi = std::make_unique<std::vector<float>>();
-  m_l2mt_etaMS = std::make_unique<std::vector<float>>();
-  m_l2mt_phiMS = std::make_unique<std::vector<float>>();
-  m_l2mt_pass = std::make_unique<std::vector<bool>>();
+  m_l2mt_e = std::make_unique<std::vector<std::vector<float>>>();
+  m_l2mt_pt = std::make_unique<std::vector<std::vector<float>>>();
+  m_l2mt_eta = std::make_unique<std::vector<std::vector<float>>>();
+  m_l2mt_phi = std::make_unique<std::vector<std::vector<float>>>();
+  m_l2mt_etaMS = std::make_unique<std::vector<std::vector<float>>>();
+  m_l2mt_phiMS = std::make_unique<std::vector<std::vector<float>>>();
+  m_l2mt_pass = std::make_unique<std::vector<std::vector<bool>>>();
 
-  m_l2mt_superPointR = std::make_unique<std::vector<std::vector<float>>>();
-  m_l2mt_superPointZ = std::make_unique<std::vector<std::vector<float>>>();
-  m_l2mt_superPointSlope = std::make_unique<std::vector<std::vector<float>>>();
-  m_l2mt_superPointIntercept = std::make_unique<std::vector<std::vector<float>>>();
-  m_l2mt_superPointChi2 = std::make_unique<std::vector<std::vector<float>>>();
-  m_l2mt_stgcClusterLayer = std::make_unique<std::vector<std::vector<unsigned int>>>();
-  m_l2mt_stgcClusterIsOutlier = std::make_unique<std::vector<std::vector<int>>>();
-  m_l2mt_stgcClusterType = std::make_unique<std::vector<std::vector<int>>>();
-  m_l2mt_stgcClusterEta = std::make_unique<std::vector<std::vector<float>>>();
-  m_l2mt_stgcClusterPhi = std::make_unique<std::vector<std::vector<float>>>();
-  m_l2mt_stgcClusterR = std::make_unique<std::vector<std::vector<float>>>();
-  m_l2mt_stgcClusterZ = std::make_unique<std::vector<std::vector<float>>>();
-  m_l2mt_stgcClusterResidualR = std::make_unique<std::vector<std::vector<float>>>();
-  m_l2mt_stgcClusterResidualPhi = std::make_unique<std::vector<std::vector<float>>>();
-  m_l2mt_stgcClusterStationEta = std::make_unique<std::vector<std::vector<int>>>();
-  m_l2mt_stgcClusterStationPhi = std::make_unique<std::vector<std::vector<int>>>();
-  m_l2mt_stgcClusterStationName = std::make_unique<std::vector<std::vector<int>>>();
-  m_l2mt_mmClusterLayer = std::make_unique<std::vector<std::vector<unsigned int>>>();
-  m_l2mt_mmClusterIsOutlier = std::make_unique<std::vector<std::vector<int>>>();
-  m_l2mt_mmClusterEta = std::make_unique<std::vector<std::vector<float>>>();
-  m_l2mt_mmClusterPhi = std::make_unique<std::vector<std::vector<float>>>();
-  m_l2mt_mmClusterR = std::make_unique<std::vector<std::vector<float>>>();
-  m_l2mt_mmClusterZ = std::make_unique<std::vector<std::vector<float>>>();
-  m_l2mt_mmClusterResidualR = std::make_unique<std::vector<std::vector<float>>>();
-  m_l2mt_mmClusterResidualPhi = std::make_unique<std::vector<std::vector<float>>>();
-  m_l2mt_mmClusterStationEta = std::make_unique<std::vector<std::vector<int>>>();
-  m_l2mt_mmClusterStationPhi = std::make_unique<std::vector<std::vector<int>>>();
-  m_l2mt_mmClusterStationName = std::make_unique<std::vector<std::vector<int>>>();
+  m_l2mt_superPointR = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
+  m_l2mt_superPointZ = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
+  m_l2mt_superPointSlope = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
+  m_l2mt_superPointIntercept = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
+  m_l2mt_superPointChi2 = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
+  m_l2mt_stgcClusterLayer = std::make_unique<std::vector<std::vector<std::vector<unsigned int>>>>();
+  m_l2mt_stgcClusterIsOutlier = std::make_unique<std::vector<std::vector<std::vector<int>>>>();
+  m_l2mt_stgcClusterType = std::make_unique<std::vector<std::vector<std::vector<int>>>>();
+  m_l2mt_stgcClusterEta = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
+  m_l2mt_stgcClusterPhi = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
+  m_l2mt_stgcClusterR = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
+  m_l2mt_stgcClusterZ = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
+  m_l2mt_stgcClusterResidualR = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
+  m_l2mt_stgcClusterResidualPhi = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
+  m_l2mt_stgcClusterStationEta = std::make_unique<std::vector<std::vector<std::vector<int>>>>();
+  m_l2mt_stgcClusterStationPhi = std::make_unique<std::vector<std::vector<std::vector<int>>>>();
+  m_l2mt_stgcClusterStationName = std::make_unique<std::vector<std::vector<std::vector<int>>>>();
+  m_l2mt_mmClusterLayer = std::make_unique<std::vector<std::vector<std::vector<unsigned int>>>>();
+  m_l2mt_mmClusterIsOutlier = std::make_unique<std::vector<std::vector<std::vector<int>>>>();
+  m_l2mt_mmClusterEta = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
+  m_l2mt_mmClusterPhi = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
+  m_l2mt_mmClusterR = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
+  m_l2mt_mmClusterZ = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
+  m_l2mt_mmClusterResidualR = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
+  m_l2mt_mmClusterResidualPhi = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
+  m_l2mt_mmClusterStationEta = std::make_unique<std::vector<std::vector<std::vector<int>>>>();
+  m_l2mt_mmClusterStationPhi = std::make_unique<std::vector<std::vector<std::vector<int>>>>();
+  m_l2mt_mmClusterStationName = std::make_unique<std::vector<std::vector<std::vector<int>>>>();
 
   m_chain = std::make_unique<std::vector<std::string>>();
   m_typeVec = std::make_unique<std::vector<std::vector<int>>>();
   m_ptVec = std::make_unique<std::vector<std::vector<float>>>();
   m_etaVec = std::make_unique<std::vector<std::vector<float>>>();
   m_phiVec = std::make_unique<std::vector<std::vector<float>>>();
-
+/*
+  // RPC position
+	m_b_extPosition.clear();
+	m_b_extPosition.push_back(6880.);
+	m_b_extPosition.push_back(7500.);
+	m_b_extPosition.push_back(7860.);
+	m_b_extPosition.push_back(8420.);
+	m_b_extPosition.push_back(9880.);
+	m_b_extPosition.push_back(10260.);
+*/
   mytree->Branch ("muon_e", &*m_muon_e);
   mytree->Branch ("muon_pt", &*m_muon_pt);
   mytree->Branch ("muon_eta", &*m_muon_eta);
@@ -315,11 +326,7 @@ StatusCode MyxAODAnalysis :: initialize ()
   mytree->Branch ("muon_seg_py", &*m_muon_seg_py);
   mytree->Branch ("muon_seg_pz", &*m_muon_seg_pz);
 
-  mytree->Branch ("l1_eta", &*m_l1_eta);
-  mytree->Branch ("l1_phi", &*m_l1_phi);
-  mytree->Branch ("l1_dRoff", &*m_l1_dRoff);
-  mytree->Branch ("l1_BOM", &*m_l1_BOM);
-
+ //l2sa
   mytree->Branch ("l2sa_e", &*m_l2sa_e);
   mytree->Branch ("l2sa_pt", &*m_l2sa_pt);
   mytree->Branch ("l2sa_eta", &*m_l2sa_eta);
@@ -380,6 +387,12 @@ StatusCode MyxAODAnalysis :: initialize ()
   mytree->Branch ("l2cb_pass", &*m_l2cb_pass);
 
   //for l2mt
+  mytree->Branch ("l1_eta", &*m_l1_eta);
+  mytree->Branch ("l1_phi", &*m_l1_phi);
+  mytree->Branch ("l1_dRoff", &*m_l1_dRoff);
+  mytree->Branch ("l1_BOM", &*m_l1_BOM);
+  mytree->Branch ("l1_thrNum", &*m_l1_thrNum);
+
   mytree->Branch ("l2mt_e", &*m_l2mt_e);
   mytree->Branch ("l2mt_pt", &*m_l2mt_pt);
   mytree->Branch ("l2mt_eta", &*m_l2mt_eta);
@@ -453,6 +466,8 @@ StatusCode MyxAODAnalysis :: execute ()
   m_mcEventWeight = eventInfo->mcEventWeight();
   m_actualInteractionsPerCrossing = eventInfo->averageInteractionsPerCrossing();
   m_averageInteractionsPerCrossing = eventInfo->actualInteractionsPerCrossing();
+  
+  m_pass_HLT_mu10_l2mt_L1MU10BOM = m_trigDecisionTool->isPassed("HLT_mu10_l2mt_L1MU10BOM");
 
   // Muons
   m_muon_e->clear();
@@ -517,6 +532,7 @@ StatusCode MyxAODAnalysis :: execute ()
   m_l1_phi->clear();
   m_l1_dRoff->clear();
   m_l1_BOM->clear();
+  m_l1_thrNum->clear();
   m_l2sa_e->clear();
   m_l2sa_pt->clear();
   m_l2sa_eta->clear();
@@ -658,10 +674,10 @@ StatusCode MyxAODAnalysis :: execute ()
 
       dR = reco_MS_track->p4().DeltaR(ref_MS_track->p4());
       if(dR < dRmin)
-	dRmin = dR;
+        dRmin = dR;
 
       if(dR < 0.2) {
-	removed = true;
+        removed = true;
       }
     }
 
@@ -674,6 +690,8 @@ StatusCode MyxAODAnalysis :: execute ()
 
 
   reco_idx = -1;
+
+
   for (const xAOD::Muon* muon : *muons) {
     reco_idx++;
 
@@ -908,7 +926,7 @@ StatusCode MyxAODAnalysis :: execute ()
     const ElementLink<xAOD::L2StandAloneMuonContainer> l2sa = l2saLinkInfo.link;
     if( !l2sa.isValid() ) continue;
 
-    bool pass = ( l2saLinkInfo.state == TrigCompositeUtils::ActiveState::ACTIVE );
+    bool pass = ( l2saLinkInfo.state == TrigCompositeUtils::ActiveState::ACTIVE );//hypo information
 
 
     auto l1muonLinkInfo = TrigCompositeUtils::findLink<xAOD::MuonRoIContainer>(l2saLinkInfo.source, "initialRecRoI");
@@ -977,9 +995,7 @@ StatusCode MyxAODAnalysis :: execute ()
     TLorentzVector tlv_l1;
 
     float dRmin = 999;
-    float l1_eta = 999;
-    float l1_phi = 999;
-    int l1_BOM = 0;
+
     float l2sa_e = 999;
     float l2sa_pt = 999;
     float l2sa_eta = 999;
@@ -1057,16 +1073,11 @@ StatusCode MyxAODAnalysis :: execute ()
       if(dR > dRreq) continue;
 
       if(dR < dRmin) {
+        /*
         dRmin = dR;
         l1_eta = l1muon->eta();
         l1_phi = l1muon->phi();
-
-        if(static_cast<int>(l1muon->getSource()) == 0 && l1muon->isMoreCandInRoI() == 1){//barrel only and isMoreCandflag is ON
-          l1_BOM = 1;
-        }
-        else{
-          l1_BOM = 0;
-        }
+        */
 
         l2sa_e = (*l2sa)->e();
         l2sa_pt = (*l2sa)->pt();
@@ -1163,11 +1174,6 @@ StatusCode MyxAODAnalysis :: execute ()
 
     }
 
-    m_l1_eta->push_back(l1_eta);
-    m_l1_phi->push_back(l1_phi);
-    m_l1_dRoff->push_back(dRmin);
-    m_l1_BOM->push_back(l1_BOM);
-
     m_l2sa_e->push_back(l2sa_e);
     m_l2sa_pt->push_back(l2sa_pt);
     m_l2sa_eta->push_back(l2sa_eta);
@@ -1251,46 +1257,48 @@ StatusCode MyxAODAnalysis :: execute ()
     TLorentzVector tlv_off;
     tlv_off.SetPtEtaPhiE(m_muon_pt->at(off_idx), m_muon_eta->at(off_idx), m_muon_phi->at(off_idx), m_muon_e->at(off_idx));
     TLorentzVector tlv_l1;
-    float dRmin = 999;
-    float l1_eta = 999;
-    float l1_phi = 999;
-    int l1_BOM = 0;
-    float l2mt_e = 999;
-    float l2mt_pt = 999;
-    float l2mt_eta = 999;
-    float l2mt_phi = 999;
-    float l2mt_etaMS = 999;
-    float l2mt_phiMS = 999;
-    bool l2mt_pass = false;
-    std::vector<float> sp_r, sp_z, sp_slope, sp_intercept, sp_chi2;
-    std::vector< unsigned int > l2mt_stgcClusterLayer;
-    std::vector< int >          l2mt_stgcClusterIsOutlier;
-    std::vector< int >          l2mt_stgcClusterType;
-    std::vector< float >        l2mt_stgcClusterEta;
-    std::vector< float >        l2mt_stgcClusterPhi;
-    std::vector< float >        l2mt_stgcClusterR;
-    std::vector< float >        l2mt_stgcClusterZ;
-    std::vector< float >        l2mt_stgcClusterResidualR;
-    std::vector< float >        l2mt_stgcClusterResidualPhi;
-    std::vector< int >          l2mt_stgcClusterStationEta;
-    std::vector< int >          l2mt_stgcClusterStationPhi;
-    std::vector< int >          l2mt_stgcClusterStationName;
-    std::vector< unsigned int > l2mt_mmClusterLayer;
-    std::vector< int >          l2mt_mmClusterIsOutlier;
-    std::vector< float >        l2mt_mmClusterEta;
-    std::vector< float >        l2mt_mmClusterPhi;
-    std::vector< float >        l2mt_mmClusterR;
-    std::vector< float >        l2mt_mmClusterZ;
-    std::vector< float >        l2mt_mmClusterResidualR;
-    std::vector< float >        l2mt_mmClusterResidualPhi;
-    std::vector< int >          l2mt_mmClusterStationEta;
-    std::vector< int >          l2mt_mmClusterStationPhi;
-    std::vector< int >          l2mt_mmClusterStationName;
-    float l2cb_e = 999;
-    float l2cb_pt = 999;
-    float l2cb_eta = 999;
-    float l2cb_phi = 999;
-    bool l2cb_pass = false;
+    /*
+    float targetbarrelEta;
+		float targetbarrelPhi;
+    */
+    std::vector<float> l1_dRoff;
+
+    std::vector<float> l1_eta;
+    std::vector<float> l1_phi;
+    std::vector<int> l1_BOM;
+    std::vector<int> l1_thrNum;
+
+    std::vector<float> l2mt_e;
+    std::vector<float> l2mt_pt;
+    std::vector<float> l2mt_eta;
+    std::vector<float> l2mt_phi;
+    std::vector<float> l2mt_etaMS;
+    std::vector<float> l2mt_phiMS;
+    std::vector<bool> l2mt_pass;
+    std::vector<std::vector<float>> sp_r, sp_z, sp_slope, sp_intercept, sp_chi2;
+    std::vector<std::vector< unsigned int >> l2mt_stgcClusterLayer;
+    std::vector<std::vector < int >>          l2mt_stgcClusterIsOutlier;
+    std::vector<std::vector < int >>          l2mt_stgcClusterType;
+    std::vector<std::vector < float >>        l2mt_stgcClusterEta;
+    std::vector<std::vector < float >>        l2mt_stgcClusterPhi;
+    std::vector<std::vector < float >>        l2mt_stgcClusterR;
+    std::vector<std::vector < float >>        l2mt_stgcClusterZ;
+    std::vector<std::vector < float >>        l2mt_stgcClusterResidualR;
+    std::vector<std::vector < float >>        l2mt_stgcClusterResidualPhi;
+    std::vector<std::vector < int >>          l2mt_stgcClusterStationEta;
+    std::vector<std::vector < int >>          l2mt_stgcClusterStationPhi;
+    std::vector<std::vector < int >>          l2mt_stgcClusterStationName;
+    std::vector<std::vector < unsigned int >> l2mt_mmClusterLayer;
+    std::vector<std::vector < int >>          l2mt_mmClusterIsOutlier;
+    std::vector<std::vector < float >>        l2mt_mmClusterEta;
+    std::vector<std::vector < float >>        l2mt_mmClusterPhi;
+    std::vector<std::vector < float >>        l2mt_mmClusterR;
+    std::vector<std::vector < float >>        l2mt_mmClusterZ;
+    std::vector<std::vector < float >>        l2mt_mmClusterResidualR;
+    std::vector<std::vector < float >>        l2mt_mmClusterResidualPhi;
+    std::vector<std::vector < int >>          l2mt_mmClusterStationEta;
+    std::vector<std::vector < int >>          l2mt_mmClusterStationPhi;
+    std::vector<std::vector < int >>          l2mt_mmClusterStationName;
     uint32_t roiWord = 999;
     float dR = 0;
     float dRreq = 0.08;
@@ -1309,6 +1317,46 @@ StatusCode MyxAODAnalysis :: execute ()
         ATH_MSG_ERROR("Invalid link to L1 muon");
         continue;
       }
+
+      float v_dRmin = 999;
+      float v_l1_eta = 999;
+      float v_l1_phi = 999;
+      int v_l1_BOM = 0;
+      int v_l1_thrNum = 0;
+
+      float v_l2mt_e = 999;
+      float v_l2mt_pt = 999;
+      float v_l2mt_eta = 999;
+      float v_l2mt_phi = 999;
+      float v_l2mt_etaMS = 999;
+      float v_l2mt_phiMS = 999;
+      bool v_l2mt_pass = 0;
+      
+      std::vector<float> v_sp_r, v_sp_z, v_sp_slope, v_sp_intercept, v_sp_chi2;
+      std::vector< unsigned int >  v_l2mt_stgcClusterLayer;
+      std::vector < int >          v_l2mt_stgcClusterIsOutlier;
+      std::vector < int >          v_l2mt_stgcClusterType;
+      std::vector < float >        v_l2mt_stgcClusterEta;
+      std::vector < float >        v_l2mt_stgcClusterPhi;
+      std::vector < float >        v_l2mt_stgcClusterR;
+      std::vector < float >        v_l2mt_stgcClusterZ;
+      std::vector < float >        v_l2mt_stgcClusterResidualR;
+      std::vector < float >        v_l2mt_stgcClusterResidualPhi;
+      std::vector < int >          v_l2mt_stgcClusterStationEta;
+      std::vector < int >          v_l2mt_stgcClusterStationPhi;
+      std::vector < int >          v_l2mt_stgcClusterStationName;
+      std::vector < unsigned int > v_l2mt_mmClusterLayer;
+      std::vector < int >          v_l2mt_mmClusterIsOutlier;
+      std::vector < float >        v_l2mt_mmClusterEta;
+      std::vector < float >        v_l2mt_mmClusterPhi;
+      std::vector < float >        v_l2mt_mmClusterR;
+      std::vector < float >        v_l2mt_mmClusterZ;
+      std::vector < float >        v_l2mt_mmClusterResidualR;
+      std::vector < float >        v_l2mt_mmClusterResidualPhi;
+      std::vector < int >          v_l2mt_mmClusterStationEta;
+      std::vector < int >          v_l2mt_mmClusterStationPhi;
+      std::vector < int >          v_l2mt_mmClusterStationName;
+
       const xAOD::MuonRoI* l1muon = *l1muonLink;
 
       tlv_l1.SetPtEtaPhiE(m_muon_pt->at(off_idx), l1muon->eta(), l1muon->phi(), m_muon_e->at(off_idx));
@@ -1317,96 +1365,183 @@ StatusCode MyxAODAnalysis :: execute ()
 
       if(dR > dRreq) continue;
 
-      if(dR < dRmin) {
-        /*
-        dRmin = dR;
-        l1_eta = l1muon->eta();
-        l1_phi = l1muon->phi();
-        */
+      if(dR < v_dRmin) {
 
-        l2mt_e = (*l2mt)->e();
-        l2mt_pt = (*l2mt)->pt();
-        l2mt_eta = (*l2mt)->eta();
-        l2mt_phi = (*l2mt)->phi();
-        l2mt_etaMS = (*l2mt)->etaMS();
-        l2mt_phiMS = (*l2mt)->phiMS();
-        l2mt_pass = ( l2mtLinkInfo.state == TrigCompositeUtils::ActiveState::ACTIVE );
+        v_dRmin = dR;
+        v_l1_eta = l1muon->eta();
+        v_l1_phi = l1muon->phi();
+        v_l1_thrNum = l1muon->getThrNumber();
 
-        l2mt_stgcClusterLayer = (*l2mt)->stgcClusterLayer();
-        l2mt_stgcClusterIsOutlier = (*l2mt)->stgcClusterIsOutlier();
-        l2mt_stgcClusterType = (*l2mt)->stgcClusterType();
-        l2mt_stgcClusterEta = (*l2mt)->stgcClusterEta();
-        l2mt_stgcClusterPhi = (*l2mt)->stgcClusterPhi();
-        l2mt_stgcClusterR = (*l2mt)->stgcClusterR();
-        l2mt_stgcClusterZ = (*l2mt)->stgcClusterZ();
-        l2mt_stgcClusterResidualR = (*l2mt)->stgcClusterResidualR();
-        l2mt_stgcClusterResidualPhi = (*l2mt)->stgcClusterResidualPhi();
-        l2mt_stgcClusterStationEta = (*l2mt)->stgcClusterStationEta();
-        l2mt_stgcClusterStationPhi = (*l2mt)->stgcClusterStationPhi();
-        l2mt_stgcClusterStationName = (*l2mt)->stgcClusterStationName();
-
-        l2mt_mmClusterLayer = (*l2mt)->mmClusterLayer();
-        l2mt_mmClusterIsOutlier = (*l2mt)->mmClusterIsOutlier();
-        l2mt_mmClusterEta = (*l2mt)->mmClusterEta();
-        l2mt_mmClusterPhi = (*l2mt)->mmClusterPhi();
-        l2mt_mmClusterR = (*l2mt)->mmClusterR();
-        l2mt_mmClusterZ = (*l2mt)->mmClusterZ();
-        l2mt_mmClusterResidualR = (*l2mt)->mmClusterResidualR();
-        l2mt_mmClusterResidualPhi = (*l2mt)->mmClusterResidualPhi();
-        l2mt_mmClusterStationEta = (*l2mt)->mmClusterStationEta();
-        l2mt_mmClusterStationPhi = (*l2mt)->mmClusterStationPhi();
-        l2mt_mmClusterStationName = (*l2mt)->mmClusterStationName();
-
-        sp_r.clear();
-        sp_z.clear();
-        sp_slope.clear();
-        sp_intercept.clear();
-        sp_chi2.clear();
-        int inner  = 0;
-        int middle = 1;
-        int outer  = 2;
-        if ((*l2mt)->sAddress() == -1) {
-          inner  = xAOD::L2MuonParameters::Chamber::EndcapInner;
-          middle = xAOD::L2MuonParameters::Chamber::EndcapMiddle;
-          outer  = xAOD::L2MuonParameters::Chamber::EndcapOuter;
-        } else {
-          inner  = xAOD::L2MuonParameters::Chamber::BarrelInner;
-          middle = xAOD::L2MuonParameters::Chamber::BarrelMiddle;
-          outer  = xAOD::L2MuonParameters::Chamber::BarrelOuter;
+        // BOM
+        if(static_cast<int>(l1muon->getSource()) == 0 && l1muon->isMoreCandInRoI() == 1){//barrel only and isMoreCandflag is ON
+          v_l1_BOM = 1;
         }
-        // super point
-        if( std::abs((*l2mt)->superPointR(inner)) > ZERO_LIMIT ) {
-          sp_r.push_back(         (*l2mt)->superPointR(inner) );
-          sp_z.push_back(         (*l2mt)->superPointZ(inner) );
-          sp_slope.push_back(     (*l2mt)->superPointSlope(inner) );
-          sp_intercept.push_back( (*l2mt)->superPointIntercept(inner) );
-          sp_chi2.push_back(      (*l2mt)->superPointChi2(inner) );
+        else{
+          v_l1_BOM = 0;
         }
-        if( std::abs((*l2mt)->superPointR(middle)) > ZERO_LIMIT ) {
-          sp_r.push_back(         (*l2mt)->superPointR(middle) );
-          sp_z.push_back(         (*l2mt)->superPointZ(middle) );
-          sp_slope.push_back(     (*l2mt)->superPointSlope(middle) );
-          sp_intercept.push_back( (*l2mt)->superPointIntercept(middle) );
-          sp_chi2.push_back(      (*l2mt)->superPointChi2(middle) );
+/*
+        // extrapolate
+        // endcap or barrel flag
+        bool flag_barrel = std::abs(m_muon_eta->at(off_idx));
+            
+        // only barrel and reasonably-high-pT muons
+        if (!flag_barrel) {
+          m_mu_ext_b_targetEtaVec->push_back(targetbarrelEta);
+          m_mu_ext_b_targetPhiVec->push_back(targetbarrelPhi);
         }
-        if( std::abs((*l2mt)->superPointR(outer)) > ZERO_LIMIT ) {
-          sp_r.push_back(         (*l2mt)->superPointR(outer) );
-          sp_z.push_back(         (*l2mt)->superPointZ(outer) );
-          sp_slope.push_back(     (*l2mt)->superPointSlope(outer) );
-          sp_intercept.push_back( (*l2mt)->superPointIntercept(outer) );
-          sp_chi2.push_back(      (*l2mt)->superPointChi2(outer) );
-        }
+        if (flag_barrel){
+          for (const auto &R : m_b_extPosition){
+            auto trk = muon->primaryTrackParticle();
+            ATH_MSG_DEBUG("extTrackToRPC");
+            if(!trk) Trk::TrackParameters* extBarrelParams = NULL;
+            std::unique_ptr<Trk::CylinderSurface> barrel(new Trk::CylinderSurface( R, 15000. ));
+            const bool boundaryCheck = true;
 
-        roiWord = (*l2mt)->roiWord();
-        
+            //const Trk::TrackParameters* extBarrelParams = m_extrapolator->extrapolate(Gaudi::Hive::currentContext(),
+            const auto extBarrelParams = m_extrapolator->extrapolate(Gaudi::Hive::currentContext(),
+                                                                          *trk,
+                                                                          *barrel,
+                                                                            Trk::alongMomentum,
+                                                                            boundaryCheck,
+                                                                            Trk::muon);
+            if (extBarrelParams != nullptr){
+              targetbarrelEta.push_back(extBarrelParams->position().eta());
+              targetbarrelPhi.push_back(extBarrelParams->position().phi());
+            }
+          }
+          m_mu_ext_b_targetEtaVec-fmuon>push_back(targetbarrelEta);
+          m_mu_ext_b_targetPhiVec->push_back(targetbarrelPhi);
+        }
+*/
+        //matching
+        if(dR < 0.02){
+          v_l2mt_e = (*l2mt)->e();
+          v_l2mt_pt = (*l2mt)->pt();
+          v_l2mt_eta = (*l2mt)->eta();
+          v_l2mt_phi = (*l2mt)->phi();
+          v_l2mt_etaMS = (*l2mt)->etaMS();
+          v_l2mt_phiMS = (*l2mt)->phiMS();
+          v_l2mt_pass = ( l2mtLinkInfo.state == TrigCompositeUtils::ActiveState::ACTIVE );
+
+          v_l2mt_stgcClusterLayer = (*l2mt)->stgcClusterLayer();
+          v_l2mt_stgcClusterIsOutlier = (*l2mt)->stgcClusterIsOutlier();
+          v_l2mt_stgcClusterType = (*l2mt)->stgcClusterType();
+          v_l2mt_stgcClusterEta = (*l2mt)->stgcClusterEta();
+          v_l2mt_stgcClusterPhi = (*l2mt)->stgcClusterPhi();
+          v_l2mt_stgcClusterR = (*l2mt)->stgcClusterR();
+          v_l2mt_stgcClusterZ = (*l2mt)->stgcClusterZ();
+          v_l2mt_stgcClusterResidualR = (*l2mt)->stgcClusterResidualR();
+          v_l2mt_stgcClusterResidualPhi = (*l2mt)->stgcClusterResidualPhi();
+          v_l2mt_stgcClusterStationEta = (*l2mt)->stgcClusterStationEta();
+          v_l2mt_stgcClusterStationPhi = (*l2mt)->stgcClusterStationPhi();
+          v_l2mt_stgcClusterStationName = (*l2mt)->stgcClusterStationName();
+
+          v_l2mt_mmClusterLayer = (*l2mt)->mmClusterLayer();
+          v_l2mt_mmClusterIsOutlier = (*l2mt)->mmClusterIsOutlier();
+          v_l2mt_mmClusterEta = (*l2mt)->mmClusterEta();
+          v_l2mt_mmClusterPhi = (*l2mt)->mmClusterPhi();
+          v_l2mt_mmClusterR = (*l2mt)->mmClusterR();
+          v_l2mt_mmClusterZ = (*l2mt)->mmClusterZ();
+          v_l2mt_mmClusterResidualR = (*l2mt)->mmClusterResidualR();
+          v_l2mt_mmClusterResidualPhi = (*l2mt)->mmClusterResidualPhi();
+          v_l2mt_mmClusterStationEta = (*l2mt)->mmClusterStationEta();
+          v_l2mt_mmClusterStationPhi = (*l2mt)->mmClusterStationPhi();
+          v_l2mt_mmClusterStationName = (*l2mt)->mmClusterStationName();
+
+          sp_r.clear();
+          sp_z.clear();
+          sp_slope.clear();
+          sp_intercept.clear();
+          sp_chi2.clear();
+          int inner  = 0;
+          int middle = 1;
+          int outer  = 2;
+          if ((*l2mt)->sAddress() == -1) {
+            inner  = xAOD::L2MuonParameters::Chamber::EndcapInner;
+            middle = xAOD::L2MuonParameters::Chamber::EndcapMiddle;
+            outer  = xAOD::L2MuonParameters::Chamber::EndcapOuter;
+          } else {
+            inner  = xAOD::L2MuonParameters::Chamber::BarrelInner;
+            middle = xAOD::L2MuonParameters::Chamber::BarrelMiddle;
+            outer  = xAOD::L2MuonParameters::Chamber::BarrelOuter;
+          }
+          // super point
+          if( std::abs((*l2mt)->superPointR(inner)) > ZERO_LIMIT ) {
+            v_sp_r.push_back(         (*l2mt)->superPointR(inner) );
+            v_sp_z.push_back(         (*l2mt)->superPointZ(inner) );
+            v_sp_slope.push_back(     (*l2mt)->superPointSlope(inner) );
+            v_sp_intercept.push_back( (*l2mt)->superPointIntercept(inner) );
+            v_sp_chi2.push_back(      (*l2mt)->superPointChi2(inner) );
+          }
+          if( std::abs((*l2mt)->superPointR(middle)) > ZERO_LIMIT ) {
+            v_sp_r.push_back(         (*l2mt)->superPointR(middle) );
+            v_sp_z.push_back(         (*l2mt)->superPointZ(middle) );
+            v_sp_slope.push_back(     (*l2mt)->superPointSlope(middle) );
+            v_sp_intercept.push_back( (*l2mt)->superPointIntercept(middle) );
+            v_sp_chi2.push_back(      (*l2mt)->superPointChi2(middle) );
+          }
+          if( std::abs((*l2mt)->superPointR(outer)) > ZERO_LIMIT ) {
+            v_sp_r.push_back(         (*l2mt)->superPointR(outer) );
+            v_sp_z.push_back(         (*l2mt)->superPointZ(outer) );
+            v_sp_slope.push_back(     (*l2mt)->superPointSlope(outer) );
+            v_sp_intercept.push_back( (*l2mt)->superPointIntercept(outer) );
+            v_sp_chi2.push_back(      (*l2mt)->superPointChi2(outer) );
+          }
+
+          roiWord = (*l2mt)->roiWord();
+          
+  
+        } 
       }
+      l1_eta.push_back(v_l1_eta);
+      l1_phi.push_back(v_l1_phi);
+      l1_dRoff.push_back(v_dRmin);
+      l1_BOM.push_back(v_l1_BOM);
+      l1_thrNum.push_back(v_l1_thrNum);
+
+      l2mt_e.push_back(v_l2mt_e);
+      l2mt_pt.push_back(v_l2mt_pt);
+      l2mt_eta.push_back(v_l2mt_eta);
+      l2mt_phi.push_back(v_l2mt_phi);
+      l2mt_etaMS.push_back(v_l2mt_etaMS);
+      l2mt_phiMS.push_back(v_l2mt_phiMS);
+      l2mt_pass.push_back(v_l2mt_pass);
+
+      sp_r.push_back(v_sp_r);
+      sp_z.push_back(v_sp_z);
+      sp_slope.push_back(v_sp_slope);
+      sp_intercept.push_back(v_sp_intercept);
+      sp_chi2.push_back(v_sp_chi2);
+      l2mt_stgcClusterLayer.push_back(v_l2mt_stgcClusterLayer);
+      l2mt_stgcClusterIsOutlier.push_back(v_l2mt_stgcClusterIsOutlier);
+      l2mt_stgcClusterType.push_back(v_l2mt_stgcClusterType);
+      l2mt_stgcClusterEta.push_back(v_l2mt_stgcClusterEta);
+      l2mt_stgcClusterPhi.push_back(v_l2mt_stgcClusterPhi);
+      l2mt_stgcClusterR.push_back(v_l2mt_stgcClusterR);
+      l2mt_stgcClusterZ.push_back(v_l2mt_stgcClusterZ);
+      l2mt_stgcClusterResidualR.push_back(v_l2mt_stgcClusterResidualR);
+      l2mt_stgcClusterResidualPhi.push_back(v_l2mt_stgcClusterResidualPhi);
+      l2mt_stgcClusterStationEta.push_back(v_l2mt_stgcClusterStationEta);
+      l2mt_stgcClusterStationPhi.push_back(v_l2mt_stgcClusterStationPhi);
+      l2mt_stgcClusterStationName.push_back(v_l2mt_stgcClusterStationName);
+      l2mt_mmClusterLayer.push_back(v_l2mt_mmClusterLayer);
+      l2mt_mmClusterIsOutlier.push_back(v_l2mt_mmClusterIsOutlier);
+      l2mt_mmClusterEta.push_back(v_l2mt_mmClusterEta);
+      l2mt_mmClusterPhi.push_back(v_l2mt_mmClusterPhi);
+      l2mt_mmClusterR.push_back(v_l2mt_mmClusterR);
+      l2mt_mmClusterZ.push_back(v_l2mt_mmClusterZ);
+      l2mt_mmClusterResidualR.push_back(v_l2mt_mmClusterResidualR);
+      l2mt_mmClusterResidualPhi.push_back(v_l2mt_mmClusterResidualPhi);
+      l2mt_mmClusterStationEta.push_back(v_l2mt_mmClusterStationEta);
+      l2mt_mmClusterStationPhi.push_back(v_l2mt_mmClusterStationPhi);
+      l2mt_mmClusterStationName.push_back(v_l2mt_mmClusterStationName);
 
     }
-  /*
     m_l1_eta->push_back(l1_eta);
     m_l1_phi->push_back(l1_phi);
-    m_l1_dRoff->push_back(dRmin);
-  */
+    m_l1_dRoff->push_back(l1_dRoff);
+    m_l1_BOM->push_back(l1_BOM);
+    m_l1_thrNum->push_back(l1_thrNum);
 
     m_l2mt_e->push_back(l2mt_e);
     m_l2mt_pt->push_back(l2mt_pt);
