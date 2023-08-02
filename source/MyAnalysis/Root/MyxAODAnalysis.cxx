@@ -16,7 +16,7 @@ MyxAODAnalysis :: MyxAODAnalysis (const std::string& name,
     m_trigDecisionTool ("Trig::TrigDecisionTool/TrigDecisionTool",this),
     m_selTool ("CP::MuonSelectionTool", this),
     m_truthClassificationTool("TruthClassificationTool/TruthClassificationTool", this),
-    m_extrapolator("Trk::IExtrapolator/IExtrapolator", this)
+    m_extrapolator("Trk::Extrapolator/AtlasExtrapolator", this)
 {
   // Here you put any code for the base initialization of variables,
   // e.g. initialize all pointers to 0.  This is also where you
@@ -28,7 +28,7 @@ MyxAODAnalysis :: MyxAODAnalysis (const std::string& name,
   declareProperty("trigDecisionTool", m_trigDecisionTool, "the TrigDecisio tool");
   declareProperty("MuonSelTool", m_selTool, "The muon selection tool");
   declareProperty("truthClassificationTool", m_truthClassificationTool, "IFF TruthClassification");
-  declareProperty("extrapolator", m_extrapolator, "the track extrapolator");
+  declareProperty("TrackExtrapolator", m_extrapolator, "Track Extrapolator");
 
 }
 
