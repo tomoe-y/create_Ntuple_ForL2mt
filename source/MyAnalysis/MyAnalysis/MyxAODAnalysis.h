@@ -9,6 +9,7 @@
 #include "xAODTrigMuon/L2CombinedMuonContainer.h"
 #include "xAODTrigger/MuonRoIContainer.h"
 #include "TruthClassification/TruthClassificationTool.h"
+#include "TrkExInterfaces/IExtrapolator.h"
 
 class MyxAODAnalysis : public EL::AnaAlgorithm
 {
@@ -27,6 +28,7 @@ class MyxAODAnalysis : public EL::AnaAlgorithm
   ToolHandle<Trig::TrigDecisionTool> m_trigDecisionTool;
   ToolHandle<CP::MuonSelectionTool> m_selTool;
   ToolHandle<CP::IClassificationTool> m_truthClassificationTool;
+  ToolHandle<Trk::IExtrapolator> m_extrapolator;
 
   SG::ReadHandleKey<xAOD::EventInfo> m_eventInfo{this, "EventInfoContName", "EventInfo", "event info key"};
 
@@ -40,6 +42,8 @@ class MyxAODAnalysis : public EL::AnaAlgorithm
   float m_actualInteractionsPerCrossing = 0;
   float m_averageInteractionsPerCrossing = 0;
   bool m_pass_HLT_mu10_l2mt_L1MU10BOM = 0;
+
+  std::vector<float> m_b_extPosition;
 
   std::unique_ptr<std::vector<float>> m_muon_e;
   std::unique_ptr<std::vector<float>> m_muon_pt;
@@ -76,6 +80,9 @@ class MyxAODAnalysis : public EL::AnaAlgorithm
   std::unique_ptr<std::vector<int>> m_muon_outerLargeHits;
   std::unique_ptr<std::vector<int>> m_muon_extendedSmallHits;
   std::unique_ptr<std::vector<int>> m_muon_extendedLargeHits;
+
+  std::unique_ptr<std::vector<std::vector<float>>> m_mu_ext_b_targetEtaVec;
+  std::unique_ptr<std::vector<std::vector<float>>> m_mu_ext_b_targetPhiVec;
 
   // sTGC
   std::unique_ptr<std::vector< uint8_t>> m_muon_phiLayer1STGCHits;

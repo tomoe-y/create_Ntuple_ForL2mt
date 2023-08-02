@@ -15,7 +15,8 @@ MyxAODAnalysis :: MyxAODAnalysis (const std::string& name,
     // m_trigConfigTool ("TrigConf::xAODConfigTool/xAODConfigTool",this),
     m_trigDecisionTool ("Trig::TrigDecisionTool/TrigDecisionTool",this),
     m_selTool ("CP::MuonSelectionTool", this),
-    m_truthClassificationTool("TruthClassificationTool/TruthClassificationTool", this)
+    m_truthClassificationTool("TruthClassificationTool/TruthClassificationTool", this),
+    m_extrapolator("Trk::IExtrapolator/IExtrapolator", this)
 {
   // Here you put any code for the base initialization of variables,
   // e.g. initialize all pointers to 0.  This is also where you
@@ -27,6 +28,7 @@ MyxAODAnalysis :: MyxAODAnalysis (const std::string& name,
   declareProperty("trigDecisionTool", m_trigDecisionTool, "the TrigDecisio tool");
   declareProperty("MuonSelTool", m_selTool, "The muon selection tool");
   declareProperty("truthClassificationTool", m_truthClassificationTool, "IFF TruthClassification");
+  declareProperty("extrapolator", m_extrapolator, "the track extrapolator");
 
 }
 
@@ -59,6 +61,8 @@ StatusCode MyxAODAnalysis :: initialize ()
   ANA_CHECK( m_selTool.retrieve() );
 
   ATH_CHECK( m_truthClassificationTool.retrieve() );
+
+  ATH_CHECK( m_extrapolator.retrieve() );
 
   ATH_CHECK(m_eventInfo.initialize());
 
@@ -112,6 +116,9 @@ StatusCode MyxAODAnalysis :: initialize ()
   m_muon_outerLargeHits = std::make_unique<std::vector<int>>();
   m_muon_extendedSmallHits = std::make_unique<std::vector<int>>();
   m_muon_extendedLargeHits = std::make_unique<std::vector<int>>();
+
+  m_mu_ext_b_targetEtaVec = std::make_unique<std::vector<std::vector<float>>>();
+  m_mu_ext_b_targetPhiVec = std::make_unique<std::vector<std::vector<float>>>();
 
   // sTGC
   m_muon_phiLayer1STGCHits = std::make_unique<std::vector<uint8_t>>();
@@ -250,7 +257,7 @@ StatusCode MyxAODAnalysis :: initialize ()
   m_ptVec = std::make_unique<std::vector<std::vector<float>>>();
   m_etaVec = std::make_unique<std::vector<std::vector<float>>>();
   m_phiVec = std::make_unique<std::vector<std::vector<float>>>();
-/*
+
   // RPC position
 	m_b_extPosition.clear();
 	m_b_extPosition.push_back(6880.);
@@ -259,7 +266,7 @@ StatusCode MyxAODAnalysis :: initialize ()
 	m_b_extPosition.push_back(8420.);
 	m_b_extPosition.push_back(9880.);
 	m_b_extPosition.push_back(10260.);
-*/
+
   mytree->Branch ("muon_e", &*m_muon_e);
   mytree->Branch ("muon_pt", &*m_muon_pt);
   mytree->Branch ("muon_eta", &*m_muon_eta);
@@ -295,6 +302,9 @@ StatusCode MyxAODAnalysis :: initialize ()
   mytree->Branch ("muon_outerLargeHits", &*m_muon_outerLargeHits);
   mytree->Branch ("muon_extendedSmallHits", &*m_muon_extendedSmallHits);
   mytree->Branch ("muon_extendedLargeHits", &*m_muon_extendedLargeHits);
+
+  mytree->Branch ("mu_ext_b_targetEtaVec", &*m_mu_ext_b_targetEtaVec);
+  mytree->Branch ("mu_ext_b_targetPhiVec", &*m_mu_ext_b_targetPhiVec);
 
   // sTGC
   mytree->Branch ("muon_phiLayer1STGCHits", &*m_muon_phiLayer1STGCHits);
@@ -503,6 +513,8 @@ StatusCode MyxAODAnalysis :: execute ()
   m_muon_outerLargeHits->clear();
   m_muon_extendedSmallHits->clear();
   m_muon_extendedLargeHits->clear();
+  m_mu_ext_b_targetEtaVec->clear();
+  m_mu_ext_b_targetPhiVec->clear();
   m_muon_phiLayer1STGCHits->clear();
   m_muon_phiLayer2STGCHits->clear();
   m_muon_etaLayer1STGCHits->clear();
@@ -713,14 +725,14 @@ StatusCode MyxAODAnalysis :: execute ()
     uint8_t innerSmallHits(0), innerLargeHits(0), middleSmallHits(0), middleLargeHits(0),
       outerSmallHits(0), outerLargeHits(0), extendedSmallHits(0), extendedLargeHits(0);
     if (!muon->summaryValue(innerSmallHits, xAOD::MuonSummaryType::innerSmallHits) ||
-	!muon->summaryValue(innerLargeHits, xAOD::MuonSummaryType::innerLargeHits) ||
-	!muon->summaryValue(middleSmallHits, xAOD::MuonSummaryType::middleSmallHits) ||
-	!muon->summaryValue(middleLargeHits, xAOD::MuonSummaryType::middleLargeHits) ||
-	!muon->summaryValue(outerSmallHits, xAOD::MuonSummaryType::outerSmallHits) ||
-	!muon->summaryValue(outerLargeHits, xAOD::MuonSummaryType::outerLargeHits) ||
-	!muon->summaryValue(extendedSmallHits, xAOD::MuonSummaryType::extendedSmallHits) ||
-	!muon->summaryValue(extendedLargeHits, xAOD::MuonSummaryType::extendedLargeHits)) {
-      ATH_MSG_WARNING("MS hits information missing!!!");
+        !muon->summaryValue(innerLargeHits, xAOD::MuonSummaryType::innerLargeHits) ||
+        !muon->summaryValue(middleSmallHits, xAOD::MuonSummaryType::middleSmallHits) ||
+        !muon->summaryValue(middleLargeHits, xAOD::MuonSummaryType::middleLargeHits) ||
+        !muon->summaryValue(outerSmallHits, xAOD::MuonSummaryType::outerSmallHits) ||
+        !muon->summaryValue(outerLargeHits, xAOD::MuonSummaryType::outerLargeHits) ||
+        !muon->summaryValue(extendedSmallHits, xAOD::MuonSummaryType::extendedSmallHits) ||
+        !muon->summaryValue(extendedLargeHits, xAOD::MuonSummaryType::extendedLargeHits)) {
+        ATH_MSG_WARNING("MS hits information missing!!!");
     }
 
 
@@ -768,13 +780,13 @@ StatusCode MyxAODAnalysis :: execute ()
 
       const xAOD::TruthParticle* truth_muon = xAOD::TruthHelpers::getTruthParticle(*muon);
       if(truth_muon) {
-	ATH_MSG_DEBUG("Truth Muon pt/eta/phi = " << truth_muon->pt()*0.001 << "/" << truth_muon->eta() << "/" << truth_muon->phi() << " pdgId = " << truth_muon->pdgId());
+        ATH_MSG_DEBUG("Truth Muon pt/eta/phi = " << truth_muon->pt()*0.001 << "/" << truth_muon->eta() << "/" << truth_muon->phi() << " pdgId = " << truth_muon->pdgId());
 
-	truth_e = truth_muon->e();
-	truth_pt = truth_muon->pt();
-	truth_eta = truth_muon->eta();
-	truth_phi = truth_muon->phi();
-	truth_pdgId = truth_muon->pdgId();
+        truth_e = truth_muon->e();
+        truth_pt = truth_muon->pt();
+        truth_eta = truth_muon->eta();
+        truth_phi = truth_muon->phi();
+        truth_pdgId = truth_muon->pdgId();
       }
 
 
@@ -786,19 +798,19 @@ StatusCode MyxAODAnalysis :: execute ()
 
     uint8_t phiLayer1STGCHits(0), phiLayer2STGCHits(0), etaLayer1STGCHits(0), etaLayer2STGCHits(0), phiLayer1STGCHoles(0), phiLayer2STGCHoles(0), etaLayer1STGCHoles(0), etaLayer2STGCHoles(0);
     if (!muon->summaryValue(phiLayer1STGCHits, xAOD::MuonSummaryType::phiLayer1STGCHits) ||
-	!muon->summaryValue(phiLayer2STGCHits, xAOD::MuonSummaryType::phiLayer2STGCHits) ||
-	!muon->summaryValue(etaLayer1STGCHits, xAOD::MuonSummaryType::etaLayer1STGCHits) ||
-	!muon->summaryValue(etaLayer2STGCHits, xAOD::MuonSummaryType::etaLayer2STGCHits) ||
-	!muon->summaryValue(phiLayer1STGCHoles, xAOD::MuonSummaryType::phiLayer1STGCHoles) ||
-	!muon->summaryValue(phiLayer2STGCHoles, xAOD::MuonSummaryType::phiLayer2STGCHoles) ||
-	!muon->summaryValue(etaLayer1STGCHoles, xAOD::MuonSummaryType::etaLayer1STGCHoles) ||
-	!muon->summaryValue(etaLayer2STGCHoles, xAOD::MuonSummaryType::etaLayer2STGCHoles)) {
+        !muon->summaryValue(phiLayer2STGCHits, xAOD::MuonSummaryType::phiLayer2STGCHits) ||
+        !muon->summaryValue(etaLayer1STGCHits, xAOD::MuonSummaryType::etaLayer1STGCHits) ||
+        !muon->summaryValue(etaLayer2STGCHits, xAOD::MuonSummaryType::etaLayer2STGCHits) ||
+        !muon->summaryValue(phiLayer1STGCHoles, xAOD::MuonSummaryType::phiLayer1STGCHoles) ||
+        !muon->summaryValue(phiLayer2STGCHoles, xAOD::MuonSummaryType::phiLayer2STGCHoles) ||
+        !muon->summaryValue(etaLayer1STGCHoles, xAOD::MuonSummaryType::etaLayer1STGCHoles) ||
+        !muon->summaryValue(etaLayer2STGCHoles, xAOD::MuonSummaryType::etaLayer2STGCHoles)) {
       ATH_MSG_WARNING("STGC hits missing!!!...");
     }
 
     uint8_t MMHits(0), MMHoles(0);
     if (!muon->summaryValue(MMHits, xAOD::MuonSummaryType::MMHits) ||
-	!muon->summaryValue(MMHoles, xAOD::MuonSummaryType::MMHoles)) {
+        !muon->summaryValue(MMHoles, xAOD::MuonSummaryType::MMHoles)) {
       ATH_MSG_WARNING("MM hits missing!!!...");
     }
 
@@ -833,6 +845,42 @@ StatusCode MyxAODAnalysis :: execute ()
       seg_pz.push_back(muonSegment->pz());
     }
 
+    // extrapolate
+		std::vector<float> targetbarrelEta;
+		std::vector<float> targetbarrelPhi;
+
+
+    // endcap or barrel flag
+    bool flag_barrel = std::abs(muon->eta()) < 1.5;
+        
+    // only barrel and reasonably-high-pT muons
+    if (!flag_barrel) {
+      m_mu_ext_b_targetEtaVec->push_back(targetbarrelEta);
+      m_mu_ext_b_targetPhiVec->push_back(targetbarrelPhi);
+    }
+    if (flag_barrel){
+      for (const auto &R : m_b_extPosition){
+        auto trk = muon->primaryTrackParticle();
+        ATH_MSG_DEBUG("extTrackToRPC");
+        if(!trk) Trk::TrackParameters* extBarrelParams = NULL;
+        std::unique_ptr<Trk::CylinderSurface> barrel(new Trk::CylinderSurface( R, 15000. ));
+        const bool boundaryCheck = true;
+
+        //const Trk::TrackParameters* extBarrelParams = m_extrapolator->extrapolate(Gaudi::Hive::currentContext(),
+        const auto extBarrelParams = m_extrapolator->extrapolate(Gaudi::Hive::currentContext(),
+                                                                      *trk,
+                                                                      *barrel,
+                                                                      Trk::alongMomentum,
+                                                                      boundaryCheck,
+                                                                      Trk::muon);
+        if (extBarrelParams != nullptr){
+          targetbarrelEta.push_back(extBarrelParams->position().eta());
+          targetbarrelPhi.push_back(extBarrelParams->position().phi());
+        }
+      }
+      m_mu_ext_b_targetEtaVec->push_back(targetbarrelEta);
+      m_mu_ext_b_targetPhiVec->push_back(targetbarrelPhi);
+    }
 
 
     m_muon_e->push_back (muon->e() * 0.001); // GeV
@@ -1379,42 +1427,9 @@ StatusCode MyxAODAnalysis :: execute ()
         else{
           v_l1_BOM = 0;
         }
-/*
-        // extrapolate
-        // endcap or barrel flag
-        bool flag_barrel = std::abs(m_muon_eta->at(off_idx));
-            
-        // only barrel and reasonably-high-pT muons
-        if (!flag_barrel) {
-          m_mu_ext_b_targetEtaVec->push_back(targetbarrelEta);
-          m_mu_ext_b_targetPhiVec->push_back(targetbarrelPhi);
-        }
-        if (flag_barrel){
-          for (const auto &R : m_b_extPosition){
-            auto trk = muon->primaryTrackParticle();
-            ATH_MSG_DEBUG("extTrackToRPC");
-            if(!trk) Trk::TrackParameters* extBarrelParams = NULL;
-            std::unique_ptr<Trk::CylinderSurface> barrel(new Trk::CylinderSurface( R, 15000. ));
-            const bool boundaryCheck = true;
 
-            //const Trk::TrackParameters* extBarrelParams = m_extrapolator->extrapolate(Gaudi::Hive::currentContext(),
-            const auto extBarrelParams = m_extrapolator->extrapolate(Gaudi::Hive::currentContext(),
-                                                                          *trk,
-                                                                          *barrel,
-                                                                            Trk::alongMomentum,
-                                                                            boundaryCheck,
-                                                                            Trk::muon);
-            if (extBarrelParams != nullptr){
-              targetbarrelEta.push_back(extBarrelParams->position().eta());
-              targetbarrelPhi.push_back(extBarrelParams->position().phi());
-            }
-          }
-          m_mu_ext_b_targetEtaVec-fmuon>push_back(targetbarrelEta);
-          m_mu_ext_b_targetPhiVec->push_back(targetbarrelPhi);
-        }
-*/
         //matching
-        if(dR < 0.02){
+        //if(dR < 0.02){
           v_l2mt_e = (*l2mt)->e();
           v_l2mt_pt = (*l2mt)->pt();
           v_l2mt_eta = (*l2mt)->eta();
@@ -1491,7 +1506,7 @@ StatusCode MyxAODAnalysis :: execute ()
           roiWord = (*l2mt)->roiWord();
           
   
-        } 
+        //} 
       }
       l1_eta.push_back(v_l1_eta);
       l1_phi.push_back(v_l1_phi);
