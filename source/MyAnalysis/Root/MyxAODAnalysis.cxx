@@ -62,7 +62,11 @@ StatusCode MyxAODAnalysis :: initialize ()
 
   ATH_CHECK( m_truthClassificationTool.retrieve() );
 
-  ATH_CHECK( m_extrapolator.retrieve() );
+  //ATH_CHECK( m_extrapolator.retrieve() );
+  if (!m_extrapolator.empty())
+    ATH_CHECK(m_extrapolator.retrieve());
+  else
+    m_extrapolator.disable();
 
   ATH_CHECK(m_eventInfo.initialize());
 
