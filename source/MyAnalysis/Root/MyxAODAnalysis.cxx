@@ -61,13 +61,13 @@ StatusCode MyxAODAnalysis :: initialize ()
   ANA_CHECK( m_selTool.retrieve() );
 
   ATH_CHECK( m_truthClassificationTool.retrieve() );
-
+/*
   //ATH_CHECK( m_extrapolator.retrieve() );
   if (!m_extrapolator.empty())
     ATH_CHECK(m_extrapolator.retrieve());
   else
     m_extrapolator.disable();
-
+*/
   ATH_CHECK(m_eventInfo.initialize());
 
   ANA_CHECK( m_L2CBIOKey.initialize() );
@@ -853,7 +853,7 @@ StatusCode MyxAODAnalysis :: execute ()
 		std::vector<float> targetbarrelEta;
 		std::vector<float> targetbarrelPhi;
 
-
+/*
     // endcap or barrel flag
     bool flag_barrel = std::abs(muon->eta()) < 1.5;
         
@@ -885,7 +885,7 @@ StatusCode MyxAODAnalysis :: execute ()
       m_mu_ext_b_targetEtaVec->push_back(targetbarrelEta);
       m_mu_ext_b_targetPhiVec->push_back(targetbarrelPhi);
     }
-
+*/
 
     m_muon_e->push_back (muon->e() * 0.001); // GeV
     m_muon_pt->push_back (muon->pt() * 0.001); // GeV
