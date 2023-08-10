@@ -471,6 +471,7 @@ void L2mt_analysis(){
         chain->GetEntry(jentry);
         vector<bool> l2mt_isPassed;
         vector<int> l1BOM_flag;
+        bool flag_BOM = false;
         
         for(int i = 0; i < muon_pt->size(); i++){
             
@@ -521,24 +522,10 @@ void L2mt_analysis(){
                     deltaR_hist->Fill(pair_deltaR);
                     deltaPhi_hist->Fill(pair_deltaPhi);
 
-                    // mass cut
-                    //jpsi mass
-                    //bool flag_pair_mass = pair_mass > 2700 && 3500 > pair_mass;
-                    // z mummu mass
-                    //bool flag_pair_mass = pair_mass > 80000 && 100000 > pair_mass;
-                    
-                    // eta cut (barrel only)
-                    //bool flag_barrel_muon = std::abs( muon_eta->at(k) ) < 1.05;
-                    
-/*
-                    if (flag_pair_mass && flag_barrel_muon){
-                        mu_pair_number.push_back(std::make_pair(j, k));
-                        cut_pair_mass_hist->Fill(pair_mass);
-                        cut_pt_hist->Fill(mu_pt->at(k));
-                        cut_deltaR_hist->Fill(pair_deltaR);
-                        cut_deltaPhi_hist->Fill(pair_deltaPhi);
+                    for(int l = 0; l < l1_BOM->at(i).size; l++){
+                        flag_BOM = true;
                     }
-*/
+                    
                 }
             }
         }
