@@ -15,9 +15,14 @@
 
 void L2mt_analysis(){
     TChain* chain = new TChain("analysis");
+    //login.icepp
     //chain->Add("/home/toyamash/L2MuonSA/create_Ntuple_ForL2mt/run/MyxAODAnalysis_forl2mt.output.root");
     //chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00454188.physics_Main.merge.AOD.f1360_m2179.Run3-22.0.105-00-01_NTUP_ANALYSIS.500635190/user.toyamash.34265966.ANALYSIS._000007.root");
-    chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00454188.physics_Main.merge.AOD.f1360_m2179.Run3-22.0.105-00-01_NTUP_ANALYSIS.500635190/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00454188.physics_Main.merge.AOD.f1360_m2179.Run3-22.0.105-00-01_NTUP_ANALYSIS.500635190/*.root");
+    //lxplus
+    //chain->Add("/eos/user/t/toyamash/user.toyamash.data23_13p6TeV.00454188.physics_Main.merge.AOD.f1360_m2179.Run3-22.0.105-00-01_NTUP_ANALYSIS.500635190/*.root");
+    chain->Add("/eos/user/t/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453858.physics_Main.merge.AOD.f1360_m2179.Run3-22.0.107-00-01.2_NTUP_ANALYSIS/*.root");
+    //chain->Add("/eos/user/t/toyamash/user.toyamash.data23_13p6TeV.00454188.physics_Main.merge.AOD.f1360_m2179.Run3-22.0.105-00-01_NTUP_ANALYSIS.500635190/user.toyamash.34265966.ANALYSIS._000007.root");
 
     chain->SetBranchStatus("*", 0);
 
@@ -85,50 +90,67 @@ void L2mt_analysis(){
     vector<vector<float> > *muon_seg_px;
     vector<vector<float> > *muon_seg_py;
     vector<vector<float> > *muon_seg_pz;
-    vector<vector<float> >   *l1_eta;
-    vector<vector<float> >   *l1_phi;
-    vector<vector<float> >   *l1_dRoff;
-    vector<vector<int> >   *l1_BOM;
-    vector<vector<float> >   *l2mt_e;
-    vector<vector<float> >   *l2mt_pt;
-    vector<vector<float> >   *l2mt_eta;
-    vector<vector<float> >   *l2mt_phi;
-    vector<vector<float> >   *l2mt_etaMS;
-    vector<vector<float> >   *l2mt_phiMS;
-    vector<vector<bool> >    *l2mt_pass;
-    vector<vector<vector<float> > > *l2mt_superPointR;
-    vector<vector<vector<float> > > *l2mt_superPointZ;
-    vector<vector<vector<float> > > *l2mt_superPointSlope;
-    vector<vector<vector<float> > > *l2mt_superPointIntercept;
-    vector<vector<vector<float> > > *l2mt_superPointChi2;
-    vector<vector<vector<unsigned int> > > *l2mt_stgcClusterLayer;
-    vector<vector<vector<int> > > *l2mt_stgcClusterIsOutlier;
-    vector<vector<vector<int> > > *l2mt_stgcClusterType;
-    vector<vector<vector<float> > > *l2mt_stgcClusterEta;
-    vector<vector<vector<float> > > *l2mt_stgcClusterPhi;
-    vector<vector<vector<float> > > *l2mt_stgcClusterR;
-    vector<vector<vector<float> > > *l2mt_stgcClusterZ;
-    vector<vector<vector<float> > > *l2mt_stgcClusterResidualR;
-    vector<vector<vector<float> > > *l2mt_stgcClusterResidualPhi;
-    vector<vector<vector<int> > > *l2mt_stgcClusterStationEta;
-    vector<vector<vector<int> > > *l2mt_stgcClusterStationPhi;
-    vector<vector<vector<int> > > *l2mt_stgcClusterStationName;
-    vector<vector<vector<unsigned int> > > *l2mt_mmClusterLayer;
-    vector<vector<vector<int> > > *l2mt_mmClusterIsOutlier;
-    vector<vector<vector<float> > > *l2mt_mmClusterEta;
-    vector<vector<vector<float> > > *l2mt_mmClusterPhi;
-    vector<vector<vector<float> > > *l2mt_mmClusterR;
-    vector<vector<vector<float> > > *l2mt_mmClusterZ;
-    vector<vector<vector<float> > > *l2mt_mmClusterResidualR;
-    vector<vector<vector<float> > > *l2mt_mmClusterResidualPhi;
-    vector<vector<vector<int> > > *l2mt_mmClusterStationEta;
-    vector<vector<vector<int> > > *l2mt_mmClusterStationPhi;
-    vector<vector<vector<int> > > *l2mt_mmClusterStationName;
+    std::unique_ptr<std::vector<float>> trig_L1_mu_eta;
+    std::unique_ptr<std::vector<float>> trig_L1_mu_phi;
+    std::unique_ptr<std::vector<short>> trig_L1_mu_thrNumber;
+    std::unique_ptr<std::vector<short>> trig_L1_mu_RoINumber;
+    std::unique_ptr<std::vector<short>> trig_L1_mu_sectorAddress;
+    std::unique_ptr<std::vector<short>> trig_L1_mu_source;
+    std::unique_ptr<std::vector<short>> trig_L1_mu_hemisphere;
+    std::unique_ptr<std::vector<short>> trig_L1_mu_firstCandidate;
+    std::unique_ptr<std::vector<short>> trig_L1_mu_moreCandInRPCPad;
+    std::unique_ptr<std::vector<short>> trig_L1_mu_moreCandInSector;
+    std::unique_ptr<std::vector<short>> trig_L1_mu_charge;
+    vector<float>   *l1_eta;
+    vector<float>   *l1_phi;
+    //vector<float>   *l1_dRoff;
+    vector<int>   *l1_BOM;
+    vector<float>   *l2mt_e;
+    vector<float>   *l2mt_pt;
+    vector<float>   *l2mt_eta;
+    vector<float>   *l2mt_phi;
+    vector<float>   *l2mt_etaMS;
+    vector<float>   *l2mt_phiMS;
+    vector<bool>    *l2mt_pass;
+    vector<vector<float> > *l2mt_superPointR;
+    vector<vector<float> > *l2mt_superPointZ;
+    vector<vector<float> > *l2mt_superPointSlope;
+    vector<vector<float> > *l2mt_superPointIntercept;
+    vector<vector<float> > *l2mt_superPointChi2;
+    vector<vector<unsigned int> > *l2mt_stgcClusterLayer;
+    vector<vector<int> > *l2mt_stgcClusterIsOutlier;
+    vector<vector<int> > *l2mt_stgcClusterType;
+    vector<vector<float> > *l2mt_stgcClusterEta;
+    vector<vector<float> > *l2mt_stgcClusterPhi;
+    vector<vector<float> > *l2mt_stgcClusterR;
+    vector<vector<float> > *l2mt_stgcClusterZ;
+    vector<vector<float> > *l2mt_stgcClusterResidualR;
+    vector<vector<float> > *l2mt_stgcClusterResidualPhi;
+    vector<vector<int> > *l2mt_stgcClusterStationEta;
+    vector<vector<int> > *l2mt_stgcClusterStationPhi;
+    vector<vector<int> > *l2mt_stgcClusterStationName;
+    vector<vector<unsigned int> > *l2mt_mmClusterLayer;
+    vector<vector<int> > *l2mt_mmClusterIsOutlier;
+    vector<vector<float> > *l2mt_mmClusterEta;
+    vector<vector<float> > *l2mt_mmClusterPhi;
+    vector<vector<float> > *l2mt_mmClusterR;
+    vector<vector<float> > *l2mt_mmClusterZ;
+    vector<vector<float> > *l2mt_mmClusterResidualR;
+    vector<vector<float> > *l2mt_mmClusterResidualPhi;
+    vector<vector<int> > *l2mt_mmClusterStationEta;
+    vector<vector<int> > *l2mt_mmClusterStationPhi;
+    vector<vector<int> > *l2mt_mmClusterStationName;
     vector<float>   *l2cb_e;
     vector<float>   *l2cb_pt;
     vector<float>   *l2cb_eta;
     vector<float>   *l2cb_phi;
     vector<bool>    *l2cb_pass;
+    vector<string>         *trigger_info_chain;
+    vector<vector<int> >   *trigger_info_typeVec;
+    vector<vector<float> > *trigger_info_ptVec;
+    vector<vector<float> > *trigger_info_etaVec;
+    vector<vector<float> > *trigger_info_phiVec;
+
     vector<vector<float> > *l2mt_ptEndcapAlpha;
     vector<vector<float> > *l2mt_ptEndcapBeta;
 
@@ -196,9 +218,20 @@ void L2mt_analysis(){
     TBranch        *b_muon_seg_px;   //!
     TBranch        *b_muon_seg_py;   //!
     TBranch        *b_muon_seg_pz;   //!
+    TBranch        *b_trig_L1_mu_eta;   //!
+    TBranch        *b_trig_L1_mu_phi;   //!
+    TBranch        *b_trig_L1_mu_thrNumber;   //!
+    TBranch        *b_trig_L1_mu_RoINumber;   //!
+    TBranch        *b_trig_L1_mu_sectorAddress;   //!
+    TBranch        *b_trig_L1_mu_source;   //!
+    TBranch        *b_trig_L1_mu_hemisphere;   //!
+    TBranch        *b_trig_L1_mu_firstCandidate;   //!
+    TBranch        *b_trig_L1_mu_moreCandInRPCPad;   //!
+    TBranch        *b_trig_L1_mu_moreCandInSector;   //!
+    TBranch        *b_trig_L1_mu_charge;   //!
     TBranch        *b_l1_eta;   //!
     TBranch        *b_l1_phi;   //!
-    TBranch        *b_l1_dRoff;   //!
+    //TBranch        *b_l1_dRoff;   //!
     TBranch        *b_l1_BOM;   //!
     TBranch        *b_l2mt_e;   //!
     TBranch        *b_l2mt_pt;   //!
@@ -240,6 +273,11 @@ void L2mt_analysis(){
     TBranch        *b_l2cb_eta;   //!
     TBranch        *b_l2cb_phi;   //!
     TBranch        *b_l2cb_pass;   //!
+    TBranch        *b_trigger_info_chain;   //!
+    TBranch        *b_trigger_info_typeVec;   //!
+    TBranch        *b_trigger_info_ptVec;   //!
+    TBranch        *b_trigger_info_etaVec;   //!
+    TBranch        *b_trigger_info_phiVec;   //!
 
     TBranch        *b_l2mt_ptEndcapAlpha;   //!
     TBranch        *b_l2mt_ptEndcapBeta;   //!
@@ -302,9 +340,20 @@ void L2mt_analysis(){
     muon_seg_px = 0;
     muon_seg_py = 0;
     muon_seg_pz = 0;
+    trig_L1_mu_eta = 0;
+    trig_L1_mu_phi = 0;
+    trig_L1_mu_thrNumber = 0;
+    trig_L1_mu_RoINumber = 0;
+    trig_L1_mu_sectorAddress = 0;
+    trig_L1_mu_source = 0;
+    trig_L1_mu_hemisphere = 0;
+    trig_L1_mu_firstCandidate = 0;
+    trig_L1_mu_moreCandInRPCPad = 0;
+    trig_L1_mu_moreCandInSector = 0;
+    trig_L1_mu_charge = 0;
     l1_eta = 0;
     l1_phi = 0;
-    l1_dRoff = 0;
+    //l1_dRoff = 0;
     l1_BOM = 0;
     l2mt_e = 0;
     l2mt_pt = 0;
@@ -348,6 +397,11 @@ void L2mt_analysis(){
     l2cb_pass = 0;
     l2mt_ptEndcapAlpha = 0;
     l2mt_ptEndcapBeta = 0;
+    trigger_info_chain = 0;
+    trigger_info_typeVec = 0;
+    trigger_info_ptVec = 0;
+    trigger_info_etaVec = 0;
+    trigger_info_phiVec = 0;
 
 
     chain->SetBranchAddress("RunNumber", &RunNumber, &b_RunNumber);
@@ -413,9 +467,19 @@ void L2mt_analysis(){
     chain->SetBranchAddress("muon_seg_px", &muon_seg_px, &b_muon_seg_px);
     chain->SetBranchAddress("muon_seg_py", &muon_seg_py, &b_muon_seg_py);
     chain->SetBranchAddress("muon_seg_pz", &muon_seg_pz, &b_muon_seg_pz);
+    chain->SetBranchAddress("trig_L1_mu_eta", &trig_L1_mu_eta, &b_trig_L1_mu_eta);
+    chain->SetBranchAddress("trig_L1_mu_phi", &trig_L1_mu_phi, &b_trig_L1_mu_phi);
+    chain->SetBranchAddress("trig_L1_mu_thrNumber", &trig_L1_mu_thrNumber, &b_trig_L1_mu_thrNumber);
+    chain->SetBranchAddress("trig_L1_mu_RoINumber", &trig_L1_mu_RoINumber, &b_trig_L1_mu_RoINumber);
+    chain->SetBranchAddress("trig_L1_mu_sectorAddress", &trig_L1_mu_sectorAddress, &b_trig_L1_mu_sectorAddress);
+    chain->SetBranchAddress("trig_L1_mu_source", &trig_L1_mu_source, &b_trig_L1_mu_source);
+    chain->SetBranchAddress("trig_L1_mu_hemisphere", &trig_L1_mu_hemisphere, &b_trig_L1_mu_hemisphere);
+    chain->SetBranchAddress("trig_L1_mu_firstCandidate", &trig_L1_mu_firstCandidate, &b_trig_L1_mu_firstCandidate);
+    chain->SetBranchAddress("trig_L1_mu_moreCandInRPCPad", &trig_L1_mu_moreCandInRPCPad, &b_trig_L1_mu_moreCandInRPCPad);
+    chain->SetBranchAddress("trig_L1_mu_moreCandInSector", &trig_L1_mu_moreCandInSector, &b_trig_L1_mu_moreCandInSector);
     chain->SetBranchAddress("l1_eta", &l1_eta, &b_l1_eta);
     chain->SetBranchAddress("l1_phi", &l1_phi, &b_l1_phi);
-    chain->SetBranchAddress("l1_dRoff", &l1_dRoff, &b_l1_dRoff);
+    //chain->SetBranchAddress("l1_dRoff", &l1_dRoff, &b_l1_dRoff);
     chain->SetBranchAddress("l1_BOM", &l1_BOM, &b_l1_BOM);
     chain->SetBranchAddress("l2mt_e", &l2mt_e, &b_l2mt_e);
     chain->SetBranchAddress("l2mt_pt", &l2mt_pt, &b_l2mt_pt);
@@ -456,7 +520,11 @@ void L2mt_analysis(){
     chain->SetBranchAddress("l2cb_pt", &l2cb_pt, &b_l2cb_pt);
     chain->SetBranchAddress("l2cb_eta", &l2cb_eta, &b_l2cb_eta);
     chain->SetBranchAddress("l2cb_phi", &l2cb_phi, &b_l2cb_phi);
-    chain->SetBranchAddress("l2cb_pass", &l2cb_pass, &b_l2cb_pass);
+    chain->SetBranchAddress("trigger_info_chain", &trigger_info_chain, &b_trigger_info_chain);
+    chain->SetBranchAddress("trigger_info_typeVec", &trigger_info_typeVec, &b_trigger_info_typeVec);
+    chain->SetBranchAddress("trigger_info_ptVec", &trigger_info_ptVec, &b_trigger_info_ptVec);
+    chain->SetBranchAddress("trigger_info_etaVec", &trigger_info_etaVec, &b_trigger_info_etaVec);
+    chain->SetBranchAddress("trigger_info_phiVec", &trigger_info_phiVec, &b_trigger_info_phiVec);
 
     //chain->SetBranchAddress("l2mt_ptEndcapAlpha", &l2mt_ptEndcapAlpha, &b_l2mt_ptEndcapAlpha);
     //chain->SetBranchAddress("l2mt_ptEndcapBeta", &l2mt_ptEndcapBeta, &b_l2mt_ptEndcapBeta);
@@ -464,41 +532,144 @@ void L2mt_analysis(){
     TH1D *mass_hist = new TH1D("mass_hist", "mass_hist", 1000, 0, 100);
     TH1D *deltaR_hist = new TH1D("deltaR_hist", "deltaR_hist", 100, 0, 5);
     TH1D *deltaPhi_hist = new TH1D("deltaPhi_hist", "deltaPhi_hist", 100, -3.5, 3.5);
+    
+    TH1D *HLTmuons_hist = new TH1D("HLTmuons_hist", "HLTmuons_hist", 5, 0, 5);
+    TH1D *HLTmuons_withl2mtpass_hist = new TH1D("HLTmuons_withl2mtpass_hist", "HLTmuons_withl2mtpass_hist", 5, 0, 5);
+    TH1D *l2mtpass_withl1BOM_hist = new TH1D("l2mtpass_withl1BOM_hist", "l2mtpass_withl1BOM_hist", 2, 0, 2);
+    TH1D *l1BOM_withl2mtpass_hist = new TH1D("l1BOM_withl2mtpass_hist", "l1BOM_withl2mtpass_hist", 2, 0, 2);
+
+    TFile hist_file("img0815/hist0815.root", "RECREATE");
 
     Long64_t nentries = chain->GetEntries();
 
+    cout << nentries << endl;
+
+    int n_l2mt2muons = 0;
+    int n_l2mt1muons = 0;
+
     for(int jentry = 0; jentry < nentries; jentry++){
         chain->GetEntry(jentry);
-        vector<bool> l2mt_isPassed;
+
+        int trig_chain = 0;
+        bool flag_trigger= false;
+        float deltaR_thr = 0.08;
+        bool matching_offline_HLT = false;
+        bool flag_BOM= false;
+        int BOM_roi = 0;
+
+        for(int i = 0; i < trigger_info_chain->size(); i++){
+            if(trigger_info_chain->at(i) == "HLT_mu24_ivarmedium_L1MU14FCH"){
+                trig_chain = i;
+                flag_trigger = true;
+            }
+        }
+
+        if(flag_trigger == false) continue;
+
+        for(int i_offline = 0; i_offline < muon_pt->size(); i_offline++){
+            TVector3 offline_muon;
+            offline_muon.SetPtEtaPhi(muon_pt->at(i_offline), muon_eta->at(i_offline), muon_phi->at(i_offline));
+
+            for(int i_HLTmuon = 0; i_HLTmuon < trigger_info_ptVec->at(trig_chain).size(); i_HLTmuon++){
+                TVector3 hlt_muon;
+                hlt_muon.SetPtEtaPhi(trigger_info_ptVec->at(trig_chain).at(i_HLTmuon), trigger_info_etaVec->at(trig_chain).at(i_HLTmuon), trigger_info_phiVec->at(trig_chain).at(i_HLTmuon));
+                
+                float offline_HLT_DeltaR = offline_muon.DeltaR(hlt_muon);
+
+                if(offline_HLT_DeltaR < deltaR_thr) matching_offline_HLT = true;
+            }
+        }
+
+        if(matching_offline_HLT == false) continue;
+
+        for(int i_roi = 0; i_roi < trig_L1_mu_eta->size(); i_roi++){
+            if(trig_L1_mu_moreCandInRPCPad->at(i_roi) == 1 && trig_L1_mu_source->at(i_roi) == 0){
+                flag_BOM = true;
+                BOM_roi = i_roi;
+            }
+        }
+
+        if(muon_pt->size() >= 2 && flag_BOM == true){
+            HLTmuons_hist->Fill(l2mt_eta->size());
+            if(l2mt_pass->at(0) == 1){
+                HLTmuons_withl2mtpass_hist->Fill(l2mt_eta->size());
+            }
+            for(int i_roi_L2mt; i_roi_L2mt < l2mt_pt->size(); i_roi_L2mt++){
+                if(l1_BOM->at(i_roi_L2mt) == 1){
+                    l2mtpass_withl1BOM_hist->Fill(l2mt_pass->at(i_roi_L2mt));
+                }
+                if(l2mt_pass->at(i_roi_L2mt) == 1){
+                    l1BOM_withl2mtpass_hist->Fill(l1_BOM->at(i_roi_L2mt));
+                }
+            }
+        }
+
+
+/*
+        vector<bool> l2mtmuon_isPassed;
+        vector<float> l2mtmuon_energy;
+        vector<float> l2mtmuon_pt;
+        vector<float> l2mt_muon_eta;
+        vector<float> l2mtmuon_phi;
         vector<int> l1BOM_flag;
+
         bool flag_BOM = false;
+        int n_l2mt2muons = 0;
+        int n_l2mt1muons = 0;
         
         for(int i = 0; i < muon_pt->size(); i++){
-            
-            /*
+                        
             l1BOM_flag = l1_BOM->at(i);
-            l2mt_isPassed = l2mt_pass->at(i);
+            l2mtmuon_isPassed = l2mt_pass->at(i);
+            l2mtmuon_energy = l2mt_e->at(i);
+            l2mtmuon_pt = l2mt_pt->at(i);
+            l2mt_muon_eta = l2mt_eta->at(i);
+            l2mtmuon_phi = l2mt_phi->at(i);
 
             //if(l1_dRoff->at(i) > 50) continue;
-            if(l2mt_isPassed.size() == 0) continue;
+            if(l2mtmuon_isPassed.size() == 0) continue;
 
-            if(l2mt_isPassed.at(0) == true){
-                cout << "passed l2mt trigger!" << endl;
+            if(l2mtmuon_isPassed.at(0) == true){
+                //cout << "passed l2mt trigger!" << endl;
+                if(l2mt_muon_eta.size() == 2){
+
+                    n_l2mt2muons++;
+
+                    TLorentzVector mu1;
+                    mu1.SetPtEtaPhiE(l2mtmuon_pt.at(0), l2mt_muon_eta.at(0), l2mtmuon_phi.at(0), l2mtmuon_energy.at(0));
+                    TLorentzVector mu2;
+                    mu2.SetPtEtaPhiE(l2mtmuon_pt.at(1), l2mt_muon_eta.at(1), l2mtmuon_phi.at(1), l2mtmuon_energy.at(1));
+
+                    TLorentzVector mu_pair = mu1 + mu2;
+                    float pair_mass = mu_pair.M();
+                    float pair_deltaR = mu2.DeltaR(mu1);
+                    float pair_deltaPhi = mu2.DeltaPhi(mu1);
+
+                    mass_hist->Fill(pair_mass);
+                    //pt_hist->Fill(mu_pt->at(k));
+                    deltaR_hist->Fill(pair_deltaR);
+                    deltaPhi_hist->Fill(pair_deltaPhi);
+
+                }
+                else{
+                    n_l2mt1muons++;
+                }
             }
-
+*/
+/*
             for(int j = 0; j < l2mt_eta->at(i).size(); j++){
                 //if(l1BOM_flag)
                 cout << "l1BOM flag : " << l1BOM_flag.at(j) << endl;
-                cout << "l2mt pass : " << l2mt_isPassed.at(j) << endl;
+                cout << "l2mt pass : " << l2mtmuon_isPassed.at(j) << endl;
                 cout << "l2mt online muon eta : " << l2mt_eta->at(i).at(j) << endl;
             }
-            */
+*/            
 
             //mu select
             //bool flag_mu1_author = mu_author->at(j) != 6;
             //bool flag_mu1_Type = mu_muonType->at(j) == 0;
             //bool flag_m1_pt = mu_pt->at(j) > 10000;
-
+/*
             TLorentzVector mu1;
             mu1.SetPtEtaPhiE(muon_pt->at(i), muon_eta->at(i), muon_phi->at(i), muon_e->at(i));
             
@@ -529,11 +700,26 @@ void L2mt_analysis(){
                 }
             }
         }
+*/
     }
+/*
     TCanvas *c_mass = new TCanvas("c_mass");
     mass_hist->Draw();
     TCanvas *c_deltaR = new TCanvas("c_deltaR");
     deltaR_hist->Draw();
     TCanvas *c_deltaPhi = new TCanvas("c_deltaPhi");
     deltaPhi_hist->Draw();
+*/
+
+    //cout << n_l2mt1muons << endl;
+    //cout << n_l2mt2muons << endl;
+
+    hist_file.cd();
+
+    HLTmuons_hist->Write();
+    HLTmuons_withl2mtpass_hist->Write();
+    l2mtpass_withl1BOM_hist->Write();
+    l1BOM_withl2mtpass_hist->Write();
+    
+    hist_file.Close();
 }
