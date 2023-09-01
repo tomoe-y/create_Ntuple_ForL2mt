@@ -1,11 +1,12 @@
 import os
 
 user    = 'user.toyamash' # 'group.det-muon'
-athena  = '22.0.105'
-version = 'Run3-' + athena + '-00-01'
-retry   = '1'
+athena  = '22.0.107'
+#version = 'Run3-' + athena + '-00-01'
+version = 'MC'
+retry   = '5'
 
-listfile = open('RUN3_l2mt.list')
+listfile = open('RUN3_l2mt_0821.list')
 AODs = listfile.readlines() 
 listfile.close()
 
@@ -16,16 +17,22 @@ for AOD in AODs:
     #command += ' --athenaTag=%s' % athena
     #command += ' --nGBPerJob=MAX'
     #command += ' --nFilesPerJob=1'
-    #command += ' --forceStaged'
+    command += ' --useNewCode'
+    command += ' --maxCpuCount 86400'
+    command += ' --nEventsPerJob 100000'
+    command += ' --mergeOutput'
+    command += ' --forceStaged'
+    command += ' --memory 2048'
+    command += ' --nCore 8'
     command += ' --inDS=%s' % AOD
     
     #output = ESD.replace('DESDM_MCP', 'NTUP_MCP.' + retry)
     #output = output.replace('DESDM_ZMUMU', 'NTUP_ZMUMU.' + retry)
     #output = output.replace('DESDM_TILEMU', 'NTUP_TILEMU.' + retry)
     #output = output.replace('ESD', 'NTUP.' + retry)
-    output = AOD.replace('recon.AOD', 'NTP' + retry)
+    output = AOD.replace('recon.AOD', 'MC')
     
-    command += ' --outDS=%s.%s.%s_NTUP' % (user, output, version)
+    command += ' --outDS=%s.%s.%s.%s_NTUP' % (user, output, version, retry)
 
     print(command)
     os.system(command)

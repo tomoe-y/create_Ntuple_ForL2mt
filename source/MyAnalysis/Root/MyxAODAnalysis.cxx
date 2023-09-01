@@ -72,6 +72,7 @@ StatusCode MyxAODAnalysis :: initialize ()
 
   ANA_CHECK( m_L2CBIOKey.initialize() );
   ANA_CHECK( m_L2SAMTKey.initialize() );
+  ANA_CHECK( m_roiKey.initialize() );
 
 
 
@@ -154,6 +155,24 @@ StatusCode MyxAODAnalysis :: initialize ()
   m_muon_seg_py = std::make_unique<std::vector<std::vector<float>>>();
   m_muon_seg_pz = std::make_unique<std::vector<std::vector<float>>>();
 
+  // muon RoI
+  m_roi_eta = std::make_unique<std::vector<float>>();
+  m_roi_phi = std::make_unique<std::vector<float>>();
+  m_roi_thrNumber = std::make_unique<std::vector<short>>();
+  m_roi_RoINumber = std::make_unique<std::vector<short>>();
+  m_roi_sectorAddress = std::make_unique<std::vector<short>>();
+  m_roi_source = std::make_unique<std::vector<short>>();
+  m_roi_hemisphere = std::make_unique<std::vector<short>>();
+  m_roi_firstCandidate = std::make_unique<std::vector<short>>();
+  m_roi_moreCandInRoI = std::make_unique<std::vector<short>>();
+  m_roi_moreCandInSector = std::make_unique<std::vector<short>>();
+  m_roi_charge = std::make_unique<std::vector<short>>();
+  m_roi_BW3coin = std::make_unique<std::vector<short>>();
+  m_roi_InnerCoin = std::make_unique<std::vector<short>>();
+  m_roi_GoodMF = std::make_unique<std::vector<short>>();
+  m_roi_vetoed = std::make_unique<std::vector<short>>();
+
+/*
   m_l2sa_e = std::make_unique<std::vector<float>>();
   m_l2sa_pt = std::make_unique<std::vector<float>>();
   m_l2sa_eta = std::make_unique<std::vector<float>>();
@@ -206,55 +225,56 @@ StatusCode MyxAODAnalysis :: initialize ()
   m_mdtHitTime = std::make_unique<std::vector<std::vector<float>>>();
   m_mdrHitSpace = std::make_unique<std::vector<std::vector<float>>>();
   m_mdtHitSigma = std::make_unique<std::vector<std::vector<float>>>();
-
+*/
   m_l2cb_e = std::make_unique<std::vector<float>>();
   m_l2cb_pt = std::make_unique<std::vector<float>>();
   m_l2cb_eta = std::make_unique<std::vector<float>>();
   m_l2cb_phi = std::make_unique<std::vector<float>>();
   m_l2cb_pass = std::make_unique<std::vector<bool>>();
 
-  m_l1_eta = std::make_unique<std::vector<std::vector<float>>>();
-  m_l1_phi = std::make_unique<std::vector<std::vector<float>>>();
-  m_l1_dRoff = std::make_unique<std::vector<std::vector<float>>>();
-  m_l1_BOM = std::make_unique<std::vector<std::vector<int>>>();
-  m_l1_thrNum = std::make_unique<std::vector<std::vector<int>>>();
+  m_l1_eta = std::make_unique<std::vector<float>>();
+  m_l1_phi = std::make_unique<std::vector<float>>();
+  //m_l1_dRoff = std::make_unique<std::vector<std::vector<float>>>();
+  m_l1_BOM = std::make_unique<std::vector<int>>();
+  m_l1_thrNum = std::make_unique<std::vector<int>>();
+  m_l1_roiNum = std::make_unique<std::vector<int>>();
 
-  m_l2mt_e = std::make_unique<std::vector<std::vector<float>>>();
-  m_l2mt_pt = std::make_unique<std::vector<std::vector<float>>>();
-  m_l2mt_eta = std::make_unique<std::vector<std::vector<float>>>();
-  m_l2mt_phi = std::make_unique<std::vector<std::vector<float>>>();
-  m_l2mt_etaMS = std::make_unique<std::vector<std::vector<float>>>();
-  m_l2mt_phiMS = std::make_unique<std::vector<std::vector<float>>>();
-  m_l2mt_pass = std::make_unique<std::vector<std::vector<bool>>>();
+  m_l2mt_e = std::make_unique<std::vector<float>>();
+  m_l2mt_pt = std::make_unique<std::vector<float>>();
+  m_l2mt_eta = std::make_unique<std::vector<float>>();
+  m_l2mt_phi = std::make_unique<std::vector<float>>();
+  m_l2mt_etaMS = std::make_unique<std::vector<float>>();
+  m_l2mt_phiMS = std::make_unique<std::vector<float>>();
+  m_l2mt_pass = std::make_unique<std::vector<bool>>();
 
-  m_l2mt_superPointR = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
-  m_l2mt_superPointZ = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
-  m_l2mt_superPointSlope = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
-  m_l2mt_superPointIntercept = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
-  m_l2mt_superPointChi2 = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
-  m_l2mt_stgcClusterLayer = std::make_unique<std::vector<std::vector<std::vector<unsigned int>>>>();
-  m_l2mt_stgcClusterIsOutlier = std::make_unique<std::vector<std::vector<std::vector<int>>>>();
-  m_l2mt_stgcClusterType = std::make_unique<std::vector<std::vector<std::vector<int>>>>();
-  m_l2mt_stgcClusterEta = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
-  m_l2mt_stgcClusterPhi = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
-  m_l2mt_stgcClusterR = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
-  m_l2mt_stgcClusterZ = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
-  m_l2mt_stgcClusterResidualR = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
-  m_l2mt_stgcClusterResidualPhi = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
-  m_l2mt_stgcClusterStationEta = std::make_unique<std::vector<std::vector<std::vector<int>>>>();
-  m_l2mt_stgcClusterStationPhi = std::make_unique<std::vector<std::vector<std::vector<int>>>>();
-  m_l2mt_stgcClusterStationName = std::make_unique<std::vector<std::vector<std::vector<int>>>>();
-  m_l2mt_mmClusterLayer = std::make_unique<std::vector<std::vector<std::vector<unsigned int>>>>();
-  m_l2mt_mmClusterIsOutlier = std::make_unique<std::vector<std::vector<std::vector<int>>>>();
-  m_l2mt_mmClusterEta = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
-  m_l2mt_mmClusterPhi = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
-  m_l2mt_mmClusterR = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
-  m_l2mt_mmClusterZ = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
-  m_l2mt_mmClusterResidualR = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
-  m_l2mt_mmClusterResidualPhi = std::make_unique<std::vector<std::vector<std::vector<float>>>>();
-  m_l2mt_mmClusterStationEta = std::make_unique<std::vector<std::vector<std::vector<int>>>>();
-  m_l2mt_mmClusterStationPhi = std::make_unique<std::vector<std::vector<std::vector<int>>>>();
-  m_l2mt_mmClusterStationName = std::make_unique<std::vector<std::vector<std::vector<int>>>>();
+  m_l2mt_superPointR = std::make_unique<std::vector<std::vector<float>>>();
+  m_l2mt_superPointZ = std::make_unique<std::vector<std::vector<float>>>();
+  m_l2mt_superPointSlope = std::make_unique<std::vector<std::vector<float>>>();
+  m_l2mt_superPointIntercept = std::make_unique<std::vector<std::vector<float>>>();
+  m_l2mt_superPointChi2 = std::make_unique<std::vector<std::vector<float>>>();
+  m_l2mt_stgcClusterLayer = std::make_unique<std::vector<std::vector<unsigned int>>>();
+  m_l2mt_stgcClusterIsOutlier = std::make_unique<std::vector<std::vector<int>>>();
+  m_l2mt_stgcClusterType = std::make_unique<std::vector<std::vector<int>>>();
+  m_l2mt_stgcClusterEta = std::make_unique<std::vector<std::vector<float>>>();
+  m_l2mt_stgcClusterPhi = std::make_unique<std::vector<std::vector<float>>>();
+  m_l2mt_stgcClusterR = std::make_unique<std::vector<std::vector<float>>>();
+  m_l2mt_stgcClusterZ = std::make_unique<std::vector<std::vector<float>>>();
+  m_l2mt_stgcClusterResidualR = std::make_unique<std::vector<std::vector<float>>>();
+  m_l2mt_stgcClusterResidualPhi = std::make_unique<std::vector<std::vector<float>>>();
+  m_l2mt_stgcClusterStationEta = std::make_unique<std::vector<std::vector<int>>>();
+  m_l2mt_stgcClusterStationPhi = std::make_unique<std::vector<std::vector<int>>>();
+  m_l2mt_stgcClusterStationName = std::make_unique<std::vector<std::vector<int>>>();
+  m_l2mt_mmClusterLayer = std::make_unique<std::vector<std::vector<unsigned int>>>();
+  m_l2mt_mmClusterIsOutlier = std::make_unique<std::vector<std::vector<int>>>();
+  m_l2mt_mmClusterEta = std::make_unique<std::vector<std::vector<float>>>();
+  m_l2mt_mmClusterPhi = std::make_unique<std::vector<std::vector<float>>>();
+  m_l2mt_mmClusterR = std::make_unique<std::vector<std::vector<float>>>();
+  m_l2mt_mmClusterZ = std::make_unique<std::vector<std::vector<float>>>();
+  m_l2mt_mmClusterResidualR = std::make_unique<std::vector<std::vector<float>>>();
+  m_l2mt_mmClusterResidualPhi = std::make_unique<std::vector<std::vector<float>>>();
+  m_l2mt_mmClusterStationEta = std::make_unique<std::vector<std::vector<int>>>();
+  m_l2mt_mmClusterStationPhi = std::make_unique<std::vector<std::vector<int>>>();
+  m_l2mt_mmClusterStationName = std::make_unique<std::vector<std::vector<int>>>();
 
   m_chain = std::make_unique<std::vector<std::string>>();
   m_typeVec = std::make_unique<std::vector<std::vector<int>>>();
@@ -340,6 +360,24 @@ StatusCode MyxAODAnalysis :: initialize ()
   mytree->Branch ("muon_seg_py", &*m_muon_seg_py);
   mytree->Branch ("muon_seg_pz", &*m_muon_seg_pz);
 
+  mytree->Branch ("trig_L1_mu_eta", &*m_roi_eta);
+  mytree->Branch ("trig_L1_mu_phi", &*m_roi_phi);
+  mytree->Branch ("trig_L1_mu_thrNumber", &*m_roi_thrNumber);
+  mytree->Branch ("trig_L1_mu_RoINumber", &*m_roi_RoINumber);
+  mytree->Branch ("trig_L1_mu_sectorAddress", &*m_roi_sectorAddress);
+  mytree->Branch ("trig_L1_mu_source", &*m_roi_source);
+  mytree->Branch ("trig_L1_mu_hemisphere", &*m_roi_hemisphere);
+  mytree->Branch ("trig_L1_mu_firstCandidate", &*m_roi_firstCandidate);
+  mytree->Branch ("trig_L1_mu_moreCandInRPCPad", &*m_roi_moreCandInRoI);
+  mytree->Branch ("trig_L1_mu_moreCandInSector", &*m_roi_moreCandInSector);
+  mytree->Branch ("trig_L1_mu_charge", &*m_roi_charge);
+  mytree->Branch ("trig_L1_mu_BWcoin", &*m_roi_BW3coin);
+  mytree->Branch ("trig_L1_mu_InnerCoin", &*m_roi_InnerCoin);
+  mytree->Branch ("trig_L1_mu_GoodMF", &*m_roi_GoodMF);
+  mytree->Branch ("trig_L1_mu_vetoed", &*m_roi_vetoed);
+
+
+/*
  //l2sa
   mytree->Branch ("l2sa_e", &*m_l2sa_e);
   mytree->Branch ("l2sa_pt", &*m_l2sa_pt);
@@ -393,19 +431,14 @@ StatusCode MyxAODAnalysis :: initialize ()
   mytree->Branch ("mdtHitTime", &*m_mdtHitTime);
   mytree->Branch ("mdrHitSpace", &*m_mdrHitSpace);
   mytree->Branch ("mdtHitSigma", &*m_mdtHitSigma);
-
-  mytree->Branch ("l2cb_e", &*m_l2cb_e);
-  mytree->Branch ("l2cb_pt", &*m_l2cb_pt);
-  mytree->Branch ("l2cb_eta", &*m_l2cb_eta);
-  mytree->Branch ("l2cb_phi", &*m_l2cb_phi);
-  mytree->Branch ("l2cb_pass", &*m_l2cb_pass);
-
+*/
   //for l2mt
   mytree->Branch ("l1_eta", &*m_l1_eta);
   mytree->Branch ("l1_phi", &*m_l1_phi);
-  mytree->Branch ("l1_dRoff", &*m_l1_dRoff);
+  //mytree->Branch ("l1_dRoff", &*m_l1_dRoff);
   mytree->Branch ("l1_BOM", &*m_l1_BOM);
   mytree->Branch ("l1_thrNum", &*m_l1_thrNum);
+  mytree->Branch ("l1_roiNum", &*m_l1_roiNum);
 
   mytree->Branch ("l2mt_e", &*m_l2mt_e);
   mytree->Branch ("l2mt_pt", &*m_l2mt_pt);
@@ -442,6 +475,12 @@ StatusCode MyxAODAnalysis :: initialize ()
   mytree->Branch ("l2mt_mmClusterStationEta", &*m_l2mt_mmClusterStationEta);
   mytree->Branch ("l2mt_mmClusterStationPhi", &*m_l2mt_mmClusterStationPhi);
   mytree->Branch ("l2mt_mmClusterStationName", &*m_l2mt_mmClusterStationName);
+
+  mytree->Branch ("l2cb_e", &*m_l2cb_e);
+  mytree->Branch ("l2cb_pt", &*m_l2cb_pt);
+  mytree->Branch ("l2cb_eta", &*m_l2cb_eta);
+  mytree->Branch ("l2cb_phi", &*m_l2cb_phi);
+  mytree->Branch ("l2cb_pass", &*m_l2cb_pass);
 
   mytree->Branch("trigger_info_chain", &*m_chain);
   mytree->Branch("trigger_info_typeVec", &*m_typeVec);
@@ -482,6 +521,7 @@ StatusCode MyxAODAnalysis :: execute ()
   m_averageInteractionsPerCrossing = eventInfo->actualInteractionsPerCrossing();
   
   m_pass_HLT_mu10_l2mt_L1MU10BOM = m_trigDecisionTool->isPassed("HLT_mu10_l2mt_L1MU10BOM");
+  m_pass_HLT_2mu10_l2mt_L1MU10BOM = m_trigDecisionTool->isPassed("HLT_2mu10_l2mt_L1MU10BOM");
 
   // Muons
   m_muon_e->clear();
@@ -544,11 +584,30 @@ StatusCode MyxAODAnalysis :: execute ()
   m_muon_seg_py->clear();
   m_muon_seg_pz->clear();
 
+  m_roi_eta->clear();
+  m_roi_phi->clear();
+  m_roi_thrNumber->clear();
+  m_roi_RoINumber->clear();
+  m_roi_sectorAddress->clear();
+  m_roi_source->clear();
+  m_roi_hemisphere->clear();
+  m_roi_firstCandidate->clear();
+  m_roi_moreCandInRoI->clear();
+  m_roi_moreCandInSector->clear();
+  m_roi_charge->clear();
+  m_roi_BW3coin->clear();
+  m_roi_InnerCoin->clear();
+  m_roi_GoodMF->clear();
+  m_roi_vetoed->clear();
+
+
   m_l1_eta->clear();
   m_l1_phi->clear();
-  m_l1_dRoff->clear();
+  //m_l1_dRoff->clear();
   m_l1_BOM->clear();
   m_l1_thrNum->clear();
+  m_l1_roiNum->clear();
+  /*
   m_l2sa_e->clear();
   m_l2sa_pt->clear();
   m_l2sa_eta->clear();
@@ -601,12 +660,7 @@ StatusCode MyxAODAnalysis :: execute ()
   m_mdtHitTime->clear();
   m_mdrHitSpace->clear();
   m_mdtHitSigma->clear();
-
-  m_l2cb_e->clear();
-  m_l2cb_pt->clear();
-  m_l2cb_eta->clear();
-  m_l2cb_phi->clear();
-  m_l2cb_pass->clear();
+*/
   //for l2mt
   m_l2mt_e->clear();
   m_l2mt_pt->clear();
@@ -643,6 +697,12 @@ StatusCode MyxAODAnalysis :: execute ()
   m_l2mt_mmClusterStationEta->clear();
   m_l2mt_mmClusterStationPhi->clear();
   m_l2mt_mmClusterStationName->clear();
+
+  m_l2cb_e->clear();
+  m_l2cb_pt->clear();
+  m_l2cb_eta->clear();
+  m_l2cb_phi->clear();
+  m_l2cb_pass->clear();
 
   m_chain->clear();
   m_typeVec->clear();
@@ -956,6 +1016,40 @@ StatusCode MyxAODAnalysis :: execute ()
   }
 
 
+
+  SG::ReadHandle<xAOD::MuonRoIContainer> rh_roi(m_roiKey);
+  if (!rh_roi.isValid()) {
+    ATH_MSG_FATAL("could not find " << rh_roi.name());
+    return StatusCode::FAILURE;
+  }
+  const xAOD::MuonRoIContainer* container = rh_roi.get();
+
+  for (xAOD::MuonRoIContainer::const_iterator roi_it = container->begin(); roi_it != container->end(); roi_it++) {
+    const xAOD::MuonRoI* roi = *roi_it;
+
+    if (roi->isRun3() == false) {
+      ATH_MSG_ERROR("The RoI word does not indicate the Run-3 format!");
+      return StatusCode::FAILURE;
+    }
+
+    m_roi_eta->push_back(roi->eta());
+    m_roi_phi->push_back(roi->phi());
+    m_roi_thrNumber->push_back(roi->getThrNumber());
+    m_roi_RoINumber->push_back(roi->getRoI());
+    m_roi_sectorAddress->push_back(roi->getSectorAddress());
+    m_roi_source->push_back(static_cast<short>(roi->getSource()));   // Barrel:0, Endcap:1, Forward:2
+    m_roi_hemisphere->push_back(static_cast<short>(roi->getHemisphere()));   // A-side:0, C-side:1
+    m_roi_firstCandidate->push_back(roi->isFirstCandidate());
+    m_roi_moreCandInRoI->push_back(roi->isMoreCandInRoI());
+    m_roi_moreCandInSector->push_back(roi->isMoreCandInSector());
+    m_roi_charge->push_back(static_cast<short>(roi->getCharge()));   // 0:Neg, 1:Pos, 100:undef
+    m_roi_BW3coin->push_back(roi->getBW3Coincidence());
+    m_roi_InnerCoin->push_back(roi->getInnerCoincidence());
+    m_roi_GoodMF->push_back(roi->getGoodMF());
+    m_roi_vetoed->push_back(roi->isVetoed());
+  }
+
+
   // auto chainGroup = m_trigDecisionTool->getChainGroup("HLT_mu.*");
   // std::map<std::string,int> triggerCounts;
   // for(auto &trig : chainGroup->getListOfTriggers()) {
@@ -967,6 +1061,7 @@ StatusCode MyxAODAnalysis :: execute ()
   // ATH_MSG_INFO( m_trigDecisionTool->getNavigationFormat() );
 
   const std::string targetTrig = "HLT_mu24_ivarmedium_L1MU14FCH"; //"HLT_mu24_ivarmedium_mu4_probe_L1MU14FCH"; //"HLT_mu10_L1MU8F";//"HLT_mu60_0eta105_msonly_L1MU14FCH";//"HLT_mu6_L1MU5VF"; //
+  //const std::string targetTrig_forl2mt = "HLT_2mu10_l2mt_L1MU10BOM"; //"HLT_mu24_ivarmedium_mu4_probe_L1MU14FCH"; //"HLT_mu10_L1MU8F";//"HLT_mu60_0eta105_msonly_L1MU14FCH";//"HLT_mu6_L1MU5VF"; //
   const std::string targetTrig_forl2mt = "HLT_mu10_l2mt_L1MU10BOM"; //"HLT_mu24_ivarmedium_mu4_probe_L1MU14FCH"; //"HLT_mu10_L1MU8F";//"HLT_mu60_0eta105_msonly_L1MU14FCH";//"HLT_mu6_L1MU5VF"; //
 
   // const int legIndex = 1; // probe leg!!!!
@@ -980,7 +1075,7 @@ StatusCode MyxAODAnalysis :: execute ()
 
     bool pass = ( l2saLinkInfo.state == TrigCompositeUtils::ActiveState::ACTIVE );//hypo information
 
-
+/*
     auto l1muonLinkInfo = TrigCompositeUtils::findLink<xAOD::MuonRoIContainer>(l2saLinkInfo.source, "initialRecRoI");
     auto l1muonLink = l1muonLinkInfo.link;
     if(!l1muonLink.isValid()){
@@ -991,6 +1086,7 @@ StatusCode MyxAODAnalysis :: execute ()
 
     ANA_MSG_INFO ("execute(): " << " L1 eta/phi = " << l1muon->eta() << "/" << l1muon->phi());
     ANA_MSG_INFO ("execute(): " << " L2SA pt/eta/phi/pass = " << (*l2sa)->pt() << "/" << (*l2sa)->eta() << "/" << (*l2sa)->phi() << "/" << pass);
+*/
   }
 
   // for l2mt
@@ -1027,19 +1123,19 @@ StatusCode MyxAODAnalysis :: execute ()
     ANA_MSG_INFO ("execute(): " << " L2CB pt/eta/phi/pass = " << (*l2cb)->pt() << "/" << (*l2cb)->eta() << "/" << (*l2cb)->phi() << "/" << pass);
   }
 
-  std::vector< TrigCompositeUtils::LinkInfo<xAOD::L2CombinedMuonContainer> > l2cbioLinks = m_trigDecisionTool->features<xAOD::L2CombinedMuonContainer>( "HLT_mu26_ivarmedium_mu6_l2io_probe_L1MU14FCH", TrigDefs::includeFailedDecisions, "HLT_MuonL2CBInfoIOmode" );
-  for(const TrigCompositeUtils::LinkInfo<xAOD::L2CombinedMuonContainer>& l2cbioLinkInfo : l2cbioLinks){
-    if( !l2cbioLinkInfo.isValid() ) continue;
-    const ElementLink<xAOD::L2CombinedMuonContainer> l2cbio = l2cbioLinkInfo.link;
-    if( !l2cbio.isValid() ) continue;
+  std::vector< TrigCompositeUtils::LinkInfo<xAOD::L2CombinedMuonContainer> > l2cbmtLinks = m_trigDecisionTool->features<xAOD::L2CombinedMuonContainer>( targetTrig_forl2mt, TrigDefs::includeFailedDecisions, "HLT_MuonL2SAInfol2mtmode" );
+  for(const TrigCompositeUtils::LinkInfo<xAOD::L2CombinedMuonContainer>& l2cbmtLinkInfo : l2cbmtLinks){
+    if( !l2cbmtLinkInfo.isValid() ) continue;
+    const ElementLink<xAOD::L2CombinedMuonContainer> l2cbmt = l2cbmtLinkInfo.link;
+    if( !l2cbmt.isValid() ) continue;
 
-    bool pass = ( l2cbioLinkInfo.state == TrigCompositeUtils::ActiveState::ACTIVE );
+    bool pass = ( l2cbmtLinkInfo.state == TrigCompositeUtils::ActiveState::ACTIVE );
 
-    ANA_MSG_INFO ("execute(): " << " L2CBIO pt/eta/phi/pass = " << (*l2cbio)->pt() << "/" << (*l2cbio)->eta() << "/" << (*l2cbio)->phi() << "/" << pass);
+    ANA_MSG_INFO ("execute(): " << " L2CBMT pt/eta/phi/pass = " << (*l2cbmt)->pt() << "/" << (*l2cbmt)->eta() << "/" << (*l2cbmt)->phi() << "/" << pass);
   }
 
 
-
+/*
   for(size_t off_idx=0; off_idx<m_muon_eta->size(); off_idx++) {
 
     TLorentzVector tlv_off;
@@ -1081,11 +1177,7 @@ StatusCode MyxAODAnalysis :: execute ()
     std::vector< int >          l2sa_mmClusterStationName;
     float l2sa_ptEndcapAlpha = 999;
     float l2sa_ptEndcapBeta = 999;
-    float l2cb_e = 999;
-    float l2cb_pt = 999;
-    float l2cb_eta = 999;
-    float l2cb_phi = 999;
-    bool l2cb_pass = false;
+
     uint32_t roiWord = 999;
     uint32_t nMdtHits = 0;
     std::vector<uint32_t > mdtHitOnlineId;
@@ -1125,11 +1217,11 @@ StatusCode MyxAODAnalysis :: execute ()
       if(dR > dRreq) continue;
 
       if(dR < dRmin) {
-        /*
+
         dRmin = dR;
         l1_eta = l1muon->eta();
         l1_phi = l1muon->phi();
-        */
+
 
         l2sa_e = (*l2sa)->e();
         l2sa_pt = (*l2sa)->pt();
@@ -1280,287 +1372,171 @@ StatusCode MyxAODAnalysis :: execute ()
     m_mdrHitSpace->push_back(mdrHitSpace);
     m_mdtHitSigma->push_back(mdtHitSigma);
 
-    for(const TrigCompositeUtils::LinkInfo<xAOD::L2CombinedMuonContainer>& l2cbLinkInfo : l2cbLinks){
-      if( !l2cbLinkInfo.isValid() ) continue;
-      const ElementLink<xAOD::L2CombinedMuonContainer> l2cb = l2cbLinkInfo.link;
-      if( !l2cb.isValid() ) continue;
-
-      if((*l2cb)->muSATrack()->roiWord() != roiWord) continue;
-
-      l2cb_e = (*l2cb)->e()*0.001;
-      l2cb_pt = (*l2cb)->pt()*0.001;
-      l2cb_eta = (*l2cb)->eta();
-      l2cb_phi = (*l2cb)->phi();
-      l2cb_pass = ( l2cbLinkInfo.state == TrigCompositeUtils::ActiveState::ACTIVE );
-
-    }
-
-    m_l2cb_e->push_back(l2cb_e);
-    m_l2cb_pt->push_back(l2cb_pt);
-    m_l2cb_eta->push_back(l2cb_eta);
-    m_l2cb_phi->push_back(l2cb_phi);
-    m_l2cb_pass->push_back(l2cb_pass);
-
   }
-
-  // for l2mt
-  for(size_t off_idx=0; off_idx<m_muon_eta->size(); off_idx++) {
-
-    TLorentzVector tlv_off;
-    tlv_off.SetPtEtaPhiE(m_muon_pt->at(off_idx), m_muon_eta->at(off_idx), m_muon_phi->at(off_idx), m_muon_e->at(off_idx));
-    TLorentzVector tlv_l1;
-    /*
-    float targetbarrelEta;
-		float targetbarrelPhi;
-    */
-    std::vector<float> l1_dRoff;
-
-    std::vector<float> l1_eta;
-    std::vector<float> l1_phi;
-    std::vector<int> l1_BOM;
-    std::vector<int> l1_thrNum;
-
-    std::vector<float> l2mt_e;
-    std::vector<float> l2mt_pt;
-    std::vector<float> l2mt_eta;
-    std::vector<float> l2mt_phi;
-    std::vector<float> l2mt_etaMS;
-    std::vector<float> l2mt_phiMS;
-    std::vector<bool> l2mt_pass;
-    std::vector<std::vector<float>> sp_r, sp_z, sp_slope, sp_intercept, sp_chi2;
-    std::vector<std::vector< unsigned int >> l2mt_stgcClusterLayer;
-    std::vector<std::vector < int >>          l2mt_stgcClusterIsOutlier;
-    std::vector<std::vector < int >>          l2mt_stgcClusterType;
-    std::vector<std::vector < float >>        l2mt_stgcClusterEta;
-    std::vector<std::vector < float >>        l2mt_stgcClusterPhi;
-    std::vector<std::vector < float >>        l2mt_stgcClusterR;
-    std::vector<std::vector < float >>        l2mt_stgcClusterZ;
-    std::vector<std::vector < float >>        l2mt_stgcClusterResidualR;
-    std::vector<std::vector < float >>        l2mt_stgcClusterResidualPhi;
-    std::vector<std::vector < int >>          l2mt_stgcClusterStationEta;
-    std::vector<std::vector < int >>          l2mt_stgcClusterStationPhi;
-    std::vector<std::vector < int >>          l2mt_stgcClusterStationName;
-    std::vector<std::vector < unsigned int >> l2mt_mmClusterLayer;
-    std::vector<std::vector < int >>          l2mt_mmClusterIsOutlier;
-    std::vector<std::vector < float >>        l2mt_mmClusterEta;
-    std::vector<std::vector < float >>        l2mt_mmClusterPhi;
-    std::vector<std::vector < float >>        l2mt_mmClusterR;
-    std::vector<std::vector < float >>        l2mt_mmClusterZ;
-    std::vector<std::vector < float >>        l2mt_mmClusterResidualR;
-    std::vector<std::vector < float >>        l2mt_mmClusterResidualPhi;
-    std::vector<std::vector < int >>          l2mt_mmClusterStationEta;
-    std::vector<std::vector < int >>          l2mt_mmClusterStationPhi;
-    std::vector<std::vector < int >>          l2mt_mmClusterStationName;
-    uint32_t roiWord = 999;
-    float dR = 0;
-    float dRreq = 0.08;
-    if(tlv_off.Pt() < 10)
-      dRreq = 0.18 - 0.01*tlv_off.Pt();
-
-    for(const TrigCompositeUtils::LinkInfo<xAOD::L2StandAloneMuonContainer>& l2mtLinkInfo : l2mtLinks){
-      if( !l2mtLinkInfo.isValid() ) continue;
-      const ElementLink<xAOD::L2StandAloneMuonContainer> l2mt = l2mtLinkInfo.link;
-      if( !l2mt.isValid() ) continue;
+*/
+// for l2mt
+  /*
+  float targetbarrelEta;
+  float targetbarrelPhi;
+  */
 
 
-      auto l1muonLinkInfo = TrigCompositeUtils::findLink<xAOD::MuonRoIContainer>(l2mtLinkInfo.source, "initialRecRoI");
-      auto l1muonLink = l1muonLinkInfo.link;
-      if(!l1muonLink.isValid()){
-        ATH_MSG_ERROR("Invalid link to L1 muon");
-        continue;
-      }
+  for(const TrigCompositeUtils::LinkInfo<xAOD::L2StandAloneMuonContainer>& l2mtLinkInfo : l2mtLinks){
+    if( !l2mtLinkInfo.isValid() ) continue;
+    const ElementLink<xAOD::L2StandAloneMuonContainer> l2mt = l2mtLinkInfo.link;
+    if( !l2mt.isValid() ) continue;
 
-      float v_dRmin = 999;
-      float v_l1_eta = 999;
-      float v_l1_phi = 999;
-      int v_l1_BOM = 0;
-      int v_l1_thrNum = 0;
 
-      float v_l2mt_e = 999;
-      float v_l2mt_pt = 999;
-      float v_l2mt_eta = 999;
-      float v_l2mt_phi = 999;
-      float v_l2mt_etaMS = 999;
-      float v_l2mt_phiMS = 999;
-      bool v_l2mt_pass = 0;
-      
-      std::vector<float> v_sp_r, v_sp_z, v_sp_slope, v_sp_intercept, v_sp_chi2;
-      std::vector< unsigned int >  v_l2mt_stgcClusterLayer;
-      std::vector < int >          v_l2mt_stgcClusterIsOutlier;
-      std::vector < int >          v_l2mt_stgcClusterType;
-      std::vector < float >        v_l2mt_stgcClusterEta;
-      std::vector < float >        v_l2mt_stgcClusterPhi;
-      std::vector < float >        v_l2mt_stgcClusterR;
-      std::vector < float >        v_l2mt_stgcClusterZ;
-      std::vector < float >        v_l2mt_stgcClusterResidualR;
-      std::vector < float >        v_l2mt_stgcClusterResidualPhi;
-      std::vector < int >          v_l2mt_stgcClusterStationEta;
-      std::vector < int >          v_l2mt_stgcClusterStationPhi;
-      std::vector < int >          v_l2mt_stgcClusterStationName;
-      std::vector < unsigned int > v_l2mt_mmClusterLayer;
-      std::vector < int >          v_l2mt_mmClusterIsOutlier;
-      std::vector < float >        v_l2mt_mmClusterEta;
-      std::vector < float >        v_l2mt_mmClusterPhi;
-      std::vector < float >        v_l2mt_mmClusterR;
-      std::vector < float >        v_l2mt_mmClusterZ;
-      std::vector < float >        v_l2mt_mmClusterResidualR;
-      std::vector < float >        v_l2mt_mmClusterResidualPhi;
-      std::vector < int >          v_l2mt_mmClusterStationEta;
-      std::vector < int >          v_l2mt_mmClusterStationPhi;
-      std::vector < int >          v_l2mt_mmClusterStationName;
-
-      const xAOD::MuonRoI* l1muon = *l1muonLink;
-
-      tlv_l1.SetPtEtaPhiE(m_muon_pt->at(off_idx), l1muon->eta(), l1muon->phi(), m_muon_e->at(off_idx));
-
-      dR = tlv_l1.DeltaR(tlv_off);
-
-      if(dR > dRreq) continue;
-
-      if(dR < v_dRmin) {
-
-        v_dRmin = dR;
-        v_l1_eta = l1muon->eta();
-        v_l1_phi = l1muon->phi();
-        v_l1_thrNum = l1muon->getThrNumber();
-
-        // BOM
-        if(static_cast<int>(l1muon->getSource()) == 0 && l1muon->isMoreCandInRoI() == 1){//barrel only and isMoreCandflag is ON
-          v_l1_BOM = 1;
-        }
-        else{
-          v_l1_BOM = 0;
-        }
-
-        //matching
-        //if(dR < 0.02){
-          v_l2mt_e = (*l2mt)->e();
-          v_l2mt_pt = (*l2mt)->pt();
-          v_l2mt_eta = (*l2mt)->eta();
-          v_l2mt_phi = (*l2mt)->phi();
-          v_l2mt_etaMS = (*l2mt)->etaMS();
-          v_l2mt_phiMS = (*l2mt)->phiMS();
-          v_l2mt_pass = ( l2mtLinkInfo.state == TrigCompositeUtils::ActiveState::ACTIVE );
-
-          v_l2mt_stgcClusterLayer = (*l2mt)->stgcClusterLayer();
-          v_l2mt_stgcClusterIsOutlier = (*l2mt)->stgcClusterIsOutlier();
-          v_l2mt_stgcClusterType = (*l2mt)->stgcClusterType();
-          v_l2mt_stgcClusterEta = (*l2mt)->stgcClusterEta();
-          v_l2mt_stgcClusterPhi = (*l2mt)->stgcClusterPhi();
-          v_l2mt_stgcClusterR = (*l2mt)->stgcClusterR();
-          v_l2mt_stgcClusterZ = (*l2mt)->stgcClusterZ();
-          v_l2mt_stgcClusterResidualR = (*l2mt)->stgcClusterResidualR();
-          v_l2mt_stgcClusterResidualPhi = (*l2mt)->stgcClusterResidualPhi();
-          v_l2mt_stgcClusterStationEta = (*l2mt)->stgcClusterStationEta();
-          v_l2mt_stgcClusterStationPhi = (*l2mt)->stgcClusterStationPhi();
-          v_l2mt_stgcClusterStationName = (*l2mt)->stgcClusterStationName();
-
-          v_l2mt_mmClusterLayer = (*l2mt)->mmClusterLayer();
-          v_l2mt_mmClusterIsOutlier = (*l2mt)->mmClusterIsOutlier();
-          v_l2mt_mmClusterEta = (*l2mt)->mmClusterEta();
-          v_l2mt_mmClusterPhi = (*l2mt)->mmClusterPhi();
-          v_l2mt_mmClusterR = (*l2mt)->mmClusterR();
-          v_l2mt_mmClusterZ = (*l2mt)->mmClusterZ();
-          v_l2mt_mmClusterResidualR = (*l2mt)->mmClusterResidualR();
-          v_l2mt_mmClusterResidualPhi = (*l2mt)->mmClusterResidualPhi();
-          v_l2mt_mmClusterStationEta = (*l2mt)->mmClusterStationEta();
-          v_l2mt_mmClusterStationPhi = (*l2mt)->mmClusterStationPhi();
-          v_l2mt_mmClusterStationName = (*l2mt)->mmClusterStationName();
-
-          sp_r.clear();
-          sp_z.clear();
-          sp_slope.clear();
-          sp_intercept.clear();
-          sp_chi2.clear();
-          int inner  = 0;
-          int middle = 1;
-          int outer  = 2;
-          if ((*l2mt)->sAddress() == -1) {
-            inner  = xAOD::L2MuonParameters::Chamber::EndcapInner;
-            middle = xAOD::L2MuonParameters::Chamber::EndcapMiddle;
-            outer  = xAOD::L2MuonParameters::Chamber::EndcapOuter;
-          } else {
-            inner  = xAOD::L2MuonParameters::Chamber::BarrelInner;
-            middle = xAOD::L2MuonParameters::Chamber::BarrelMiddle;
-            outer  = xAOD::L2MuonParameters::Chamber::BarrelOuter;
-          }
-          // super point
-          if( std::abs((*l2mt)->superPointR(inner)) > ZERO_LIMIT ) {
-            v_sp_r.push_back(         (*l2mt)->superPointR(inner) );
-            v_sp_z.push_back(         (*l2mt)->superPointZ(inner) );
-            v_sp_slope.push_back(     (*l2mt)->superPointSlope(inner) );
-            v_sp_intercept.push_back( (*l2mt)->superPointIntercept(inner) );
-            v_sp_chi2.push_back(      (*l2mt)->superPointChi2(inner) );
-          }
-          if( std::abs((*l2mt)->superPointR(middle)) > ZERO_LIMIT ) {
-            v_sp_r.push_back(         (*l2mt)->superPointR(middle) );
-            v_sp_z.push_back(         (*l2mt)->superPointZ(middle) );
-            v_sp_slope.push_back(     (*l2mt)->superPointSlope(middle) );
-            v_sp_intercept.push_back( (*l2mt)->superPointIntercept(middle) );
-            v_sp_chi2.push_back(      (*l2mt)->superPointChi2(middle) );
-          }
-          if( std::abs((*l2mt)->superPointR(outer)) > ZERO_LIMIT ) {
-            v_sp_r.push_back(         (*l2mt)->superPointR(outer) );
-            v_sp_z.push_back(         (*l2mt)->superPointZ(outer) );
-            v_sp_slope.push_back(     (*l2mt)->superPointSlope(outer) );
-            v_sp_intercept.push_back( (*l2mt)->superPointIntercept(outer) );
-            v_sp_chi2.push_back(      (*l2mt)->superPointChi2(outer) );
-          }
-
-          roiWord = (*l2mt)->roiWord();
-          
-  
-        //} 
-      }
-      l1_eta.push_back(v_l1_eta);
-      l1_phi.push_back(v_l1_phi);
-      l1_dRoff.push_back(v_dRmin);
-      l1_BOM.push_back(v_l1_BOM);
-      l1_thrNum.push_back(v_l1_thrNum);
-
-      l2mt_e.push_back(v_l2mt_e);
-      l2mt_pt.push_back(v_l2mt_pt);
-      l2mt_eta.push_back(v_l2mt_eta);
-      l2mt_phi.push_back(v_l2mt_phi);
-      l2mt_etaMS.push_back(v_l2mt_etaMS);
-      l2mt_phiMS.push_back(v_l2mt_phiMS);
-      l2mt_pass.push_back(v_l2mt_pass);
-
-      sp_r.push_back(v_sp_r);
-      sp_z.push_back(v_sp_z);
-      sp_slope.push_back(v_sp_slope);
-      sp_intercept.push_back(v_sp_intercept);
-      sp_chi2.push_back(v_sp_chi2);
-      l2mt_stgcClusterLayer.push_back(v_l2mt_stgcClusterLayer);
-      l2mt_stgcClusterIsOutlier.push_back(v_l2mt_stgcClusterIsOutlier);
-      l2mt_stgcClusterType.push_back(v_l2mt_stgcClusterType);
-      l2mt_stgcClusterEta.push_back(v_l2mt_stgcClusterEta);
-      l2mt_stgcClusterPhi.push_back(v_l2mt_stgcClusterPhi);
-      l2mt_stgcClusterR.push_back(v_l2mt_stgcClusterR);
-      l2mt_stgcClusterZ.push_back(v_l2mt_stgcClusterZ);
-      l2mt_stgcClusterResidualR.push_back(v_l2mt_stgcClusterResidualR);
-      l2mt_stgcClusterResidualPhi.push_back(v_l2mt_stgcClusterResidualPhi);
-      l2mt_stgcClusterStationEta.push_back(v_l2mt_stgcClusterStationEta);
-      l2mt_stgcClusterStationPhi.push_back(v_l2mt_stgcClusterStationPhi);
-      l2mt_stgcClusterStationName.push_back(v_l2mt_stgcClusterStationName);
-      l2mt_mmClusterLayer.push_back(v_l2mt_mmClusterLayer);
-      l2mt_mmClusterIsOutlier.push_back(v_l2mt_mmClusterIsOutlier);
-      l2mt_mmClusterEta.push_back(v_l2mt_mmClusterEta);
-      l2mt_mmClusterPhi.push_back(v_l2mt_mmClusterPhi);
-      l2mt_mmClusterR.push_back(v_l2mt_mmClusterR);
-      l2mt_mmClusterZ.push_back(v_l2mt_mmClusterZ);
-      l2mt_mmClusterResidualR.push_back(v_l2mt_mmClusterResidualR);
-      l2mt_mmClusterResidualPhi.push_back(v_l2mt_mmClusterResidualPhi);
-      l2mt_mmClusterStationEta.push_back(v_l2mt_mmClusterStationEta);
-      l2mt_mmClusterStationPhi.push_back(v_l2mt_mmClusterStationPhi);
-      l2mt_mmClusterStationName.push_back(v_l2mt_mmClusterStationName);
-
+    auto l1muonLinkInfo = TrigCompositeUtils::findLink<xAOD::MuonRoIContainer>(l2mtLinkInfo.source, "initialRecRoI");
+    auto l1muonLink = l1muonLinkInfo.link;
+    if(!l1muonLink.isValid()){
+      ATH_MSG_ERROR("Invalid link to L1 muon");
+      continue;
     }
+
+    float l1_eta = 999;
+    float l1_phi = 999;
+    int l1_BOM = 0;
+    int l1_thrNum = 0;
+    int l1_roiNum = 0;
+
+    float l2mt_e = 999;
+    float l2mt_pt = 999;
+    float l2mt_eta = 999;
+    float l2mt_phi = 999;
+    float l2mt_etaMS = 999;
+    float l2mt_phiMS = 999;
+    bool l2mt_pass = 0;
+
+    std::vector<float> sp_r, sp_z, sp_slope, sp_intercept, sp_chi2;
+    std::vector< unsigned int > l2mt_stgcClusterLayer;
+    std::vector < int >          l2mt_stgcClusterIsOutlier;
+    std::vector < int >          l2mt_stgcClusterType;
+    std::vector < float >        l2mt_stgcClusterEta;
+    std::vector < float >        l2mt_stgcClusterPhi;
+    std::vector < float >        l2mt_stgcClusterR;
+    std::vector < float >        l2mt_stgcClusterZ;
+    std::vector < float >        l2mt_stgcClusterResidualR;
+    std::vector < float >        l2mt_stgcClusterResidualPhi;
+    std::vector < int >          l2mt_stgcClusterStationEta;
+    std::vector < int >          l2mt_stgcClusterStationPhi;
+    std::vector < int >          l2mt_stgcClusterStationName;
+    std::vector < unsigned int > l2mt_mmClusterLayer;
+    std::vector < int >          l2mt_mmClusterIsOutlier;
+    std::vector < float >        l2mt_mmClusterEta;
+    std::vector < float >        l2mt_mmClusterPhi;
+    std::vector < float >        l2mt_mmClusterR;
+    std::vector < float >        l2mt_mmClusterZ;
+    std::vector < float >        l2mt_mmClusterResidualR;
+    std::vector < float >        l2mt_mmClusterResidualPhi;
+    std::vector < int >          l2mt_mmClusterStationEta;
+    std::vector < int >          l2mt_mmClusterStationPhi;
+    std::vector < int >          l2mt_mmClusterStationName;
+    uint32_t roiWord = 999;
+
+    float l2cb_e = 999;
+    float l2cb_pt = 999;
+    float l2cb_eta = 999;
+    float l2cb_phi = 999;
+    bool l2cb_pass = false;
+
+    const xAOD::MuonRoI* l1muon = *l1muonLink;
+
+   
+    l1_eta = l1muon->eta();
+    l1_phi = l1muon->phi();
+    l1_thrNum = l1muon->getThrNumber();
+    l1_roiNum = l1muon->getRoI();
+
+    // BOM
+    if(static_cast<int>(l1muon->getSource()) == 0 && l1muon->isMoreCandInRoI() == 1){//barrel only and isMoreCandflag is ON
+      l1_BOM = 1;
+    }
+    else{
+      l1_BOM = 0;
+    }
+
+
+    l2mt_e = (*l2mt)->e();
+    l2mt_pt = (*l2mt)->pt();
+    l2mt_eta = (*l2mt)->eta();
+    l2mt_phi = (*l2mt)->phi();
+    l2mt_etaMS = (*l2mt)->etaMS();
+    l2mt_phiMS = (*l2mt)->phiMS();
+    l2mt_pass = ( l2mtLinkInfo.state == TrigCompositeUtils::ActiveState::ACTIVE );
+
+    l2mt_stgcClusterLayer = (*l2mt)->stgcClusterLayer();
+    l2mt_stgcClusterIsOutlier = (*l2mt)->stgcClusterIsOutlier();
+    l2mt_stgcClusterType = (*l2mt)->stgcClusterType();
+    l2mt_stgcClusterEta = (*l2mt)->stgcClusterEta();
+    l2mt_stgcClusterPhi = (*l2mt)->stgcClusterPhi();
+    l2mt_stgcClusterR = (*l2mt)->stgcClusterR();
+    l2mt_stgcClusterZ = (*l2mt)->stgcClusterZ();
+    l2mt_stgcClusterResidualR = (*l2mt)->stgcClusterResidualR();
+    l2mt_stgcClusterResidualPhi = (*l2mt)->stgcClusterResidualPhi();
+    l2mt_stgcClusterStationEta = (*l2mt)->stgcClusterStationEta();
+    l2mt_stgcClusterStationPhi = (*l2mt)->stgcClusterStationPhi();
+    l2mt_stgcClusterStationName = (*l2mt)->stgcClusterStationName();
+
+    l2mt_mmClusterLayer = (*l2mt)->mmClusterLayer();
+    l2mt_mmClusterIsOutlier = (*l2mt)->mmClusterIsOutlier();
+    l2mt_mmClusterEta = (*l2mt)->mmClusterEta();
+    l2mt_mmClusterPhi = (*l2mt)->mmClusterPhi();
+    l2mt_mmClusterR = (*l2mt)->mmClusterR();
+    l2mt_mmClusterZ = (*l2mt)->mmClusterZ();
+    l2mt_mmClusterResidualR = (*l2mt)->mmClusterResidualR();
+    l2mt_mmClusterResidualPhi = (*l2mt)->mmClusterResidualPhi();
+    l2mt_mmClusterStationEta = (*l2mt)->mmClusterStationEta();
+    l2mt_mmClusterStationPhi = (*l2mt)->mmClusterStationPhi();
+    l2mt_mmClusterStationName = (*l2mt)->mmClusterStationName();
+
+    sp_r.clear();
+    sp_z.clear();
+    sp_slope.clear();
+    sp_intercept.clear();
+    sp_chi2.clear();
+    int inner  = 0;
+    int middle = 1;
+    int outer  = 2;
+    if ((*l2mt)->sAddress() == -1) {
+      inner  = xAOD::L2MuonParameters::Chamber::EndcapInner;
+      middle = xAOD::L2MuonParameters::Chamber::EndcapMiddle;
+      outer  = xAOD::L2MuonParameters::Chamber::EndcapOuter;
+    } else {
+      inner  = xAOD::L2MuonParameters::Chamber::BarrelInner;
+      middle = xAOD::L2MuonParameters::Chamber::BarrelMiddle;
+      outer  = xAOD::L2MuonParameters::Chamber::BarrelOuter;
+    }
+    // super point
+    if( std::abs((*l2mt)->superPointR(inner)) > ZERO_LIMIT ) {
+      sp_r.push_back(         (*l2mt)->superPointR(inner) );
+      sp_z.push_back(         (*l2mt)->superPointZ(inner) );
+      sp_slope.push_back(     (*l2mt)->superPointSlope(inner) );
+      sp_intercept.push_back( (*l2mt)->superPointIntercept(inner) );
+      sp_chi2.push_back(      (*l2mt)->superPointChi2(inner) );
+    }
+    if( std::abs((*l2mt)->superPointR(middle)) > ZERO_LIMIT ) {
+      sp_r.push_back(         (*l2mt)->superPointR(middle) );
+      sp_z.push_back(         (*l2mt)->superPointZ(middle) );
+      sp_slope.push_back(     (*l2mt)->superPointSlope(middle) );
+      sp_intercept.push_back( (*l2mt)->superPointIntercept(middle) );
+      sp_chi2.push_back(      (*l2mt)->superPointChi2(middle) );
+    }
+    if( std::abs((*l2mt)->superPointR(outer)) > ZERO_LIMIT ) {
+      sp_r.push_back(         (*l2mt)->superPointR(outer) );
+      sp_z.push_back(         (*l2mt)->superPointZ(outer) );
+      sp_slope.push_back(     (*l2mt)->superPointSlope(outer) );
+      sp_intercept.push_back( (*l2mt)->superPointIntercept(outer) );
+      sp_chi2.push_back(      (*l2mt)->superPointChi2(outer) );
+    }
+
+    roiWord = (*l2mt)->roiWord();
+
     m_l1_eta->push_back(l1_eta);
     m_l1_phi->push_back(l1_phi);
-    m_l1_dRoff->push_back(l1_dRoff);
     m_l1_BOM->push_back(l1_BOM);
     m_l1_thrNum->push_back(l1_thrNum);
+    m_l1_roiNum->push_back(l1_roiNum);
 
     m_l2mt_e->push_back(l2mt_e);
     m_l2mt_pt->push_back(l2mt_pt);
@@ -1599,6 +1575,26 @@ StatusCode MyxAODAnalysis :: execute ()
     m_l2mt_mmClusterStationPhi->push_back(l2mt_mmClusterStationPhi);
     m_l2mt_mmClusterStationName->push_back(l2mt_mmClusterStationName);
 
+    for(const TrigCompositeUtils::LinkInfo<xAOD::L2CombinedMuonContainer>& l2cbmtLinkInfo : l2cbLinks){
+      if( !l2cbmtLinkInfo.isValid() ) continue;
+      const ElementLink<xAOD::L2CombinedMuonContainer> l2cbmt = l2cbmtLinkInfo.link;
+      if( !l2cbmt.isValid() ) continue;
+
+      if((*l2cbmt)->muSATrack()->roiWord() != roiWord) continue;
+
+      l2cb_e = (*l2cbmt)->e()*0.001;
+      l2cb_pt = (*l2cbmt)->pt()*0.001;
+      l2cb_eta = (*l2cbmt)->eta();
+      l2cb_phi = (*l2cbmt)->phi();
+      l2cb_pass = ( l2cbmtLinkInfo.state == TrigCompositeUtils::ActiveState::ACTIVE );
+
+    }
+
+    m_l2cb_e->push_back(l2cb_e);
+    m_l2cb_pt->push_back(l2cb_pt);
+    m_l2cb_eta->push_back(l2cb_eta);
+    m_l2cb_phi->push_back(l2cb_phi);
+    m_l2cb_pass->push_back(l2cb_pass);
   }
 
   const Trig::ChainGroup* chainGroup = m_trigDecisionTool->getChainGroup("HLT_.*");

@@ -122,11 +122,15 @@ ServiceMgr.EventSelector.InputCollections = [
 #    '/gpfs/fs8001/toyamash/L2mt/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185._lb0411._0011.1',
 #    '/gpfs/fs8001/toyamash/L2mt/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185._lb0630._0010.1']
 
+ServiceMgr.EventSelector.InputCollections = [
+    '/eos/user/t/toyamash/L2mt/data23_13p6TeV.00454083.physics_Main.merge.AOD.f1360_m2179/data23_13p6TeV.00454083.physics_Main.merge.AOD.f1360_m2179._lb1251._0003.1']
+
+
 # output file
 ServiceMgr += CfgMgr.THistSvc()
 ServiceMgr.THistSvc.Output += [
     #"ANALYSIS DATAFILE='MyxAODAnalysis_valid1.601190.PhPy8EG_AZNLO_Zmumu.output.root' OPT='RECREATE'"
-    "ANALYSIS DATAFILE='MyxAODAnalysis_forl2mt.output_20230802.root' OPT='RECREATE'"
+    "ANALYSIS DATAFILE='MyxAODAnalysis_forl2mt.output_20230811.root' OPT='RECREATE'"
     ]
 ServiceMgr.THistSvc.MaxFileSize=-1 #speeds up jobs that output lots of histograms
 
