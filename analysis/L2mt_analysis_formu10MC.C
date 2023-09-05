@@ -25,8 +25,11 @@ void L2mt_analysis_formu10MC(){
     //chain->Add("/eos/user/t/toyamash/user.toyamash.data23_13p6TeV.00454188.physics_Main.merge.AOD.f1360_m2179.Run3-22.0.105-00-01_NTUP_ANALYSIS.500635190/user.toyamash.34265966.ANALYSIS._000007.root");
 
     //MC mu10_L2mt
-    chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/MCforL2mt/user.toyamash.valid1.801164.P8B_A14_CTEQ6L1_bb_Jpsi1S_mu6mu4.MC.e8514_e8528_s4111_s4114_r14781_tid33979104_00.MC.3_NTUP_ANALYSIS/*.root");
+    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/MCforL2mt/user.toyamash.valid1.801164.P8B_A14_CTEQ6L1_bb_Jpsi1S_mu6mu4.MC.e8514_e8528_s4111_s4114_r14781_tid33979104_00.MC.3_NTUP_ANALYSIS/*.root");
     //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/MCforL2mt/user.toyamash.valid1.801164.P8B_A14_CTEQ6L1_bb_Jpsi1S_mu6mu4.MC.e8514_e8528_s4111_s4114_r14706_tid33639688_00.MC.3_NTUP_ANALYSIS/*.root");
+
+    //lxplus
+    chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash:user.toyamash.valid1.801164.P8B_A14_CTEQ6L1_bb_Jpsi1S_mu6mu4.MC.e8514_e8528_s4111_s4114_r14781_tid33979104_00.MC.3_NTUP_ANALYSIS/*.root");
 
     chain->SetBranchStatus("*", 0);
     chain->SetBranchStatus("RunNumber", 1);
@@ -441,7 +444,7 @@ void L2mt_analysis_formu10MC(){
 
     TH1D *l2mtmuons_hist = new TH1D("l2mtmuons_hist", "l2mtmuons_hist", 8, 0, 8);
 
-    TFile hist_file("img0829/hist0829_mu10L2mt.root", "RECREATE");
+    TFile hist_file("img0902/hist0902_mu10L2mtMC.root", "RECREATE");
 
     Long64_t nentries = chain->GetEntries();
 
@@ -654,7 +657,7 @@ void L2mt_analysis_formu10MC(){
                                     float pair_mass = mu_pair.M();
                                     float pair_deltaR = mu2.DeltaR(mu1);
                                     float pair_deltaPhi = mu2.DeltaPhi(mu1);
-                                    float pair_mass = ext_mu_pair.M();
+                                    //float pair_mass = ext_mu_pair.M();
                                     float pair_ext_deltaR = ext_mu2.DeltaR(ext_mu1);
                                     float pair_ext_deltaPhi = ext_mu2.DeltaPhi(ext_mu1);
 
