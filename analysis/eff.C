@@ -41,14 +41,19 @@ void eff(){
 
     gROOT->SetStyle("ATLAS");
 
-    TFile *file = new TFile("img0829/hist0829_mu10L2mt.root");
+    //TFile *file = new TFile("img0829/hist0829_mu10L2mt.root");
+    TFile *file = new TFile("img0904/hist0904_mu10L2mt.root");
+    //TFile *file = new TFile("img0902/hist0902_2mu10_Jpsi.root");
+    //TFile *file = new TFile("img0902/hist0902_2mu10_MC.root");
 
     TH1D *pair_mass_hist = (TH1D*)file->Get("pair_mass_hist");
     TH1D *pair_deltaR_hist = (TH1D*)file->Get("pair_deltaR_hist");
+    TH1D *pair_ext_deltaR_hist = (TH1D*)file->Get("pair_ext_deltaR_hist");
     TH1D *pair_deltaPhi_hist = (TH1D*)file->Get("pair_deltaPhi_hist");
     TH1D *pair_pt_hist = (TH1D*)file->Get("pair_pt_hist");
     TH1D *cut_pair_mass_hist = (TH1D*)file->Get("cut_pair_mass_hist");
     TH1D *cut_pair_deltaR_hist = (TH1D*)file->Get("cut_pair_deltaR_hist");
+    TH1D *cut_pair_ext_deltaR_hist = (TH1D*)file->Get("cut_pair_ext_deltaR_hist");
     TH1D *cut_pair_deltaPhi_hist = (TH1D*)file->Get("cut_pair_deltaPhi_hist");
     TH1D *cut_pair_pt_hist = (TH1D*)file->Get("cut_pair_pt_hist");
 
@@ -74,6 +79,7 @@ void eff(){
     TCanvas *c5 = new TCanvas();
     TCanvas *c6 = new TCanvas();
     TCanvas *c7 = new TCanvas();
+    TCanvas *c8 = new TCanvas();
 
 /*
     TH1 *frame = c4->DrawFrame(0.0, 0.0, 0.3, 1.1);
@@ -83,7 +89,10 @@ void eff(){
 
     // efficiency
     TEfficiency *pEff_deltaR = new TEfficiency(*cut_pair_deltaR_hist, *pair_deltaR_hist);
-    pEff_deltaR->SetTitle("efficiency;deltaR at MS;efficiency");
+    pEff_deltaR->SetTitle("efficiency;deltaR at vertex;efficiency");
+    // efficiency (deltaR at MS)
+    TEfficiency *pEff_deltaR_MS = new TEfficiency(*cut_pair_ext_deltaR_hist, *pair_ext_deltaR_hist);
+    pEff_deltaR_MS->SetTitle("efficiency;deltaR at MS;efficiency");
 
     TEfficiency *pEff_deltaPhi = new TEfficiency(*cut_pair_deltaPhi_hist, *pair_deltaPhi_hist);
     pEff_deltaPhi->SetTitle("efficiency;deltaPhi,vertex;efficiency");
@@ -106,7 +115,7 @@ void eff(){
 
     TEfficiency *pEff_singleMuonPhi = new TEfficiency(*cut_singleMuonPhi_hist, *singleMuonPhi_hist);
     pEff_singleMuonPhi->SetTitle("efficiency;phi;efficiency");
-    
+
     //pEff_ext_MU10BOM->SetTitle("BOM efficiency;deltaR,extrapolate;efficiency");
     //pEff_ext_MU10BOM->SetMarkerStyle(4);
     //pEff_ext_MU10BOM->SetMarkerColor(2);
@@ -133,16 +142,18 @@ void eff(){
     c1->cd();
     pEff_deltaR->Draw();
     c2->cd();
-    pEff_deltaPhi->Draw();
+    pEff_deltaR_MS->Draw();
     c3->cd();
-    pEff_min_pt->Draw();
+    pEff_deltaPhi->Draw();
     c4->cd();
-    pEff_max_pt->Draw();
+    pEff_min_pt->Draw();
     c5->cd();
-    pEff_singleMuonPt->Draw();
+    pEff_max_pt->Draw();
     c6->cd();
-    pEff_singleMuonEta->Draw();
+    pEff_singleMuonPt->Draw();
     c7->cd();
+    pEff_singleMuonEta->Draw();
+    c8->cd();
     pEff_singleMuonPhi->Draw();
 
     //ATLASLabel(0.53, 0.85, 1, 0.12, 0.05);

@@ -25,15 +25,15 @@ void L2mt_2mu10(){
     //chain->Add("/eos/user/t/toyamash/user.toyamash.data23_13p6TeV.00454188.physics_Main.merge.AOD.f1360_m2179.Run3-22.0.105-00-01_NTUP_ANALYSIS.500635190/user.toyamash.34265966.ANALYSIS._000007.root");
 
     //HLT_mu10_l2mt_L1MU10BOM
-    chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453644.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453353.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453530.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453556.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453657.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453713.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453733.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453816.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453754.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
+    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453644.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
+    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453353.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
+    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453530.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
+    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453556.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
+    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453657.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
+    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453713.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
+    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453733.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
+    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453816.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
+    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453754.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
     
     //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453644.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/user.toyamash.34550939.ANALYSIS._000001.root");
 
@@ -44,15 +44,29 @@ void L2mt_2mu10(){
 
     //MC mu10_L2mt
     //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/MCforL2mt/user.toyamash.valid1.801164.P8B_A14_CTEQ6L1_bb_Jpsi1S_mu6mu4.MC.e8514_e8528_s4111_s4114_r14781_tid33979104_00.MC.3_NTUP_ANALYSIS/*.root");
-    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/MCforL2mt/user.toyamash.valid1.801164.P8B_A14_CTEQ6L1_bb_Jpsi1S_mu6mu4.MC.e8514_e8528_s4111_s4114_r14706_tid33639688_00.MC.3_NTUP_ANALYSIS/*.root");
 
     //v5 -> include isPassed
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453733.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/user.toyamash.34655580.ANALYSIS._000001.root");
+    chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453733.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453353.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453530.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453556.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453617.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453644.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453657.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453713.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453754.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453816.physics_Main.merge.AOD.f1360_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+
+    //MC
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.valid1.801164.P8B_A14_CTEQ6L1_bb_Jpsi1S_mu6mu4.MC.e8514_e8528_s4111_s4114_r14781_tid33979104_00.MC.5_NTUP_ANALYSIS/*.root");
 
     chain->SetBranchStatus("*", 0);
     chain->SetBranchStatus("RunNumber", 1);
     chain->SetBranchStatus("LumiBlock", 1);
     chain->SetBranchStatus("EventNumber", 1);
     chain->SetBranchStatus("pass_HLT_mu10_l2mt_L1MU10BOM", 1);
+    chain->SetBranchStatus("pass_HLT_2mu10_l2mt_L1MU10BOM", 1);
     chain->SetBranchStatus("muon_e", 1);
     chain->SetBranchStatus("muon_pt", 1);
     chain->SetBranchStatus("muon_eta", 1);
@@ -175,6 +189,7 @@ void L2mt_2mu10(){
     UInt_t          LumiBlock = 0;
     ULong64_t       EventNumber = 0;
     bool pass_HLT_mu10_l2mt_L1MU10BOM = false;
+    bool pass_HLT_2mu10_l2mt_L1MU10BOM = false;
     //Float_t         mcEventWeight;
     //Float_t         actualInteractionsPerCrossing;
     //Float_t         averageInteractionsPerCrossing;
@@ -304,6 +319,7 @@ void L2mt_2mu10(){
     chain->SetBranchAddress("LumiBlock", &LumiBlock);
     chain->SetBranchAddress("EventNumber", &EventNumber);
     chain->SetBranchAddress("pass_HLT_mu10_l2mt_L1MU10BOM", &pass_HLT_mu10_l2mt_L1MU10BOM);
+    chain->SetBranchAddress("pass_HLT_2mu10_l2mt_L1MU10BOM", &pass_HLT_2mu10_l2mt_L1MU10BOM);
     //chain->SetBranchAddress("mcEventWeight", &mcEventWeight);
     //chain->SetBranchAddress("actualInteractionsPerCrossing", &actualInteractionsPerCrossing);
     //chain->SetBranchAddress("averageInteractionsPerCrossing", &averageInteractionsPerCrossing);
@@ -427,16 +443,16 @@ void L2mt_2mu10(){
     //chain->SetBranchAddress("l2mt_ptEndcapAlpha", &l2mt_ptEndcapAlpha, &b_l2mt_ptEndcapAlpha);
     //chain->SetBranchAddress("l2mt_ptEndcapBeta", &l2mt_ptEndcapBeta, &b_l2mt_ptEndcapBeta);
 
-    TH1D *pair_mass_hist = new TH1D("pair_mass_hist", "pair_mass_hist", 1000, 0, 10);
-    TH1D *cut_pair_mass_hist = new TH1D("cut_pair_mass_hist", "cut_pair_mass_hist", 1000, 0, 10);
-    TH1D *pair_deltaR_hist = new TH1D("pair_deltaR_hist", "pair_deltaR_hist", 50, 0, 0.5);
-    TH1D *cut_pair_deltaR_hist = new TH1D("cut_pair_deltaR_hist", "cut_pair_deltaR_hist", 50, 0, 0.5);
-    TH1D *pair_ext_deltaR_hist = new TH1D("pair_ext_deltaR_hist", "pair_ext_deltaR_hist", 50, 0, 0.5);
-    TH1D *cut_pair_ext_deltaR_hist = new TH1D("cut_pair_ext_deltaR_hist", "cut_pair_ext_deltaR_hist", 50, 0, 0.5);
-    TH1D *pair_deltaPhi_hist = new TH1D("pair_deltaPhi_hist", "pair_deltaPhi_hist", 100, -1, 1);
-    TH1D *cut_pair_deltaPhi_hist = new TH1D("cut_pair_deltaPhi_hist", "cut_pair_deltaPhi_hist", 100, -1, 1);
-    TH1D *pair_ext_deltaPhi_hist = new TH1D("pair_ext_deltaPhi_hist", "pair_ext_deltaPhi_hist", 100, -1, 1);
-    TH1D *cut_pair_ext_deltaPhi_hist = new TH1D("cut_pair_ext_deltaPhi_hist", "cut_pair_ext_deltaPhi_hist", 100, -1, 1);
+    TH1D *pair_mass_hist = new TH1D("pair_mass_hist", "pair_mass_hist", 100, 0, 10);
+    TH1D *cut_pair_mass_hist = new TH1D("cut_pair_mass_hist", "cut_pair_mass_hist", 100, 0, 10);
+    TH1D *pair_deltaR_hist = new TH1D("pair_deltaR_hist", "pair_deltaR_hist", 10, 0, 0.5);
+    TH1D *cut_pair_deltaR_hist = new TH1D("cut_pair_deltaR_hist", "cut_pair_deltaR_hist", 10, 0, 0.5);
+    TH1D *pair_ext_deltaR_hist = new TH1D("pair_ext_deltaR_hist", "pair_ext_deltaR_hist", 10, 0, 0.5);
+    TH1D *cut_pair_ext_deltaR_hist = new TH1D("cut_pair_ext_deltaR_hist", "cut_pair_ext_deltaR_hist", 10, 0, 0.5);
+    TH1D *pair_deltaPhi_hist = new TH1D("pair_deltaPhi_hist", "pair_deltaPhi_hist", 10, -1, 1);
+    TH1D *cut_pair_deltaPhi_hist = new TH1D("cut_pair_deltaPhi_hist", "cut_pair_deltaPhi_hist", 10, -1, 1);
+    TH1D *pair_ext_deltaPhi_hist = new TH1D("pair_ext_deltaPhi_hist", "pair_ext_deltaPhi_hist", 10, -1, 1);
+    TH1D *cut_pair_ext_deltaPhi_hist = new TH1D("cut_pair_ext_deltaPhi_hist", "cut_pair_ext_deltaPhi_hist", 10, -1, 1);
     TH1D *pair_pt_hist = new TH1D("pair_pt_hist", "pair_pt_hist", 50, 0, 100);
     TH1D *cut_pair_pt_hist = new TH1D("cut_pair_pt_hist", "cut_pair_pt_hist", 50, 0, 100);
     TH1D *min_pt_hist = new TH1D("min_pt_hist", "min_pt_hist", 50, 0, 100);
@@ -444,24 +460,8 @@ void L2mt_2mu10(){
     TH1D *cut_min_pt_hist = new TH1D("cut_min_pt_hist", "cut_min_pt_hist", 50, 0, 100);
     TH1D *cut_max_pt_hist = new TH1D("cut_max_pt_hist", "cut_max_pt_hist", 50, 0, 100);
 
-    TH1D *singleMuonPt_hist = new TH1D("singleMuonPt_hist", "singleMuonPt_hist", 20, 0, 100);
-    TH1D *cut_singleMuonPt_hist = new TH1D("cut_singleMuonPt_hist", "cut_singleMuonPt_hist", 20, 0, 100);
-    TH1D *singleMuonEta_hist = new TH1D("singleMuonEta_hist", "singleMuonEta_hist", 30, -1.5, 1.5);
-    TH1D *cut_singleMuonEta_hist = new TH1D("cut_singleMuonEta_hist", "cut_singleMuonEta_hist", 30, -1.5, 1.5);
-    TH1D *singleMuonPhi_hist = new TH1D("singleMuonPhi_hist", "singleMuonPhi_hist", 30, -1.5, 1.5);
-    TH1D *cut_singleMuonPhi_hist = new TH1D("cut_singleMuonPhi_hist", "cut_singleMuonPhi_hist", 30, -1.5, 1.5);
-    
-    TH1D *HLTmuons_hist = new TH1D("HLTmuons_hist", "HLTmuons_hist", 5, 0, 5);
-    TH1D *HLTmuons_withl2mtpass_hist = new TH1D("HLTmuons_withl2mtpass_hist", "HLTmuons_withl2mtpass_hist", 5, 0, 5);
-    TH1D *l2mtpass_withl1flag_hist = new TH1D("l2mtpass_withl1flag_hist", "l2mtpass_withl1flag_hist", 2, 0, 2);
-    TH1D *l2mtpass_withl1BOM_hist = new TH1D("l2mtpass_withl1BOM_hist", "l2mtpass_withl1BOM_hist", 2, 0, 2);
-    TH1D *l1BOM_withl2mtpass_hist = new TH1D("l1BOM_withl2mtpass_hist", "l1BOM_withl2mtpass_hist", 2, 0, 2);
 
-    TH1D *l1thrNum_hist = new TH1D("l1thrNum_hist", "l1thrNum_hist", 7, 0, 7);
-
-    TH1D *l2mtmuons_hist = new TH1D("l2mtmuons_hist", "l2mtmuons_hist", 8, 0, 8);
-
-    TFile hist_file("img0829/hist0829_2mu10.root", "RECREATE");
+    TFile hist_file("img0902/hist0902_2mu10_Jpsi.root", "RECREATE");
 
     Long64_t nentries = chain->GetEntries();
 
@@ -479,76 +479,87 @@ void L2mt_2mu10(){
     for(int jentry = 0; jentry < nentries; jentry++){
         //cout << jentry << endl;
 
-        if(jentry % 10000 == 0){
+        if(jentry % 1000000 == 0){
             cout << jentry << endl;
         }
         int numOfOffline = 0;
         vector<pair<int, int>> mu_pair_number;
         
-        for(int i_offline = 0; i_offline->size(); i_offline++){
+        chain->GetEntry(jentry);
+        
+        for(int i_offline = 0; i_offline < muon_pt->size(); i_offline++){
 
             //pt cut(10GeV) & barrel only
-            if(muon_pt->at(i_offline) > 10 && abs(muon_eta-<at(i_offline)) < 1.05){
-                numOfOffline++;
-            }
+            //if(muon_pt->at(i_offline) > 10 && abs(muon_eta->at(i_offline)) < 1.05){
+            //    numOfOffline++;
+            //}
 
 
-            if(muon_pt->at(i_offline) < 10) continue;
+            // pt cut (10GeV) & barrel only
+            if(muon_pt->at(i_offline) < 10 || abs(muon_eta->at(i_offline)) > 1.05) continue;
 
             TLorentzVector mu1;
-            mu1->SetPtEtaPhiE(muon_pt->at(i_offline), muon_eta->at(i_offline), muon_phi->at(i_offline), muon_e->at(i_offline));
+            mu1.SetPtEtaPhiE(muon_pt->at(i_offline), muon_eta->at(i_offline), muon_phi->at(i_offline), muon_e->at(i_offline));
 
             for(int j_offline = 0; j_offline < i_offline; j_offline++){
-                if(muon_pt->at(j_offline) < 10) continue;
+                //pt cut(10GeV) & barrel only
+                if(muon_pt->at(j_offline) < 10 || abs(muon_eta->at(j_offline)) > 1.05) continue;
                 TLorentzVector mu2;
-                mu2->SetPtEtaPhiE(muon_pt->at(i_offline), muon_eta->at(i_offline), muon_phi->at(i_offline), muon_e->at(i_offline));
+                mu2.SetPtEtaPhiE(muon_pt->at(i_offline), muon_eta->at(i_offline), muon_phi->at(i_offline), muon_e->at(i_offline));
                 
                 TLorentzVector mu_pair = mu1 + mu2;
                 float pair_mass = mu_pair.M();
                 float pair_deltaR = mu2.DeltaR(mu1);
                 float pair_deltaPhi = mu2.DeltaPhi(mu1);
 
-                pair_mass_hist->Fill(pair_mass);
-                pair_deltaR_hist->Fill(pair_deltaR);
-                pair_deltaPhi_hist->Fill(pair_deltaPhi);
+                //pair_mass_hist->Fill(pair_mass);
+                //pair_deltaR_hist->Fill(pair_deltaR);
+                //pair_deltaPhi_hist->Fill(pair_deltaPhi);
 
-                //j/psi mass cut
-                bool flag_pair_mass = pair_mass > 2.7 && 3.5 > pair_mass;
-
-                if(flag_pair_mass){
-                    mu_pair_number.push_back(make_pair(i_offline, j_offline));
-                    numOfOffline = 2;
-                }
+                mu_pair_number.push_back(make_pair(i_offline, j_offline));
+                numOfOffline = 2;
             }
         }
+        //if(numOfOffline > 0){
+        //    cout << numOfOffline << endl;
+        //}
 
-        if(numOfOffline == 2 && HLT_mu10_l2mt_L1MU10BOM == 1){
+        if(numOfOffline == 2 && pass_HLT_mu10_l2mt_L1MU10BOM == 1){
+            //cout << "bunbo" << endl; 
             for(int i_mupair = 0; i_mupair < mu_pair_number.size(); i_mupair++){
                 int offline1 = mu_pair_number.at(i_mupair).first;
                 int offline2 = mu_pair_number.at(i_mupair).second;
                 
                 TLorentzVector muon1;
-                muon1->SetPtEtaPhiE(muon_pt->at(offline1), muon_eta->at(offline1), muon_phi->at(offline1), muon_e->at(offline1));
+                muon1.SetPtEtaPhiE(muon_pt->at(offline1), muon_eta->at(offline1), muon_phi->at(offline1), muon_e->at(offline1));
                 TLorentzVector muon2;
-                muon2->SetPtEtaPhiE(muon_pt->at(offline2), muon_eta->at(offline2), muon_phi->at(offline2), muon_e->at(offline2));
+                muon2.SetPtEtaPhiE(muon_pt->at(offline2), muon_eta->at(offline2), muon_phi->at(offline2), muon_e->at(offline2));
 
                 TLorentzVector offline_pair = muon1 + muon2;
                 float pair_mass = offline_pair.M();
-                float pair_deltaR = mu2.DeltaR(mu1);
-                float pair_deltaPhi = mu2.DeltaPhi(mu1);
+                float pair_deltaR = muon2.DeltaR(muon1);
+                float pair_deltaPhi = muon2.DeltaPhi(muon1);
 
-                pair_mass_hist->Fill(pair_mass);
-                pair_deltaR_hist->Fill(pair_deltaR);
-                pair_deltaPhi_hist->Fill(pair_deltaPhi);
-                pair_mass_hist->Fill(muon1.Pt());
-                pair_mass_hist->Fill(muon2.Pt());
+                //j/psi mass cut
+                bool flag_pair_mass = false;
+                if(pair_mass > 2.7 && 3.5 > pair_mass){
+                    flag_pair_mass = true;
+                }
+                
+                if(flag_pair_mass == true){
+                    pair_mass_hist->Fill(pair_mass);
+                    pair_deltaR_hist->Fill(pair_deltaR);
+                    pair_deltaPhi_hist->Fill(pair_deltaPhi);
+                    pair_pt_hist->Fill(muon1.Pt());
+                    pair_pt_hist->Fill(muon2.Pt());
 
-                if(HLT_2mu10_l2mt_L1MU10BOM == 1){
-                    cut_pair_mass_hist->Fill(pair_mass);
-                    cut_pair_deltaR_hist->Fill(pair_deltaR);
-                    cut_pair_deltaPhi_hist->Fill(pair_deltaPhi);
-                    cut_pair_mass_hist->Fill(muon1.Pt());
-                    cut_pair_mass_hist->Fill(muon2.Pt());
+                    if(pass_HLT_2mu10_l2mt_L1MU10BOM == 1){
+                        cut_pair_mass_hist->Fill(pair_mass);
+                        cut_pair_deltaR_hist->Fill(pair_deltaR);
+                        cut_pair_deltaPhi_hist->Fill(pair_deltaPhi);
+                        cut_pair_pt_hist->Fill(muon1.Pt());
+                        cut_pair_pt_hist->Fill(muon2.Pt());
+                    }
                 }
             }
         }
