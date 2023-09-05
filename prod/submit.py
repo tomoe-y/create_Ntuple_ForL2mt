@@ -2,11 +2,12 @@ import os
 
 user    = 'user.toyamash' # 'group.det-muon'
 athena  = '22.0.107'
-#version = 'Run3-' + athena + '-00-01'
-version = 'MC'
-retry   = '5'
+version = 'Run3-' + athena + '-00-01'
+#version = 'MC'
+retry   = '7'
 
 listfile = open('RUN3_l2mt_0821.list')
+#listfile = open('MC_0904.list')
 AODs = listfile.readlines() 
 listfile.close()
 

@@ -44,6 +44,9 @@ class MyxAODAnalysis : public EL::AnaAlgorithm
   float m_averageInteractionsPerCrossing = 0;
   bool m_pass_HLT_mu10_l2mt_L1MU10BOM = 0;
   bool m_pass_HLT_2mu10_l2mt_L1MU10BOM = 0;
+  bool m_pass_HLT_2mu10_bJpsimumu_L12MU8F = 0;
+  bool m_pass_HLT_mu24_ivarmedium_L1MU18VFCH = 0;
+  bool m_pass_HLT_2mu15_L12MU8F = 0;
 
   std::vector<float> m_b_extPosition;
 
