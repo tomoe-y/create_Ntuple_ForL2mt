@@ -42,7 +42,10 @@ void eff(){
     gROOT->SetStyle("ATLAS");
 
     //TFile *file = new TFile("img0829/hist0829_mu10L2mt.root");
-    TFile *file = new TFile("img0904/hist0904_mu10L2mt.root");
+    //TFile *file = new TFile("img0904/hist0904_mu10L2mt_2mu10.root");
+    //TFile *file = new TFile("img0905/hist0905_dimuon_15.root");
+    //TFile *file = new TFile("img0905/hist0905_2mu10_Jpsi.root");
+    TFile *file = new TFile("img0906/hist0906_2mu10_MC.root");
     //TFile *file = new TFile("img0902/hist0902_2mu10_Jpsi.root");
     //TFile *file = new TFile("img0902/hist0902_2mu10_MC.root");
 
@@ -56,6 +59,17 @@ void eff(){
     TH1D *cut_pair_ext_deltaR_hist = (TH1D*)file->Get("cut_pair_ext_deltaR_hist");
     TH1D *cut_pair_deltaPhi_hist = (TH1D*)file->Get("cut_pair_deltaPhi_hist");
     TH1D *cut_pair_pt_hist = (TH1D*)file->Get("cut_pair_pt_hist");
+
+    TH1D *pair_mass_Jpsi_hist = (TH1D*)file->Get("pair_mass_Jpsi_hist");
+    TH1D *pair_deltaR_Jpsi_hist = (TH1D*)file->Get("pair_deltaR_Jpsi_hist");
+    TH1D *pair_ext_deltaR_Jpsi_hist = (TH1D*)file->Get("pair_ext_deltaR_Jpsi_hist");
+    TH1D *pair_deltaPhi_Jpsi_hist = (TH1D*)file->Get("pair_deltaPhi_Jpsi_hist");
+    TH1D *pair_pt_Jpsi_hist = (TH1D*)file->Get("pair_pt_Jpsi_hist");
+    TH1D *cut_pair_mass_Jpsi_hist = (TH1D*)file->Get("cut_pair_mass_Jpsi_hist");
+    TH1D *cut_pair_deltaR_Jpsi_hist = (TH1D*)file->Get("cut_pair_deltaR_Jpsi_hist");
+    TH1D *cut_pair_ext_deltaR_Jpsi_hist = (TH1D*)file->Get("cut_pair_ext_deltaR_Jpsi_hist");
+    TH1D *cut_pair_deltaPhi_Jpsi_hist = (TH1D*)file->Get("cut_pair_deltaPhi_Jpsi_hist");
+    TH1D *cut_pair_pt_Jpsi_hist = (TH1D*)file->Get("cut_pair_pt_Jpsi_hist");
 
     TH1D *singleMuonPt_hist = (TH1D*)file->Get("singleMuonPt_hist");
     TH1D *singleMuonEta_hist = (TH1D*)file->Get("singleMuonEta_hist");
@@ -72,17 +86,17 @@ void eff(){
 
     TH1D *L1_efficiency_hist = new TH1D("L1_efficiency_hist", "L1_efficiency_hist", 1000, 0, 10);
 
-    TCanvas *c1 = new TCanvas();
-    TCanvas *c2 = new TCanvas();
-    TCanvas *c3 = new TCanvas();
-    TCanvas *c4 = new TCanvas();
-    TCanvas *c5 = new TCanvas();
-    TCanvas *c6 = new TCanvas();
-    TCanvas *c7 = new TCanvas();
-    TCanvas *c8 = new TCanvas();
+    //TCanvas *c1 = new TCanvas();
+    //TCanvas *c2 = new TCanvas();
+    //TCanvas *c3 = new TCanvas();
+    //TCanvas *c4 = new TCanvas();
+    //TCanvas *c5 = new TCanvas();
+    //TCanvas *c6 = new TCanvas();
+    //TCanvas *c7 = new TCanvas();
+    //TCanvas *c8 = new TCanvas();
 
 /*
-    TH1 *frame = c4->DrawFrame(0.0, 0.0, 0.3, 1.1);
+    TH1 *frame = c1->DrawFrame(0.0, 0.0, 0.3, 1.1);
     frame->GetXaxis()->SetTitle("#DeltaR_{#mu#mu}at Muonspectrometer");
     frame->GetYaxis()->SetTitle("efficiency");
 */
@@ -94,10 +108,16 @@ void eff(){
     TEfficiency *pEff_deltaR_MS = new TEfficiency(*cut_pair_ext_deltaR_hist, *pair_ext_deltaR_hist);
     pEff_deltaR_MS->SetTitle("efficiency;deltaR at MS;efficiency");
 
+    TEfficiency *pEff_deltaR_Jpsi = new TEfficiency(*cut_pair_deltaR_Jpsi_hist, *pair_deltaR_Jpsi_hist);
+    pEff_deltaR_Jpsi->SetTitle("efficiency Jpsi;deltaR at vertex;efficiency");
+    // efficiency (deltaR at MS)
+    TEfficiency *pEff_deltaR_MS_Jpsi = new TEfficiency(*cut_pair_ext_deltaR_Jpsi_hist, *pair_ext_deltaR_Jpsi_hist);
+    pEff_deltaR_MS_Jpsi->SetTitle("efficiency Jpsi;deltaR at MS;efficiency");
+
     TEfficiency *pEff_deltaPhi = new TEfficiency(*cut_pair_deltaPhi_hist, *pair_deltaPhi_hist);
     pEff_deltaPhi->SetTitle("efficiency;deltaPhi,vertex;efficiency");
 
-
+/*
     TEfficiency *pEff_min_pt = new TEfficiency(*cut_min_pt_hist, *min_pt_hist);
     //pEff_ext_2MU10->SetTitle("2MU10 efficiency;deltaR,extrapolate;efficiency");
     //pEff_ext_2MU10->SetTitle(";#DeltaR_{#mu#mu}at Muonspectrometer;efficiency");
@@ -106,7 +126,8 @@ void eff(){
 
     TEfficiency *pEff_max_pt = new TEfficiency(*cut_max_pt_hist, *max_pt_hist);
     pEff_max_pt->SetTitle("efficiency;pt_max mu;efficiency");
-
+*/
+/*
     TEfficiency *pEff_singleMuonPt = new TEfficiency(*cut_singleMuonPt_hist, *singleMuonPt_hist);
     pEff_singleMuonPt->SetTitle("efficiency;pt;efficiency");
 
@@ -115,7 +136,7 @@ void eff(){
 
     TEfficiency *pEff_singleMuonPhi = new TEfficiency(*cut_singleMuonPhi_hist, *singleMuonPhi_hist);
     pEff_singleMuonPhi->SetTitle("efficiency;phi;efficiency");
-
+*/
     //pEff_ext_MU10BOM->SetTitle("BOM efficiency;deltaR,extrapolate;efficiency");
     //pEff_ext_MU10BOM->SetMarkerStyle(4);
     //pEff_ext_MU10BOM->SetMarkerColor(2);
@@ -139,22 +160,41 @@ void eff(){
     legend->SetBorderSize(0);
     */
 
-    c1->cd();
-    pEff_deltaR->Draw();
-    c2->cd();
-    pEff_deltaR_MS->Draw();
-    c3->cd();
-    pEff_deltaPhi->Draw();
-    c4->cd();
-    pEff_min_pt->Draw();
-    c5->cd();
-    pEff_max_pt->Draw();
-    c6->cd();
-    pEff_singleMuonPt->Draw();
-    c7->cd();
-    pEff_singleMuonEta->Draw();
-    c8->cd();
-    pEff_singleMuonPhi->Draw();
+    TCanvas *c1 = new TCanvas();
+    TH1 *frame1 = c1->DrawFrame(0.0, 0.0, 0.5, 1);
+    frame1->GetXaxis()->SetTitle("#DeltaR_{#mu#mu}at vertex");
+    frame1->GetYaxis()->SetTitle("efficiency");
+    pEff_deltaR->Draw("same");
+    TCanvas *c2 = new TCanvas();
+    TH1 *frame2 = c2->DrawFrame(0.0, 0.0, 0.5, 1);
+    frame2->GetXaxis()->SetTitle("#DeltaR_{#mu#mu}at Muonspectrometer");
+    frame2->GetYaxis()->SetTitle("efficiency");
+    pEff_deltaR_MS->Draw("same");
+
+    TCanvas *c3 = new TCanvas();
+    TH1 *frame3 = c3->DrawFrame(0.0, 0.0, 0.5, 1);
+    frame3->GetXaxis()->SetTitle("#DeltaR_{#mu#mu}at vertex");
+    frame3->GetYaxis()->SetTitle("efficiency");
+    pEff_deltaR_Jpsi->Draw("same");
+
+    TCanvas *c4 = new TCanvas();
+    TH1 *frame4 = c4->DrawFrame(0.0, 0.0, 0.5, 1);
+    frame4->GetXaxis()->SetTitle("#DeltaR_{#mu#mu}at Muonspectrometer");
+    frame4->GetYaxis()->SetTitle("efficiency");
+    pEff_deltaR_MS_Jpsi->Draw("same");
+
+    //c3->cd();
+    //pEff_deltaPhi->Draw();
+    //c4->cd();
+    //pEff_min_pt->Draw();
+    //c5->cd();
+    //pEff_max_pt->Draw();
+    //c6->cd();
+    //pEff_singleMuonPt->Draw();
+    //c7->cd();
+    //pEff_singleMuonEta->Draw();
+    //c8->cd();
+    //pEff_singleMuonPhi->Draw();
 
     //ATLASLabel(0.53, 0.85, 1, 0.12, 0.05);
 
