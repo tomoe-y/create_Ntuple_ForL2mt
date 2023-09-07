@@ -1022,8 +1022,6 @@ StatusCode MyxAODAnalysis :: execute ()
 
   }
 
-  //for MC
-  /*
   SG::ReadHandle<xAOD::MuonRoIContainer> rh_roi(m_roiKey);
   if (!rh_roi.isValid()) {
     ATH_MSG_FATAL("could not find " << rh_roi.name());
@@ -1055,7 +1053,6 @@ StatusCode MyxAODAnalysis :: execute ()
     m_roi_GoodMF->push_back(roi->getGoodMF());
     m_roi_vetoed->push_back(roi->isVetoed());
   }
-  */
 
 
   // auto chainGroup = m_trigDecisionTool->getChainGroup("HLT_mu.*");
@@ -1069,8 +1066,7 @@ StatusCode MyxAODAnalysis :: execute ()
   // ATH_MSG_INFO( m_trigDecisionTool->getNavigationFormat() );
 
 
-//for MC
-  /*
+
   const std::string targetTrig = "HLT_mu24_ivarmedium_L1MU14FCH"; //"HLT_mu24_ivarmedium_mu4_probe_L1MU14FCH"; //"HLT_mu10_L1MU8F";//"HLT_mu60_0eta105_msonly_L1MU14FCH";//"HLT_mu6_L1MU5VF"; //
   //const std::string targetTrig_forl2mt = "HLT_2mu10_l2mt_L1MU10BOM"; //"HLT_mu24_ivarmedium_mu4_probe_L1MU14FCH"; //"HLT_mu10_L1MU8F";//"HLT_mu60_0eta105_msonly_L1MU14FCH";//"HLT_mu6_L1MU5VF"; //
   const std::string targetTrig_forl2mt = "HLT_mu10_l2mt_L1MU10BOM"; //"HLT_mu24_ivarmedium_mu4_probe_L1MU14FCH"; //"HLT_mu10_L1MU8F";//"HLT_mu60_0eta105_msonly_L1MU14FCH";//"HLT_mu6_L1MU5VF"; //
@@ -1085,7 +1081,6 @@ StatusCode MyxAODAnalysis :: execute ()
     if( !l2sa.isValid() ) continue;
 
     bool pass = ( l2saLinkInfo.state == TrigCompositeUtils::ActiveState::ACTIVE );//hypo information
-  */
 
 /*
     auto l1muonLinkInfo = TrigCompositeUtils::findLink<xAOD::MuonRoIContainer>(l2saLinkInfo.source, "initialRecRoI");
@@ -1099,11 +1094,9 @@ StatusCode MyxAODAnalysis :: execute ()
     ANA_MSG_INFO ("execute(): " << " L1 eta/phi = " << l1muon->eta() << "/" << l1muon->phi());
     ANA_MSG_INFO ("execute(): " << " L2SA pt/eta/phi/pass = " << (*l2sa)->pt() << "/" << (*l2sa)->eta() << "/" << (*l2sa)->phi() << "/" << pass);
 */
-  //for MC
-  //}
+  
+  }
 
-  //for MC
-  /*
   // for l2mt
   std::vector< TrigCompositeUtils::LinkInfo<xAOD::L2StandAloneMuonContainer> > l2mtLinks = m_trigDecisionTool->features<xAOD::L2StandAloneMuonContainer>( targetTrig_forl2mt, TrigDefs::includeFailedDecisions, "HLT_MuonL2SAInfol2mtmode" );
   for(const TrigCompositeUtils::LinkInfo<xAOD::L2StandAloneMuonContainer>& l2mtLinkInfo : l2mtLinks){
@@ -1148,8 +1141,6 @@ StatusCode MyxAODAnalysis :: execute ()
 
     ANA_MSG_INFO ("execute(): " << " L2CBMT pt/eta/phi/pass = " << (*l2cbmt)->pt() << "/" << (*l2cbmt)->eta() << "/" << (*l2cbmt)->phi() << "/" << pass);
   }
-  */
-
 
 /*
   for(size_t off_idx=0; off_idx<m_muon_eta->size(); off_idx++) {
@@ -1396,9 +1387,6 @@ StatusCode MyxAODAnalysis :: execute ()
   float targetbarrelPhi;
   */
 
-
-  //for MC
-  /*
   for(const TrigCompositeUtils::LinkInfo<xAOD::L2StandAloneMuonContainer>& l2mtLinkInfo : l2mtLinks){
     if( !l2mtLinkInfo.isValid() ) continue;
     const ElementLink<xAOD::L2StandAloneMuonContainer> l2mt = l2mtLinkInfo.link;
@@ -1613,10 +1601,7 @@ StatusCode MyxAODAnalysis :: execute ()
     m_l2cb_phi->push_back(l2cb_phi);
     m_l2cb_pass->push_back(l2cb_pass);
   }
-  */
 
-//for MC
-  /*
   const Trig::ChainGroup* chainGroup = m_trigDecisionTool->getChainGroup("HLT_.*");
   if (chainGroup == nullptr) return StatusCode::FAILURE;
   std::vector<std::string> chains = chainGroup->getListOfTriggers();
@@ -1650,7 +1635,6 @@ StatusCode MyxAODAnalysis :: execute ()
     m_etaVec->push_back(etaVec);
     m_phiVec->push_back(phiVec);
   }
-  */
 
   // const EventContext& ctx = getContext();
   // ATH_MSG_INFO("Get event context << " << ctx );
@@ -1735,8 +1719,6 @@ StatusCode MyxAODAnalysis :: execute ()
   // 		   <<  " size " << cont->size() << " xbits " << xbits->size() << " selected " << npassed);
   //   }
   // }
-  //for MC
-  /*
   bool pass_L1_MU3V = m_trigDecisionTool->isPassed("L1_MU3V");
   bool pass_L1_2MU8F = m_trigDecisionTool->isPassed("L1_2MU8F");
   bool pass_L1_2MU5VF = m_trigDecisionTool->isPassed("L1_2MU5VF");
@@ -1816,7 +1798,6 @@ StatusCode MyxAODAnalysis :: execute ()
   hist ("h_HLT_mu26_ivarmedium_mu6_l2mt_probe_L1MU14FCH")->Fill (pass_HLT_mu26_ivarmedium_mu6_l2mt_probe_L1MU14FCH);
   hist ("h_HLT_mu26_ivarmedium_L1MU14FCH")->Fill (pass_HLT_mu26_ivarmedium_L1MU14FCH);
 
-  */
   // Fill the event into the tree:
   tree ("analysis")->Fill ();
 
