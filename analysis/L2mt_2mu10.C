@@ -15,38 +15,9 @@
 
 void L2mt_2mu10(){
     TChain* chain = new TChain("analysis");
-    //login.icepp
-    //chain->Add("/home/toyamash/L2MuonSA/create_Ntuple_ForL2mt/run/MyxAODAnalysis_forl2mt.output.root");
-    //chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00454188.physics_Main.merge.AOD.f1360_m2179.Run3-22.0.105-00-01_NTUP_ANALYSIS.500635190/user.toyamash.34265966.ANALYSIS._000007.root");
-    //chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00454188.physics_Main.merge.AOD.f1360_m2179.Run3-22.0.105-00-01_NTUP_ANALYSIS.500635190/*.root");
-    //lxplus
-    //chain->Add("/eos/user/t/toyamash/user.toyamash.data23_13p6TeV.00454188.physics_Main.merge.AOD.f1360_m2179.Run3-22.0.105-00-01_NTUP_ANALYSIS.500635190/*.root");
-    //chain->Add("/eos/user/t/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453858.physics_Main.merge.AOD.f1360_m2179.Run3-22.0.107-00-01.2_NTUP_ANALYSIS/*.root");
-    //chain->Add("/eos/user/t/toyamash/user.toyamash.data23_13p6TeV.00454188.physics_Main.merge.AOD.f1360_m2179.Run3-22.0.105-00-01_NTUP_ANALYSIS.500635190/user.toyamash.34265966.ANALYSIS._000007.root");
-
-    //HLT_mu10_l2mt_L1MU10BOM
-    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453644.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453353.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453530.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453556.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453657.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453713.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453733.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453816.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453754.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    
-    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453644.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/user.toyamash.34550939.ANALYSIS._000001.root");
-
-    //HLT_2mu10_l2mt_L1MU10BOM
-    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/user.toyamash.data23_13p6TeV.00453754.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.4_NTUP_ANALYSIS/*.root");
-    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/user.toyamash.data23_13p6TeV.00453353.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.4_NTUP_ANALYSIS/*.root");
-    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/user.toyamash.data23_13p6TeV.00453754.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.4_NTUP_ANALYSIS//user.toyamash.34429630.ANALYSIS._000001.root");
-
-    //MC mu10_L2mt
-    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/MCforL2mt/user.toyamash.valid1.801164.P8B_A14_CTEQ6L1_bb_Jpsi1S_mu6mu4.MC.e8514_e8528_s4111_s4114_r14781_tid33979104_00.MC.3_NTUP_ANALYSIS/*.root");
 
     //v5 -> include isPassed
-    //chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453733.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/user.toyamash.34655580.ANALYSIS._000001.root");
+    chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453733.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/user.toyamash.34655580.ANALYSIS._000001.root");
     chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453733.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
     chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453353.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
     chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453530.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
@@ -58,9 +29,21 @@ void L2mt_2mu10(){
     chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453754.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
     chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453816.physics_Main.merge.AOD.f1360_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
 
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00451587.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00451618.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00451735.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00451794.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00451804.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00451866.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00451896.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00452028.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00452163.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00452202.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00452624.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+
     //MC
     //chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.valid1.801164.P8B_A14_CTEQ6L1_bb_Jpsi1S_mu6mu4.MC.e8514_e8528_s4111_s4114_r14781_tid33979104_00.MC.5_NTUP_ANALYSIS/*.root");
-    chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.mc23_13p6TeV.801164.P8B_A14_CTEQ6L1_bb_Jpsi1S_mu6mu4.e8542_e8528_s4159_s4114_r14799_r14811.MC.8_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.mc23_13p6TeV.801164.P8B_A14_CTEQ6L1_bb_Jpsi1S_mu6mu4.e8542_e8528_s4159_s4114_r14799_r14811.MC.8_NTUP_ANALYSIS/*.root");
 
     chain->SetBranchStatus("*", 0);
     chain->SetBranchStatus("RunNumber", 1);
@@ -472,7 +455,7 @@ void L2mt_2mu10(){
     TH1D *cut_pair_pt_Jpsi_hist = new TH1D("cut_pair_pt_Jpsi_hist", "cut_pair_pt_Jpsi_hist", 50, 0, 100);
 
 
-    TFile hist_file("img0906/hist0906_2mu10_MC.root", "RECREATE");
+    TFile hist_file("img0906/hist0906_2mu10.root", "RECREATE");
 
     Long64_t nentries = chain->GetEntries();
 

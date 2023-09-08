@@ -67,59 +67,16 @@ void dimuon(){
     chain->SetBranchStatus("EventNumber", 1);
     chain->SetBranchStatus("pass_HLT_mu10_l2mt_L1MU10BOM", 1);
     chain->SetBranchStatus("pass_HLT_2mu10_l2mt_L1MU10BOM", 1);
-    chain->SetBranchStatus("pass_HLT_mu24_ivarmedium_L1MU18VFCH", 1);
-    chain->SetBranchStatus("pass_HLT_2mu15_L12MU8F", 1);
+    chain->SetBranchStatus("pass_HLT_2mu14_L12MU8F", 1);
     chain->SetBranchStatus("muon_e", 1);
     chain->SetBranchStatus("muon_pt", 1);
     chain->SetBranchStatus("muon_eta", 1);
     chain->SetBranchStatus("muon_phi", 1);
     chain->SetBranchStatus("muon_charge", 1);
     chain->SetBranchStatus("muon_quality", 1);
-    //chain->SetBranchStatus("muon_isBadMuon_other", 1);
-    //chain->SetBranchStatus("muon_truthType", 1);
-    //chain->SetBranchStatus("muon_truthTypeMCTC", 1);
-    //chain->SetBranchStatus("muon_truthOriginMCTC", 1);
-    //chain->SetBranchStatus("muon_IFFtruthType", 1);
     chain->SetBranchStatus("muon_muonType", 1);
     chain->SetBranchStatus("muon_author", 1);
-    //chain->SetBranchStatus("truthmuon_e", 1);
-    //chain->SetBranchStatus("truthmuon_pt", 1);
-    //chain->SetBranchStatus("truthmuon_eta", 1);
-    //chain->SetBranchStatus("truthmuon_phi", 1);
-    //chain->SetBranchStatus("truthmuon_pdgId", 1);
-    //chain->SetBranchStatus("muon_mePt", 1);
-    //chain->SetBranchStatus("muon_idPt", 1);
-    //chain->SetBranchStatus("muon_cbPt", 1);
-    //chain->SetBranchStatus("muon_meP", 1);
-    //chain->SetBranchStatus("muon_idP", 1);
-    //chain->SetBranchStatus("muon_etaMS", 1);
-    //chain->SetBranchStatus("muon_phiMS", 1);
-    //chain->SetBranchStatus("muon_innerSmallHits", 1);
-    //chain->SetBranchStatus("muon_innerLargeHits", 1);
-    //chain->SetBranchStatus("muon_middleSmallHits", 1);
-    //chain->SetBranchStatus("muon_middleLargeHits", 1);
-    //chain->SetBranchStatus("muon_outerSmallHits", 1);
-    //chain->SetBranchStatus("muon_outerLargeHits", 1);
-    //chain->SetBranchStatus("muon_extendedSmallHits", 1);
-    //chain->SetBranchStatus("muon_extendedLargeHits", 1);
-    //chain->SetBranchStatus("muon_phiLayer1STGCHits", 1);
-    //chain->SetBranchStatus("muon_phiLayer2STGCHits", 1);
-    //chain->SetBranchStatus("muon_etaLayer1STGCHits", 1);
-    //chain->SetBranchStatus("muon_etaLayer2STGCHits", 1);
-    //chain->SetBranchStatus("muon_phiLayer1STGCHoles", 1);
-    //chain->SetBranchStatus("muon_phiLayer2STGCHoles", 1);
-    //chain->SetBranchStatus("muon_etaLayer1STGCHoles", 1);
-    //chain->SetBranchStatus("muon_etaLayer2STGCHoles", 1);
-    //chain->SetBranchStatus("muon_MMHits", 1);
-    //chain->SetBranchStatus("muon_MMHoles", 1);
-    //chain->SetBranchStatus("muon_nSegments", 1);
-    //chain->SetBranchStatus("muon_seg_chiSquared", 1);
-    //chain->SetBranchStatus("muon_seg_numberDoF", 1);
-    //chain->SetBranchStatus("muon_seg_sector", 1);
     chain->SetBranchStatus("muon_seg_chamberIndex", 1);
-    //chain->SetBranchStatus("muon_seg_nPrecisionHits", 1);
-    //chain->SetBranchStatus("muon_seg_nPhiLayers", 1);
-    //chain->SetBranchStatus("muon_seg_nTrigEtaLayers", 1);
     chain->SetBranchStatus("muon_seg_x", 1);
     chain->SetBranchStatus("muon_seg_y", 1);
     chain->SetBranchStatus("muon_seg_z", 1);
@@ -192,62 +149,17 @@ void dimuon(){
     ULong64_t       EventNumber = 0;
     bool pass_HLT_mu10_l2mt_L1MU10BOM = false;
     bool pass_HLT_2mu10_l2mt_L1MU10BOM = false;
-    bool pass_HLT_mu24_ivarmedium_L1MU18VFCH = false;
-    bool pass_HLT_2mu15_L12MU8F = false;
-    //Float_t         mcEventWeight;
-    //Float_t         actualInteractionsPerCrossing;
-    //Float_t         averageInteractionsPerCrossing;
+    bool pass_HLT_mu24_ivarmedium_L1MU14FCH = false;
+    bool pass_HLT_2mu14_L12MU8F = false;
     vector<float>   *muon_e = 0;
     vector<float>   *muon_pt = 0;
     vector<float>   *muon_eta = 0;
     vector<float>   *muon_phi = 0;
     vector<float>   *muon_charge = 0;
     vector<int>     *muon_quality = 0;
-    //vector<bool>    *muon_isBadMuon_other;
-    //vector<int>     *muon_truthType;
-    //vector<int>     *muon_truthTypeMCTC;
-    //vector<int>     *muon_truthOriginMCTC;
-    //vector<int>     *muon_IFFtruthType;
     vector<int>     *muon_muonType = 0;
     vector<int>     *muon_author = 0;
-    //vector<float>   *truthmuon_e;
-    //vector<float>   *truthmuon_pt;
-    //vector<float>   *truthmuon_eta;
-    //vector<float>   *truthmuon_phi;
-    //vector<int>     *truthmuon_pdgId;
-    //vector<float>   *muon_mePt;
-    //vector<float>   *muon_idPt;
-    //vector<float>   *muon_cbPt;
-    //vector<float>   *muon_meP;
-    //vector<float>   *muon_idP;
-    //vector<float>   *muon_etaMS;
-    //vector<float>   *muon_phiMS;
-    //vector<int>     *muon_innerSmallHits;
-    //vector<int>     *muon_innerLargeHits;
-    //vector<int>     *muon_middleSmallHits;
-    //vector<int>     *muon_middleLargeHits;
-    //vector<int>     *muon_outerSmallHits;
-    //vector<int>     *muon_outerLargeHits;
-    //vector<int>     *muon_extendedSmallHits;
-    //vector<int>     *muon_extendedLargeHits;
-    //vector<unsigned char> *muon_phiLayer1STGCHits;
-    //vector<unsigned char> *muon_phiLayer2STGCHits;
-    //vector<unsigned char> *muon_etaLayer1STGCHits;
-    //vector<unsigned char> *muon_etaLayer2STGCHits;
-    //vector<unsigned char> *muon_phiLayer1STGCHoles;
-    //vector<unsigned char> *muon_phiLayer2STGCHoles;
-    //vector<unsigned char> *muon_etaLayer1STGCHoles;
-    //vector<unsigned char> *muon_etaLayer2STGCHoles;
-    //vector<unsigned char> *muon_MMHits;
-    //vector<unsigned char> *muon_MMHoles;
-    //vector<unsigned long> *muon_nSegments;
-    //vector<vector<float> > *muon_seg_chiSquared;
-    //vector<vector<float> > *muon_seg_numberDoF;
-    //vector<vector<int> > *muon_seg_sector;
     vector<vector<int> > *muon_seg_chamberIndex = 0;
-    //vector<vector<int> > *muon_seg_nPrecisionHits;
-    //vector<vector<int> > *muon_seg_nPhiLayers;
-    //vector<vector<int> > *muon_seg_nTrigEtaLayers;
     vector<vector<float> > *muon_seg_x = 0;
     vector<vector<float> > *muon_seg_y = 0;
     vector<vector<float> > *muon_seg_z = 0;
@@ -316,70 +228,22 @@ void dimuon(){
     vector<vector<float> > *trigger_info_etaVec = 0;
     vector<vector<float> > *trigger_info_phiVec = 0;
 
-    //vector<vector<float> > *l2mt_ptEndcapAlpha;
-    //vector<vector<float> > *l2mt_ptEndcapBeta;
-
     chain->SetBranchAddress("RunNumber", &RunNumber);
     chain->SetBranchAddress("LumiBlock", &LumiBlock);
     chain->SetBranchAddress("EventNumber", &EventNumber);
     chain->SetBranchAddress("pass_HLT_mu10_l2mt_L1MU10BOM", &pass_HLT_mu10_l2mt_L1MU10BOM);
     chain->SetBranchAddress("pass_HLT_2mu10_l2mt_L1MU10BOM", &pass_HLT_2mu10_l2mt_L1MU10BOM);
-    chain->SetBranchAddress("pass_HLT_mu24_ivarmedium_L1MU18VFCH", &pass_HLT_mu24_ivarmedium_L1MU18VFCH);
-    chain->SetBranchAddress("pass_HLT_2mu15_L12MU8F", &pass_HLT_2mu15_L12MU8F);
-    //chain->SetBranchAddress("mcEventWeight", &mcEventWeight);
-    //chain->SetBranchAddress("actualInteractionsPerCrossing", &actualInteractionsPerCrossing);
-    //chain->SetBranchAddress("averageInteractionsPerCrossing", &averageInteractionsPerCrossing);
+    chain->SetBranchAddress("pass_HLT_mu24_ivarmedium_L1MU14FCH", &pass_HLT_mu24_ivarmedium_L1MU14FCH);
+    chain->SetBranchAddress("pass_HLT_2mu14_L12MU8F", &pass_HLT_2mu14_L12MU8F);
     chain->SetBranchAddress("muon_e", &muon_e);
     chain->SetBranchAddress("muon_pt", &muon_pt);
     chain->SetBranchAddress("muon_eta", &muon_eta);
     chain->SetBranchAddress("muon_phi", &muon_phi);
     chain->SetBranchAddress("muon_charge", &muon_charge);
     chain->SetBranchAddress("muon_quality", &muon_quality);
-    //chain->SetBranchAddress("muon_isBadMuon_other", &muon_isBadMuon_other);
-    //chain->SetBranchAddress("muon_truthType", &muon_truthType);
-    //chain->SetBranchAddress("muon_truthTypeMCTC", &muon_truthTypeMCTC);
-    //chain->SetBranchAddress("muon_truthOriginMCTC", &muon_truthOriginMCTC);
-    //chain->SetBranchAddress("muon_IFFtruthType", &muon_IFFtruthType);
     chain->SetBranchAddress("muon_muonType", &muon_muonType);
     chain->SetBranchAddress("muon_author", &muon_author);
-    //chain->SetBranchAddress("truthmuon_e", &truthmuon_e);
-    //chain->SetBranchAddress("truthmuon_pt", &truthmuon_pt);
-    //chain->SetBranchAddress("truthmuon_eta", &truthmuon_eta);
-    //chain->SetBranchAddress("truthmuon_phi", &truthmuon_phi);
-    //chain->SetBranchAddress("truthmuon_pdgId", &truthmuon_pdgId);
-    //chain->SetBranchAddress("muon_mePt", &muon_mePt);
-    //chain->SetBranchAddress("muon_idPt", &muon_idPt);
-    //chain->SetBranchAddress("muon_cbPt", &muon_cbPt);
-    //chain->SetBranchAddress("muon_meP", &muon_meP);
-    //chain->SetBranchAddress("muon_idP", &muon_idP);
-    //chain->SetBranchAddress("muon_etaMS", &muon_etaMS);
-    //chain->SetBranchAddress("muon_phiMS", &muon_phiMS);
-    //chain->SetBranchAddress("muon_innerSmallHits", &muon_innerSmallHits);
-    //chain->SetBranchAddress("muon_innerLargeHits", &muon_innerLargeHits);
-    //chain->SetBranchAddress("muon_middleSmallHits", &muon_middleSmallHits);
-    //chain->SetBranchAddress("muon_middleLargeHits", &muon_middleLargeHits);
-    //chain->SetBranchAddress("muon_outerSmallHits", &muon_outerSmallHits);
-    //chain->SetBranchAddress("muon_outerLargeHits", &muon_outerLargeHits);
-    //chain->SetBranchAddress("muon_extendedSmallHits", &muon_extendedSmallHits);
-    //chain->SetBranchAddress("muon_extendedLargeHits", &muon_extendedLargeHits);
-    //chain->SetBranchAddress("muon_phiLayer1STGCHits", &muon_phiLayer1STGCHits);
-    //chain->SetBranchAddress("muon_phiLayer2STGCHits", &muon_phiLayer2STGCHits);
-    //chain->SetBranchAddress("muon_etaLayer1STGCHits", &muon_etaLayer1STGCHits);
-    //chain->SetBranchAddress("muon_etaLayer2STGCHits", &muon_etaLayer2STGCHits);
-    //chain->SetBranchAddress("muon_phiLayer1STGCHoles", &muon_phiLayer1STGCHoles);
-    //chain->SetBranchAddress("muon_phiLayer2STGCHoles", &muon_phiLayer2STGCHoles);
-    //chain->SetBranchAddress("muon_etaLayer1STGCHoles", &muon_etaLayer1STGCHoles);
-    //chain->SetBranchAddress("muon_etaLayer2STGCHoles", &muon_etaLayer2STGCHoles);
-    //chain->SetBranchAddress("muon_MMHits", &muon_MMHits);
-    //chain->SetBranchAddress("muon_MMHoles", &muon_MMHoles);
-    //chain->SetBranchAddress("muon_nSegments", &muon_nSegments);
-    //chain->SetBranchAddress("muon_seg_chiSquared", &muon_seg_chiSquared);
-    //chain->SetBranchAddress("muon_seg_numberDoF", &muon_seg_numberDoF);
-    //chain->SetBranchAddress("muon_seg_sector", &muon_seg_sector);
     chain->SetBranchAddress("muon_seg_chamberIndex", &muon_seg_chamberIndex);
-    //chain->SetBranchAddress("muon_seg_nPrecisionHits", &muon_seg_nPrecisionHits);
-    //chain->SetBranchAddress("muon_seg_nPhiLayers", &muon_seg_nPhiLayers);
-    //chain->SetBranchAddress("muon_seg_nTrigEtaLayers", &muon_seg_nTrigEtaLayers);
     chain->SetBranchAddress("muon_seg_x", &muon_seg_x);
     chain->SetBranchAddress("muon_seg_y", &muon_seg_y);
     chain->SetBranchAddress("muon_seg_z", &muon_seg_z);
@@ -449,6 +313,7 @@ void dimuon(){
     TH1D *dimuon_mass_hist = new TH1D("dimuon_mass_hist", "dimuon_mass_hist", 100, 0, 10);
     TH1D *dimuon_deltaR_hist = new TH1D("dimuon_deltaR_hist", "dimuon_deltaR_hist", 20, 0, 1);
     TH1D *dimuon_deltaPhi_hist = new TH1D("dimuon_deltaPhi_hist", "dimuon_deltaPhi_hist", 10, -1, 1);
+
     TH1D *pair_mass_hist = new TH1D("pair_mass_hist", "pair_mass_hist", 100, 0, 10);
     TH1D *cut_pair_mass_hist = new TH1D("cut_pair_mass_hist", "cut_pair_mass_hist", 100, 0, 10);
     TH1D *pair_deltaR_hist = new TH1D("pair_deltaR_hist", "pair_deltaR_hist", 10, 0, 0.5);
@@ -461,6 +326,19 @@ void dimuon(){
     TH1D *cut_pair_ext_deltaPhi_hist = new TH1D("cut_pair_ext_deltaPhi_hist", "cut_pair_ext_deltaPhi_hist", 10, -1, 1);
     TH1D *pair_pt_hist = new TH1D("pair_pt_hist", "pair_pt_hist", 50, 0, 100);
     TH1D *cut_pair_pt_hist = new TH1D("cut_pair_pt_hist", "cut_pair_pt_hist", 50, 0, 100);
+
+    TH1D *pair_mass_Jpsi_hist = new TH1D("pair_mass_Jpsi_hist", "pair_mass_Jpsi_hist", 100, 0, 10);
+    TH1D *cut_pair_mass_Jpsi_hist = new TH1D("cut_pair_mass_Jpsi_hist", "cut_pair_mass_Jpsi_hist", 100, 0, 10);
+    TH1D *pair_deltaR_Jpsi_hist = new TH1D("pair_deltaR_Jpsi_hist", "pair_deltaR_Jpsi_hist", 10, 0, 0.5);
+    TH1D *cut_pair_deltaR_Jpsi_hist = new TH1D("cut_pair_deltaR_Jpsi_hist", "cut_pair_deltaR_Jpsi_hist", 10, 0, 0.5);
+    TH1D *pair_ext_deltaR_Jpsi_hist = new TH1D("pair_ext_deltaR_Jpsi_hist", "pair_ext_deltaR_Jpsi_hist", 10, 0, 0.5);
+    TH1D *cut_pair_ext_deltaR_Jpsi_hist = new TH1D("cut_pair_ext_deltaR_Jpsi_hist", "cut_pair_ext_deltaR_Jpsi_hist", 10, 0, 0.5);
+    TH1D *pair_deltaPhi_Jpsi_hist = new TH1D("pair_deltaPhi_Jpsi_hist", "pair_deltaPhi_Jpsi_hist", 10, -1, 1);
+    TH1D *cut_pair_deltaPhi_Jpsi_hist = new TH1D("cut_pair_deltaPhi_Jpsi_hist", "cut_pair_deltaPhi_Jpsi_hist", 10, -1, 1);
+    TH1D *pair_ext_deltaPhi_Jpsi_hist = new TH1D("pair_ext_deltaPhi_Jpsi_hist", "pair_ext_deltaPhi_Jpsi_hist", 10, -1, 1);
+    TH1D *cut_pair_ext_deltaPhi_Jpsi_hist = new TH1D("cut_pair_ext_deltaPhi_Jpsi_hist", "cut_pair_ext_deltaPhi_Jpsi_hist", 10, -1, 1);
+    TH1D *pair_pt_Jpsi_hist = new TH1D("pair_pt_Jpsi_hist", "pair_pt_Jpsi_hist", 50, 0, 100);
+    TH1D *cut_pair_pt_Jpsi_hist = new TH1D("cut_pair_pt_Jpsi_hist", "cut_pair_pt_Jpsi_hist", 50, 0, 100);
 
 
     TFile hist_file("img0905/hist0905_dimuon_15.root", "RECREATE");
@@ -492,14 +370,16 @@ void dimuon(){
         for(int i_offline = 0; i_offline < muon_pt->size(); i_offline++){
 
             // pt cut (10GeV) & barrel only
-            if(muon_pt->at(i_offline) < 15 || abs(muon_eta->at(i_offline)) > 1.05) continue;
+            if(muon_pt->at(i_offline) < 10 || abs(muon_eta->at(i_offline)) > 1.05) continue;
+            //if(muon_pt->at(i_offline) < 14 || abs(muon_eta->at(i_offline)) > 1.05) continue;
 
             TLorentzVector mu1;
             mu1.SetPtEtaPhiE(muon_pt->at(i_offline), muon_eta->at(i_offline), muon_phi->at(i_offline), muon_e->at(i_offline));
 
             for(int j_offline = 0; j_offline < i_offline; j_offline++){
                 //pt cut(10GeV) & barrel only
-                if(muon_pt->at(j_offline) < 15 || abs(muon_eta->at(j_offline)) > 1.05) continue;
+                if(muon_pt->at(j_offline) < 10 || abs(muon_eta->at(j_offline)) > 1.05) continue;
+                //if(muon_pt->at(j_offline) < 14 || abs(muon_eta->at(j_offline)) > 1.05) continue;
                 
                 TLorentzVector mu2;
                 mu2.SetPtEtaPhiE(muon_pt->at(j_offline), muon_eta->at(j_offline), muon_phi->at(j_offline), muon_e->at(j_offline));
@@ -518,7 +398,7 @@ void dimuon(){
             }
         }
 
-        if(numOfOffline == 2 && pass_HLT_mu24_ivarmedium_L1MU18VFCH == 1){
+        if(numOfOffline == 2){
             //cout << "bunbo" << endl; 
             for(int i_mupair = 0; i_mupair < mu_pair_number.size(); i_mupair++){
                 int offline1 = mu_pair_number.at(i_mupair).first;
@@ -569,6 +449,27 @@ void dimuon(){
                 float pair_ext_deltaR = ext_mu2.DeltaR(ext_mu1);
                 float pair_ext_deltaPhi = ext_mu2.DeltaPhi(ext_mu1);
 
+                pair_mass_hist->Fill(pair_mass);
+                pair_deltaR_hist->Fill(pair_deltaR);
+                pair_deltaPhi_hist->Fill(pair_deltaPhi);
+                pair_pt_hist->Fill(muon1.Pt());
+                pair_pt_hist->Fill(muon2.Pt());
+
+                pair_ext_deltaR_hist->Fill(pair_ext_deltaR);
+                pair_ext_deltaPhi_hist->Fill(pair_ext_deltaPhi);
+
+                if(pass_HLT_2mu10_l2mt_L1MU10BOM == 1){
+                //if(pass_HLT_2mu14_L12MU8F == 1){
+                    cut_pair_mass_hist->Fill(pair_mass);
+                    cut_pair_deltaR_hist->Fill(pair_deltaR);
+                    cut_pair_deltaPhi_hist->Fill(pair_deltaPhi);
+                    cut_pair_pt_hist->Fill(muon1.Pt());
+                    cut_pair_pt_hist->Fill(muon2.Pt());
+
+                    cut_pair_ext_deltaR_hist->Fill(pair_ext_deltaR);
+                    cut_pair_ext_deltaPhi_hist->Fill(pair_ext_deltaPhi);
+                }
+
                 //j/psi mass cut
                 bool flag_pair_mass = false;
                 if(pair_mass > 2.7 && 3.5 > pair_mass){
@@ -576,24 +477,25 @@ void dimuon(){
                 }
                 
                 if(flag_pair_mass == true){
-                    pair_mass_hist->Fill(pair_mass);
-                    pair_deltaR_hist->Fill(pair_deltaR);
-                    pair_deltaPhi_hist->Fill(pair_deltaPhi);
-                    pair_pt_hist->Fill(muon1.Pt());
-                    pair_pt_hist->Fill(muon2.Pt());
+                    pair_mass_Jpsi_hist->Fill(pair_mass);
+                    pair_deltaR_Jpsi_hist->Fill(pair_deltaR);
+                    pair_deltaPhi_Jpsi_hist->Fill(pair_deltaPhi);
+                    pair_pt_Jpsi_hist->Fill(muon1.Pt());
+                    pair_pt_Jpsi_hist->Fill(muon2.Pt());
 
-                    pair_ext_deltaR_hist->Fill(pair_ext_deltaR);
-                    pair_ext_deltaPhi_hist->Fill(pair_ext_deltaPhi);
+                    pair_ext_deltaR_Jpsi_hist->Fill(pair_ext_deltaR);
+                    pair_ext_deltaPhi_Jpsi_hist->Fill(pair_ext_deltaPhi);
 
-                    if(pass_HLT_2mu15_L12MU8F == 1){
-                        cut_pair_mass_hist->Fill(pair_mass);
-                        cut_pair_deltaR_hist->Fill(pair_deltaR);
-                        cut_pair_deltaPhi_hist->Fill(pair_deltaPhi);
-                        cut_pair_pt_hist->Fill(muon1.Pt());
-                        cut_pair_pt_hist->Fill(muon2.Pt());
+                    if(pass_HLT_2mu10_l2mt_L1MU10BOM == 1){
+                    //if(pass_HLT_2mu14_L12MU8F == 1){
+                        cut_pair_mass_Jpsi_hist->Fill(pair_mass);
+                        cut_pair_deltaR_Jpsi_hist->Fill(pair_deltaR);
+                        cut_pair_deltaPhi_Jpsi_hist->Fill(pair_deltaPhi);
+                        cut_pair_pt_Jpsi_hist->Fill(muon1.Pt());
+                        cut_pair_pt_Jpsi_hist->Fill(muon2.Pt());
 
-                        cut_pair_ext_deltaR_hist->Fill(pair_ext_deltaR);
-                        cut_pair_ext_deltaPhi_hist->Fill(pair_ext_deltaPhi);
+                        cut_pair_ext_deltaR_Jpsi_hist->Fill(pair_ext_deltaR);
+                        cut_pair_ext_deltaPhi_Jpsi_hist->Fill(pair_ext_deltaPhi);
                     }
                 }
             }
@@ -611,16 +513,24 @@ void dimuon(){
     pair_ext_deltaR_hist->Write();
     pair_ext_deltaPhi_hist->Write();
     pair_pt_hist->Write();
-    //min_pt_hist->Write();
-    //max_pt_hist->Write();
     cut_pair_mass_hist->Write();
     cut_pair_deltaR_hist->Write();
     cut_pair_deltaPhi_hist->Write();
     cut_pair_ext_deltaR_hist->Write();
     cut_pair_ext_deltaPhi_hist->Write();
     cut_pair_pt_hist->Write();
-    //cut_min_pt_hist->Write();
-    //cut_max_pt_hist->Write();
+    pair_mass_Jpsi_hist->Write();
+    pair_deltaR_Jpsi_hist->Write();
+    pair_deltaPhi_Jpsi_hist->Write();
+    pair_ext_deltaR_Jpsi_hist->Write();
+    pair_ext_deltaPhi_Jpsi_hist->Write();
+    pair_pt_Jpsi_hist->Write();
+    cut_pair_mass_Jpsi_hist->Write();
+    cut_pair_deltaR_Jpsi_hist->Write();
+    cut_pair_deltaPhi_Jpsi_hist->Write();
+    cut_pair_ext_deltaR_Jpsi_hist->Write();
+    cut_pair_ext_deltaPhi_Jpsi_hist->Write();
+    cut_pair_pt_Jpsi_hist->Write();
     
     hist_file.Close();
 }

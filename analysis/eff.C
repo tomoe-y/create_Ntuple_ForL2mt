@@ -165,6 +165,7 @@ void eff(){
     frame1->GetXaxis()->SetTitle("#DeltaR_{#mu#mu}at vertex");
     frame1->GetYaxis()->SetTitle("efficiency");
     pEff_deltaR->Draw("same");
+
     TCanvas *c2 = new TCanvas();
     TH1 *frame2 = c2->DrawFrame(0.0, 0.0, 0.5, 1);
     frame2->GetXaxis()->SetTitle("#DeltaR_{#mu#mu}at Muonspectrometer");

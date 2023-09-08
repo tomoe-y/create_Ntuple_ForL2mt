@@ -27,6 +27,18 @@ void L2mt_analysis_formu10(){
     chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453754.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
     chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453816.physics_Main.merge.AOD.f1360_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
 
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00451587.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00451618.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00451735.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00451794.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00451804.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00451866.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00451896.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00452028.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00452163.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00452202.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00452624.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+
     //lxplus
     //HLT_mu10_l2mt_L1MU10BOM
     //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453644.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
@@ -493,11 +505,8 @@ void L2mt_analysis_formu10(){
 
     cout << nentries << endl;
 
-    int n_l2mt2muons = 0;
-    int n_l2mt1muons = 0;
-
-    int muonsMatchWithSameRoi = 0;
-    int MatchWithSameRoi = 0;
+    int countBeforeL2mtcut = 0;
+    int countBeforeL2mtcut = 0;
 
     int countSingleMuonMatchROI = 0;
     int count1L2mtMatchROI = 0;
@@ -505,7 +514,7 @@ void L2mt_analysis_formu10(){
     for(int jentry = 0; jentry < nentries; jentry++){
         //cout << jentry << endl;
 
-        if(jentry % 100000 == 0){
+        if(jentry % 500000 == 0){
             cout << jentry << endl;
         }
 
@@ -587,191 +596,168 @@ void L2mt_analysis_formu10(){
         }
 
         //mu10 2muon efficiency
-        if(pass_HLT_mu10_l2mt_L1MU10BOM == false) continue;
+        if(pass_HLT_mu10_l2mt_L1MU10BOM == true){
 
-        for(int i_roi = 0; i_roi < trig_L1_mu_eta->size(); i_roi++){
-            if(trig_L1_mu_moreCandInRPCPad->at(i_roi) == 1 && trig_L1_mu_source->at(i_roi) == 0){ //BOM
+            for(int i_roi = 0; i_roi < trig_L1_mu_eta->size(); i_roi++){
 
-                flag_BOM = true;
+                if(trig_L1_mu_moreCandInRPCPad->at(i_roi) == 1 && trig_L1_mu_source->at(i_roi) == 0){ //BOM
 
-                int BOM_roi = trig_L1_mu_RoINumber->at(i_roi);
-                int countOfL2mt = 0;
-                int l2mt_roiNum = 0;
+                    flag_BOM = true;
 
-                for(int i_l2mt = 0; i_l2mt < l2mt_pt->size(); i_l2mt++){
-                    if(l1_roiNum->at(i_l2mt) == BOM_roi && l2mt_pass->at(i_l2mt) == 1){
-                        l2mt_roiNum = i_l2mt;
-                        countOfL2mt++;
-                    }
-                }
+                    int BOM_roi = trig_L1_mu_RoINumber->at(i_roi);
+                    int countOfL2mt = 0;
+                    int l2mt_roiNum = 0;
 
-                if(countOfL2mt == 0) continue;
+                    countBeforeL2mtcut++;
 
-                for(int i_offline = 0; i_offline < muon_pt->size(); i_offline++){
-
-                    //pt cut(10GeV)
-                    //if(muon_pt->at(i_offline) < 10) continue;
-
-                    float mu1_seg_theta = 999;
-                    float mu1_seg_phi = 999;
-                    float mu1_seg_eta = 999;
-
-                    for(int i_chamber = 0; i_chamber < muon_seg_chamberIndex->at(i_offline).size(); i_chamber++){
-                        if(muon_seg_chamberIndex->at(i_offline).at(i_chamber) == 2 || muon_seg_chamberIndex->at(i_offline).at(i_chamber) == 3){
-                            //mu1_seg_theta = std::atan2(std::sqrt(muon_seg_x->at(i_offline).at(i_chamber) * muon_seg_x->at(i_offline).at(i_chamber) + muon_seg_y->at(i_offline).at(i_chamber) * muon_seg_y->at(i_offline).at(i_chamber)), muon_seg_z->at(i_offline).at(i_chamber));
-                            //mu1_seg_phi = std::atan2(muon_seg_y->at(i_offline).at(i_chamber) , muon_seg_x->at(i_offline).at(i_chamber));
-                            //mu1_seg_eta = -1*log(tan(mu1_seg_theta / 2)); 
-                            TVector3 seg_muon1(muon_seg_x->at(i_offline).at(i_chamber), muon_seg_y->at(i_offline).at(i_chamber), muon_seg_z->at(i_offline).at(i_chamber));
-                            mu1_seg_phi = seg_muon1.Phi();
-                            mu1_seg_eta = seg_muon1.Eta();
-
+                    for(int i_l2mt = 0; i_l2mt < l2mt_pt->size(); i_l2mt++){
+                        if(l1_roiNum->at(i_l2mt) == BOM_roi && l2mt_pass->at(i_l2mt) == 1){
+                            l2mt_roiNum = i_l2mt;
+                            countOfL2mt++;
                         }
                     }
 
-                    if(mu1_seg_eta > 900) continue;
+                    if(countOfL2mt == 0) continue;
 
-                    TLorentzVector mu1;
-                    mu1.SetPtEtaPhiE(muon_pt->at(i_offline), muon_eta->at(i_offline), muon_phi->at(i_offline), muon_e->at(i_offline));
+                    countAfterL2mtcut++;
 
-                    TLorentzVector ext_mu1;
-                    ext_mu1.SetPtEtaPhiE(muon_pt->at(i_offline), mu1_seg_eta, mu1_seg_phi, muon_e->at(i_offline));
+                    for(int i_offline = 0; i_offline < muon_pt->size(); i_offline++){
 
-                    //deltaR offline muon and L1 muon
-                    float L1_offline1_deltaEta = mu1_seg_eta - trig_L1_mu_eta->at(i_roi);
-                    float L1_offline1_deltaPhi = TVector2::Phi_mpi_pi(mu1_seg_phi - trig_L1_mu_phi->at(i_roi));
-                    
-                    float L1_offline1_DeltaR = TMath::Sqrt(L1_offline1_deltaEta*L1_offline1_deltaEta + L1_offline1_deltaPhi*L1_offline1_deltaPhi);
+                        //pt cut(10GeV)
+                        //if(muon_pt->at(i_offline) < 10) continue;
 
-                    float L1_offline1_seg_deltaPhi = TVector2::Phi_mpi_pi(mu1_seg_phi - muon_phi->at(i_offline));
-                    float L1_offline1_seg_deltaEta = mu1_seg_eta - muon_eta->at(i_offline);
+                        float mu1_seg_theta = 999;
+                        float mu1_seg_phi = 999;
+                        float mu1_seg_eta = 999;
 
-                    offline1_seg_deltaPhi->Fill(L1_offline1_seg_deltaPhi);
-                    offline1_seg_deltaEta->Fill(L1_offline1_seg_deltaEta);
+                        for(int i_chamber = 0; i_chamber < muon_seg_chamberIndex->at(i_offline).size(); i_chamber++){
+                            if(muon_seg_chamberIndex->at(i_offline).at(i_chamber) == 2 || muon_seg_chamberIndex->at(i_offline).at(i_chamber) == 3){
+                                //mu1_seg_theta = std::atan2(std::sqrt(muon_seg_x->at(i_offline).at(i_chamber) * muon_seg_x->at(i_offline).at(i_chamber) + muon_seg_y->at(i_offline).at(i_chamber) * muon_seg_y->at(i_offline).at(i_chamber)), muon_seg_z->at(i_offline).at(i_chamber));
+                                //mu1_seg_phi = std::atan2(muon_seg_y->at(i_offline).at(i_chamber) , muon_seg_x->at(i_offline).at(i_chamber));
+                                //mu1_seg_eta = -1*log(tan(mu1_seg_theta / 2)); 
+                                TVector3 seg_muon1(muon_seg_x->at(i_offline).at(i_chamber), muon_seg_y->at(i_offline).at(i_chamber), muon_seg_z->at(i_offline).at(i_chamber));
+                                mu1_seg_phi = seg_muon1.Phi();
+                                mu1_seg_eta = seg_muon1.Eta();
 
-                    float deltaR_L1_req_mu1 = 0.15;
-
-                    offline1_L1_deltaR_hist->Fill(L1_offline1_DeltaR);
-                    
-                    bool matching_offline1_L2mtROI = L1_offline1_DeltaR < deltaR_L1_req_mu1;
-
-                    if(matching_offline1_L2mtROI == true){
-                        
-                        match_offline1_L1_deltaR_hist->Fill(L1_offline1_DeltaR);
-
-                        for (int j_offline = 0; j_offline < i_offline; j_offline++){
-                            
-                            if(i_offline == j_offline) continue;
-
-                            float mu2_seg_theta = 999;
-                            float mu2_seg_phi = 999;
-                            float mu2_seg_eta = 999;
-                            
-                            for(int j_chamber = 0; j_chamber < muon_seg_chamberIndex->at(j_offline).size(); j_chamber++){
-                                if(muon_seg_chamberIndex->at(j_offline).at(j_chamber) == 2 || muon_seg_chamberIndex->at(j_offline).at(j_chamber) == 3){
-                                    //mu2_seg_theta = std::atan2(std::sqrt(muon_seg_x->at(j_offline).at(j_chamber) * muon_seg_x->at(j_offline).at(j_chamber) + muon_seg_y->at(j_offline).at(j_chamber) * muon_seg_y->at(j_offline).at(j_chamber)), muon_seg_z->at(j_offline).at(j_chamber));
-                                    //mu2_seg_phi = std::atan2(muon_seg_y->at(j_offline).at(j_chamber) , muon_seg_x->at(j_offline).at(j_chamber));
-                                    //mu2_seg_eta = -1*log(tan(mu2_seg_theta / 2));
-                                    TVector3 seg_muon2(muon_seg_x->at(j_offline).at(j_chamber), muon_seg_y->at(j_offline).at(j_chamber), muon_seg_z->at(j_offline).at(j_chamber));
-                                    mu2_seg_phi = seg_muon2.Phi();
-                                    mu2_seg_eta = seg_muon2.Eta();
-                                }
                             }
+                        }
 
-                            if(mu2_seg_phi > 900) continue;
+                        if(mu1_seg_eta > 900) continue;
 
-                            TLorentzVector mu2;
-                            mu2.SetPtEtaPhiE(muon_pt->at(j_offline), muon_eta->at(j_offline), muon_phi->at(j_offline), muon_e->at(j_offline));
+                        TLorentzVector mu1;
+                        mu1.SetPtEtaPhiE(muon_pt->at(i_offline), muon_eta->at(i_offline), muon_phi->at(i_offline), muon_e->at(i_offline));
 
-                            TLorentzVector ext_mu2;
-                            ext_mu2.SetPtEtaPhiE(muon_pt->at(j_offline), mu2_seg_eta, mu2_seg_phi, muon_e->at(j_offline));
+                        TLorentzVector ext_mu1;
+                        ext_mu1.SetPtEtaPhiE(muon_pt->at(i_offline), mu1_seg_eta, mu1_seg_phi, muon_e->at(i_offline));
 
-                            //deltaR offline muon and L1 muon
-                            float L1_offline2_deltaEta = mu2_seg_eta - trig_L1_mu_eta->at(i_roi);
-                            float L1_offline2_deltaPhi = TVector2::Phi_mpi_pi(mu2_seg_phi - trig_L1_mu_phi->at(i_roi));
+                        //deltaR offline muon and L1 muon
+                        float L1_offline1_deltaEta = mu1_seg_eta - trig_L1_mu_eta->at(i_roi);
+                        float L1_offline1_deltaPhi = TVector2::Phi_mpi_pi(mu1_seg_phi - trig_L1_mu_phi->at(i_roi));
+                        
+                        float L1_offline1_DeltaR = TMath::Sqrt(L1_offline1_deltaEta*L1_offline1_deltaEta + L1_offline1_deltaPhi*L1_offline1_deltaPhi);
 
-                            float L1_offline2_DeltaR = TMath::Sqrt(L1_offline2_deltaEta*L1_offline2_deltaEta + L1_offline2_deltaPhi*L1_offline2_deltaPhi);
+                        float L1_offline1_seg_deltaPhi = TVector2::Phi_mpi_pi(mu1_seg_phi - muon_phi->at(i_offline));
+                        float L1_offline1_seg_deltaEta = mu1_seg_eta - muon_eta->at(i_offline);
 
-                            float L1_offline2_seg_deltaPhi = TVector2::Phi_mpi_pi(mu2_seg_phi - muon_phi->at(j_offline));
-                            float L1_offline2_seg_deltaEta = mu2_seg_eta - muon_eta->at(j_offline);
+                        offline1_seg_deltaPhi->Fill(L1_offline1_seg_deltaPhi);
+                        offline1_seg_deltaEta->Fill(L1_offline1_seg_deltaEta);
 
-                            offline2_seg_deltaPhi->Fill(L1_offline2_seg_deltaPhi);
-                            offline2_seg_deltaEta->Fill(L1_offline2_seg_deltaEta);
+                        float deltaR_L1_req_mu1 = 0.15;
 
-                            float deltaR_L1_req_mu2 = 0.15;
+                        offline1_L1_deltaR_hist->Fill(L1_offline1_DeltaR);
+                        
+                        bool matching_offline1_L2mtROI = L1_offline1_DeltaR < deltaR_L1_req_mu1;
 
-                            offline2_L1_deltaR_hist->Fill(L1_offline2_DeltaR);
+                        if(matching_offline1_L2mtROI == true){
                             
-                            bool matching_offline2_L2mtROI = L1_offline2_DeltaR < deltaR_L1_req_mu2;
-                            
-                            if(matching_offline2_L2mtROI == true){
+                            match_offline1_L1_deltaR_hist->Fill(L1_offline1_DeltaR);
 
-                                match_offline2_L1_deltaR_hist->Fill(L1_offline2_DeltaR);
-
-                                float max_pt = 0;
-                                float min_pt = 0;
-                                int min_pt_muon_num = 0;
-                                int max_pt_muon_num = 0;
-
-                                if(muon_pt->at(i_offline) < muon_pt->at(j_offline)){
-                                    max_pt = muon_pt->at(j_offline);
-                                    min_pt = muon_pt->at(i_offline);
-                                    min_pt_muon_num = i_offline;
-                                    max_pt_muon_num = j_offline;
-                                }
-
-                                else{
-                                    max_pt = muon_pt->at(i_offline);
-                                    min_pt = muon_pt->at(j_offline);
-                                    min_pt_muon_num = j_offline;
-                                    max_pt_muon_num = i_offline;
-                                }
+                            for (int j_offline = 0; j_offline < i_offline; j_offline++){
                                 
-                                if(max_pt > 10){
-                                    TLorentzVector ext_mu_pair = ext_mu1 + ext_mu2;
-                                    TLorentzVector mu_pair = mu1 + mu2;
-                                    float pair_mass = mu_pair.M();
-                                    float pair_deltaR = mu2.DeltaR(mu1);
-                                    float pair_deltaPhi = mu2.DeltaPhi(mu1);
-                                    float pair_ext_deltaR = ext_mu2.DeltaR(ext_mu1);
-                                    float pair_ext_deltaPhi = ext_mu2.DeltaPhi(ext_mu1);
+                                if(i_offline == j_offline) continue;
 
-                                    pair_mass_hist_mu10->Fill(pair_mass);
-                                    pair_deltaR_hist_mu10->Fill(pair_deltaR);
-                                    pair_ext_deltaR_hist_mu10->Fill(pair_ext_deltaR);
-                                    pair_deltaPhi_hist_mu10->Fill(pair_deltaPhi);
-                                    pair_ext_deltaPhi_hist_mu10->Fill(pair_ext_deltaPhi);
-                                    pair_pt_hist_mu10->Fill(mu1.Pt());
-                                    pair_pt_hist_mu10->Fill(mu2.Pt());
-                                    min_pt_hist_mu10->Fill(muon_pt->at(min_pt_muon_num));
-                                    max_pt_hist_mu10->Fill(muon_pt->at(max_pt_muon_num));
+                                float mu2_seg_theta = 999;
+                                float mu2_seg_phi = 999;
+                                float mu2_seg_eta = 999;
+                                
+                                for(int j_chamber = 0; j_chamber < muon_seg_chamberIndex->at(j_offline).size(); j_chamber++){
+                                    if(muon_seg_chamberIndex->at(j_offline).at(j_chamber) == 2 || muon_seg_chamberIndex->at(j_offline).at(j_chamber) == 3){
+                                        //mu2_seg_theta = std::atan2(std::sqrt(muon_seg_x->at(j_offline).at(j_chamber) * muon_seg_x->at(j_offline).at(j_chamber) + muon_seg_y->at(j_offline).at(j_chamber) * muon_seg_y->at(j_offline).at(j_chamber)), muon_seg_z->at(j_offline).at(j_chamber));
+                                        //mu2_seg_phi = std::atan2(muon_seg_y->at(j_offline).at(j_chamber) , muon_seg_x->at(j_offline).at(j_chamber));
+                                        //mu2_seg_eta = -1*log(tan(mu2_seg_theta / 2));
+                                        TVector3 seg_muon2(muon_seg_x->at(j_offline).at(j_chamber), muon_seg_y->at(j_offline).at(j_chamber), muon_seg_z->at(j_offline).at(j_chamber));
+                                        mu2_seg_phi = seg_muon2.Phi();
+                                        mu2_seg_eta = seg_muon2.Eta();
+                                    }
+                                }
 
-                                    //BOM_roi.push_back(trig_L1_mu_RoINumber->at(i_roi));
-                                    //match_offlinepair.push_back(make_pair(i_offline, j_offline));
+                                if(mu2_seg_phi > 900) continue;
 
-                                    //MatchWithSameRoi++;
+                                TLorentzVector mu2;
+                                mu2.SetPtEtaPhiE(muon_pt->at(j_offline), muon_eta->at(j_offline), muon_phi->at(j_offline), muon_e->at(j_offline));
 
-                                    if(countOfL2mt == 2){
-                                        cut_pair_mass_hist_mu10->Fill(pair_mass);
-                                        cut_pair_deltaR_hist_mu10->Fill(pair_deltaR);
-                                        cut_pair_ext_deltaR_hist_mu10->Fill(pair_ext_deltaR);
-                                        cut_pair_deltaPhi_hist_mu10->Fill(pair_deltaPhi);
-                                        cut_pair_ext_deltaPhi_hist_mu10->Fill(pair_deltaPhi);
-                                        cut_pair_pt_hist_mu10->Fill(mu1.Pt());
-                                        cut_pair_pt_hist_mu10->Fill(mu2.Pt());
-                                        cut_min_pt_hist_mu10->Fill(muon_pt->at(min_pt_muon_num));
-                                        cut_max_pt_hist_mu10->Fill(muon_pt->at(max_pt_muon_num));
+                                TLorentzVector ext_mu2;
+                                ext_mu2.SetPtEtaPhiE(muon_pt->at(j_offline), mu2_seg_eta, mu2_seg_phi, muon_e->at(j_offline));
+
+                                //deltaR offline muon and L1 muon
+                                float L1_offline2_deltaEta = mu2_seg_eta - trig_L1_mu_eta->at(i_roi);
+                                float L1_offline2_deltaPhi = TVector2::Phi_mpi_pi(mu2_seg_phi - trig_L1_mu_phi->at(i_roi));
+
+                                float L1_offline2_DeltaR = TMath::Sqrt(L1_offline2_deltaEta*L1_offline2_deltaEta + L1_offline2_deltaPhi*L1_offline2_deltaPhi);
+
+                                float L1_offline2_seg_deltaPhi = TVector2::Phi_mpi_pi(mu2_seg_phi - muon_phi->at(j_offline));
+                                float L1_offline2_seg_deltaEta = mu2_seg_eta - muon_eta->at(j_offline);
+
+                                offline2_seg_deltaPhi->Fill(L1_offline2_seg_deltaPhi);
+                                offline2_seg_deltaEta->Fill(L1_offline2_seg_deltaEta);
+
+                                float deltaR_L1_req_mu2 = 0.15;
+
+                                offline2_L1_deltaR_hist->Fill(L1_offline2_DeltaR);
+                                
+                                bool matching_offline2_L2mtROI = L1_offline2_DeltaR < deltaR_L1_req_mu2;
+                                
+                                if(matching_offline2_L2mtROI == true){
+
+                                    match_offline2_L1_deltaR_hist->Fill(L1_offline2_DeltaR);
+
+                                    float max_pt = 0;
+                                    float min_pt = 0;
+                                    int min_pt_muon_num = 0;
+                                    int max_pt_muon_num = 0;
+
+                                    if(muon_pt->at(i_offline) < muon_pt->at(j_offline)){
+                                        max_pt = muon_pt->at(j_offline);
+                                        min_pt = muon_pt->at(i_offline);
+                                        min_pt_muon_num = i_offline;
+                                        max_pt_muon_num = j_offline;
                                     }
 
-                                    if(min_pt > 10){
-                                        pair_mass_hist_2mu10->Fill(pair_mass);
-                                        pair_deltaR_hist_2mu10->Fill(pair_deltaR);
-                                        pair_ext_deltaR_hist_2mu10->Fill(pair_ext_deltaR);
-                                        pair_deltaPhi_hist_2mu10->Fill(pair_deltaPhi);
-                                        pair_ext_deltaPhi_hist_2mu10->Fill(pair_ext_deltaPhi);
-                                        pair_pt_hist_2mu10->Fill(mu1.Pt());
-                                        pair_pt_hist_2mu10->Fill(mu2.Pt());
-                                        min_pt_hist_2mu10->Fill(muon_pt->at(min_pt_muon_num));
-                                        max_pt_hist_2mu10->Fill(muon_pt->at(max_pt_muon_num));
+                                    else{
+                                        max_pt = muon_pt->at(i_offline);
+                                        min_pt = muon_pt->at(j_offline);
+                                        min_pt_muon_num = j_offline;
+                                        max_pt_muon_num = i_offline;
+                                    }
+                                    
+                                    if(max_pt > 10){
+                                        TLorentzVector ext_mu_pair = ext_mu1 + ext_mu2;
+                                        TLorentzVector mu_pair = mu1 + mu2;
+                                        float pair_mass = mu_pair.M();
+                                        float pair_deltaR = mu2.DeltaR(mu1);
+                                        float pair_deltaPhi = mu2.DeltaPhi(mu1);
+                                        float pair_ext_deltaR = ext_mu2.DeltaR(ext_mu1);
+                                        float pair_ext_deltaPhi = ext_mu2.DeltaPhi(ext_mu1);
+
+                                        pair_mass_hist_mu10->Fill(pair_mass);
+                                        pair_deltaR_hist_mu10->Fill(pair_deltaR);
+                                        pair_ext_deltaR_hist_mu10->Fill(pair_ext_deltaR);
+                                        pair_deltaPhi_hist_mu10->Fill(pair_deltaPhi);
+                                        pair_ext_deltaPhi_hist_mu10->Fill(pair_ext_deltaPhi);
+                                        pair_pt_hist_mu10->Fill(mu1.Pt());
+                                        pair_pt_hist_mu10->Fill(mu2.Pt());
+                                        min_pt_hist_mu10->Fill(muon_pt->at(min_pt_muon_num));
+                                        max_pt_hist_mu10->Fill(muon_pt->at(max_pt_muon_num));
 
                                         //BOM_roi.push_back(trig_L1_mu_RoINumber->at(i_roi));
                                         //match_offlinepair.push_back(make_pair(i_offline, j_offline));
@@ -779,16 +765,45 @@ void L2mt_analysis_formu10(){
                                         //MatchWithSameRoi++;
 
                                         if(countOfL2mt == 2){
-                                            cut_pair_mass_hist_2mu10->Fill(pair_mass);
-                                            cut_pair_deltaR_hist_2mu10->Fill(pair_deltaR);
-                                            cut_pair_ext_deltaR_hist_2mu10->Fill(pair_ext_deltaR);
-                                            cut_pair_deltaPhi_hist_2mu10->Fill(pair_deltaPhi);
-                                            cut_pair_ext_deltaPhi_hist_2mu10->Fill(pair_ext_deltaPhi);
-                                            cut_pair_pt_hist_2mu10->Fill(mu1.Pt());
-                                            cut_pair_pt_hist_2mu10->Fill(mu2.Pt());
-                                            cut_min_pt_hist_2mu10->Fill(muon_pt->at(min_pt_muon_num));
-                                            cut_max_pt_hist_2mu10->Fill(muon_pt->at(max_pt_muon_num));
-                                        } 
+                                            cut_pair_mass_hist_mu10->Fill(pair_mass);
+                                            cut_pair_deltaR_hist_mu10->Fill(pair_deltaR);
+                                            cut_pair_ext_deltaR_hist_mu10->Fill(pair_ext_deltaR);
+                                            cut_pair_deltaPhi_hist_mu10->Fill(pair_deltaPhi);
+                                            cut_pair_ext_deltaPhi_hist_mu10->Fill(pair_deltaPhi);
+                                            cut_pair_pt_hist_mu10->Fill(mu1.Pt());
+                                            cut_pair_pt_hist_mu10->Fill(mu2.Pt());
+                                            cut_min_pt_hist_mu10->Fill(muon_pt->at(min_pt_muon_num));
+                                            cut_max_pt_hist_mu10->Fill(muon_pt->at(max_pt_muon_num));
+                                        }
+
+                                        if(min_pt > 10){
+                                            pair_mass_hist_2mu10->Fill(pair_mass);
+                                            pair_deltaR_hist_2mu10->Fill(pair_deltaR);
+                                            pair_ext_deltaR_hist_2mu10->Fill(pair_ext_deltaR);
+                                            pair_deltaPhi_hist_2mu10->Fill(pair_deltaPhi);
+                                            pair_ext_deltaPhi_hist_2mu10->Fill(pair_ext_deltaPhi);
+                                            pair_pt_hist_2mu10->Fill(mu1.Pt());
+                                            pair_pt_hist_2mu10->Fill(mu2.Pt());
+                                            min_pt_hist_2mu10->Fill(muon_pt->at(min_pt_muon_num));
+                                            max_pt_hist_2mu10->Fill(muon_pt->at(max_pt_muon_num));
+
+                                            //BOM_roi.push_back(trig_L1_mu_RoINumber->at(i_roi));
+                                            //match_offlinepair.push_back(make_pair(i_offline, j_offline));
+
+                                            //MatchWithSameRoi++;
+
+                                            if(countOfL2mt == 2){
+                                                cut_pair_mass_hist_2mu10->Fill(pair_mass);
+                                                cut_pair_deltaR_hist_2mu10->Fill(pair_deltaR);
+                                                cut_pair_ext_deltaR_hist_2mu10->Fill(pair_ext_deltaR);
+                                                cut_pair_deltaPhi_hist_2mu10->Fill(pair_deltaPhi);
+                                                cut_pair_ext_deltaPhi_hist_2mu10->Fill(pair_ext_deltaPhi);
+                                                cut_pair_pt_hist_2mu10->Fill(mu1.Pt());
+                                                cut_pair_pt_hist_2mu10->Fill(mu2.Pt());
+                                                cut_min_pt_hist_2mu10->Fill(muon_pt->at(min_pt_muon_num));
+                                                cut_max_pt_hist_2mu10->Fill(muon_pt->at(max_pt_muon_num));
+                                            } 
+                                        }
                                     }
                                 }
                             }
@@ -799,8 +814,11 @@ void L2mt_analysis_formu10(){
         }
     }
 
-    cout << countSingleMuonMatchROI << endl;
-    cout << count1L2mtMatchROI << endl;
+    //cout << countSingleMuonMatchROI << endl;
+    //cout << count1L2mtMatchROI << endl;
+
+    cout << "before L2mt cut = " << countBeforeL2mtcut << endl; 
+    cout <<<< "after L2mt cut" << endl;
 
     hist_file.cd();
 
