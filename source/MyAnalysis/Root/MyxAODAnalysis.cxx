@@ -87,8 +87,8 @@ StatusCode MyxAODAnalysis :: initialize ()
   mytree->Branch ("pass_HLT_mu10_l2mt_L1MU10BOM", &m_pass_HLT_mu10_l2mt_L1MU10BOM);
   mytree->Branch ("pass_HLT_2mu10_l2mt_L1MU10BOM", &m_pass_HLT_2mu10_l2mt_L1MU10BOM);
   mytree->Branch ("pass_HLT_2mu10_bJpsimumu_L12MU8F", &m_pass_HLT_2mu10_bJpsimumu_L12MU8F);
-  mytree->Branch ("pass_HLT_mu24_ivarmedium_L1MU18VFCH", &m_pass_HLT_mu24_ivarmedium_L1MU18VFCH);
-  mytree->Branch ("pass_HLT_2mu15_L12MU8F", &m_pass_HLT_2mu15_L12MU8F);
+  mytree->Branch ("pass_HLT_mu24_ivarmedium_L1MU14FCH", &m_pass_HLT_mu24_ivarmedium_L1MU14FCH);
+  mytree->Branch ("pass_HLT_2mu14_L12MU8F", &m_pass_HLT_2mu14_L12MU8F);
 
   m_muon_e = std::make_unique<std::vector<float>>();
   m_muon_pt = std::make_unique<std::vector<float>>();
@@ -527,8 +527,8 @@ StatusCode MyxAODAnalysis :: execute ()
   m_pass_HLT_mu10_l2mt_L1MU10BOM = m_trigDecisionTool->isPassed("HLT_mu10_l2mt_L1MU10BOM");
   m_pass_HLT_2mu10_l2mt_L1MU10BOM = m_trigDecisionTool->isPassed("HLT_2mu10_l2mt_L1MU10BOM");
   m_pass_HLT_2mu10_bJpsimumu_L12MU8F = m_trigDecisionTool->isPassed("HLT_2mu10_bJpsimumu_L12MU8F");
-  m_pass_HLT_mu24_ivarmedium_L1MU18VFCH = m_trigDecisionTool->isPassed("HLT_mu24_ivarmedium_L1MU18VFCH");
-  m_pass_HLT_2mu15_L12MU8F = m_trigDecisionTool->isPassed("HLT_2mu15_L12MU8F");
+  m_pass_HLT_mu24_ivarmedium_L1MU14FCH = m_trigDecisionTool->isPassed("HLT_mu24_ivarmedium_L1MU14FCH");
+  m_pass_HLT_2mu14_L12MU8F = m_trigDecisionTool->isPassed("HLT_2mu14_L12MU8F");
 
   // Muons
   m_muon_e->clear();
