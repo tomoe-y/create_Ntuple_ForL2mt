@@ -16,16 +16,16 @@
 void L2mt_analysis_formu10(){
     TChain* chain = new TChain("analysis");
     //login.icepp
-    chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453733.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
-    chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453353.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
-    chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453530.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
-    chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453556.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
-    chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453617.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
-    chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453644.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
-    chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453657.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
-    chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453713.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
-    chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453754.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
-    chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453816.physics_Main.merge.AOD.f1360_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453733.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453353.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453530.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453556.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453617.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453644.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453657.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453713.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453754.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.data23_13p6TeV.00453816.physics_Main.merge.AOD.f1360_m2179.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
 
     //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00451587.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
     //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00451618.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
@@ -39,24 +39,20 @@ void L2mt_analysis_formu10(){
     //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00452202.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
     //chain->Add("/gpfs/fs8001/toyamash/L2mt/20230908/user.toyamash.data23_13p6TeV.00452624.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.5_NTUP_ANALYSIS/*.root");
 
-    //lxplus
-    //HLT_mu10_l2mt_L1MU10BOM
-    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453644.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453353.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453530.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453556.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453657.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453713.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453733.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453816.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    //chain->Add("/eos/atlas/unpledged/group-tokyo/users/toyamash/mu10L2mt/user.toyamash.data23_13p6TeV.00453754.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.3_NTUP_ANALYSIS/*.root");
-    
-    //MC Jpsi
-    //chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.valid1.801164.P8B_A14_CTEQ6L1_bb_Jpsi1S_mu6mu4.MC.e8514_e8528_s4111_s4114_r14781_tid33979104_00.MC.5_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt0915/user.toyamash.data23_13p6TeV.00451735.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.10_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt0915/user.toyamash.data23_13p6TeV.00451794.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.10_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt0915/user.toyamash.data23_13p6TeV.00451804.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.10_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt0915/user.toyamash.data23_13p6TeV.00452163.physics_Main.merge.AOD.r14858_p5785.Run3-22.0.107-00-01.10_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt0915/user.toyamash.data23_13p6TeV.00453530.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.10_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt0915/user.toyamash.data23_13p6TeV.00453556.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.10_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt0915/user.toyamash.data23_13p6TeV.00453644.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.10_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt0915/user.toyamash.data23_13p6TeV.00453657.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.10_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt0915/user.toyamash.data23_13p6TeV.00453713.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.10_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt0915/user.toyamash.data23_13p6TeV.00453733.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.10_NTUP_ANALYSIS/*.root");
+    //chain->Add("/gpfs/fs8001/toyamash/L2mt0915/user.toyamash.data23_13p6TeV.00453754.physics_Main.merge.AOD.f1357_m2179.Run3-22.0.107-00-01.10_NTUP_ANALYSIS/*.root");
 
-    //MC Zmumu
-    //chain->Add("/gpfs/fs8001/toyamash/L2mt/user.toyamash.valid1.601190.PhPy8EG_AZNLO_Zmumu.MC.e8514_e8528_s4111_s4114_r14781_tid33979091_00.MC.6_NTUP_ANALYSIS/*.root");
-    
+    chain->Add("/gpfs/fs8001/toyamash/L2mt0915/user.toyamash.valid1.601190.PhPy8EG_AZNLO_Zmumu.MC.e8514_e8528_s4111_s4114_r14781_tid33979091_00.MC.15_NTUP_ANALYSIS/*.root");
+
     chain->SetBranchStatus("*", 0);
     chain->SetBranchStatus("RunNumber", 1);
     chain->SetBranchStatus("LumiBlock", 1);
@@ -68,51 +64,9 @@ void L2mt_analysis_formu10(){
     chain->SetBranchStatus("muon_phi", 1);
     chain->SetBranchStatus("muon_charge", 1);
     chain->SetBranchStatus("muon_quality", 1);
-    //chain->SetBranchStatus("muon_isBadMuon_other", 1);
-    //chain->SetBranchStatus("muon_truthType", 1);
-    //chain->SetBranchStatus("muon_truthTypeMCTC", 1);
-    //chain->SetBranchStatus("muon_truthOriginMCTC", 1);
-    //chain->SetBranchStatus("muon_IFFtruthType", 1);
     chain->SetBranchStatus("muon_muonType", 1);
     chain->SetBranchStatus("muon_author", 1);
-    //chain->SetBranchStatus("truthmuon_e", 1);
-    //chain->SetBranchStatus("truthmuon_pt", 1);
-    //chain->SetBranchStatus("truthmuon_eta", 1);
-    //chain->SetBranchStatus("truthmuon_phi", 1);
-    //chain->SetBranchStatus("truthmuon_pdgId", 1);
-    //chain->SetBranchStatus("muon_mePt", 1);
-    //chain->SetBranchStatus("muon_idPt", 1);
-    //chain->SetBranchStatus("muon_cbPt", 1);
-    //chain->SetBranchStatus("muon_meP", 1);
-    //chain->SetBranchStatus("muon_idP", 1);
-    //chain->SetBranchStatus("muon_etaMS", 1);
-    //chain->SetBranchStatus("muon_phiMS", 1);
-    //chain->SetBranchStatus("muon_innerSmallHits", 1);
-    //chain->SetBranchStatus("muon_innerLargeHits", 1);
-    //chain->SetBranchStatus("muon_middleSmallHits", 1);
-    //chain->SetBranchStatus("muon_middleLargeHits", 1);
-    //chain->SetBranchStatus("muon_outerSmallHits", 1);
-    //chain->SetBranchStatus("muon_outerLargeHits", 1);
-    //chain->SetBranchStatus("muon_extendedSmallHits", 1);
-    //chain->SetBranchStatus("muon_extendedLargeHits", 1);
-    //chain->SetBranchStatus("muon_phiLayer1STGCHits", 1);
-    //chain->SetBranchStatus("muon_phiLayer2STGCHits", 1);
-    //chain->SetBranchStatus("muon_etaLayer1STGCHits", 1);
-    //chain->SetBranchStatus("muon_etaLayer2STGCHits", 1);
-    //chain->SetBranchStatus("muon_phiLayer1STGCHoles", 1);
-    //chain->SetBranchStatus("muon_phiLayer2STGCHoles", 1);
-    //chain->SetBranchStatus("muon_etaLayer1STGCHoles", 1);
-    //chain->SetBranchStatus("muon_etaLayer2STGCHoles", 1);
-    //chain->SetBranchStatus("muon_MMHits", 1);
-    //chain->SetBranchStatus("muon_MMHoles", 1);
-    //chain->SetBranchStatus("muon_nSegments", 1);
-    //chain->SetBranchStatus("muon_seg_chiSquared", 1);
-    //chain->SetBranchStatus("muon_seg_numberDoF", 1);
-    //chain->SetBranchStatus("muon_seg_sector", 1);
     chain->SetBranchStatus("muon_seg_chamberIndex", 1);
-    //chain->SetBranchStatus("muon_seg_nPrecisionHits", 1);
-    //chain->SetBranchStatus("muon_seg_nPhiLayers", 1);
-    //chain->SetBranchStatus("muon_seg_nTrigEtaLayers", 1);
     chain->SetBranchStatus("muon_seg_x", 1);
     chain->SetBranchStatus("muon_seg_y", 1);
     chain->SetBranchStatus("muon_seg_z", 1);
@@ -184,60 +138,15 @@ void L2mt_analysis_formu10(){
     UInt_t          LumiBlock = 0;
     ULong64_t       EventNumber = 0;
     bool pass_HLT_mu10_l2mt_L1MU10BOM = false;
-    //Float_t         mcEventWeight;
-    //Float_t         actualInteractionsPerCrossing;
-    //Float_t         averageInteractionsPerCrossing;
     vector<float>   *muon_e = 0;
     vector<float>   *muon_pt = 0;
     vector<float>   *muon_eta = 0;
     vector<float>   *muon_phi = 0;
     vector<float>   *muon_charge = 0;
     vector<int>     *muon_quality = 0;
-    //vector<bool>    *muon_isBadMuon_other;
-    //vector<int>     *muon_truthType;
-    //vector<int>     *muon_truthTypeMCTC;
-    //vector<int>     *muon_truthOriginMCTC;
-    //vector<int>     *muon_IFFtruthType;
     vector<int>     *muon_muonType = 0;
     vector<int>     *muon_author = 0;
-    //vector<float>   *truthmuon_e;
-    //vector<float>   *truthmuon_pt;
-    //vector<float>   *truthmuon_eta;
-    //vector<float>   *truthmuon_phi;
-    //vector<int>     *truthmuon_pdgId;
-    //vector<float>   *muon_mePt;
-    //vector<float>   *muon_idPt;
-    //vector<float>   *muon_cbPt;
-    //vector<float>   *muon_meP;
-    //vector<float>   *muon_idP;
-    //vector<float>   *muon_etaMS;
-    //vector<float>   *muon_phiMS;
-    //vector<int>     *muon_innerSmallHits;
-    //vector<int>     *muon_innerLargeHits;
-    //vector<int>     *muon_middleSmallHits;
-    //vector<int>     *muon_middleLargeHits;
-    //vector<int>     *muon_outerSmallHits;
-    //vector<int>     *muon_outerLargeHits;
-    //vector<int>     *muon_extendedSmallHits;
-    //vector<int>     *muon_extendedLargeHits;
-    //vector<unsigned char> *muon_phiLayer1STGCHits;
-    //vector<unsigned char> *muon_phiLayer2STGCHits;
-    //vector<unsigned char> *muon_etaLayer1STGCHits;
-    //vector<unsigned char> *muon_etaLayer2STGCHits;
-    //vector<unsigned char> *muon_phiLayer1STGCHoles;
-    //vector<unsigned char> *muon_phiLayer2STGCHoles;
-    //vector<unsigned char> *muon_etaLayer1STGCHoles;
-    //vector<unsigned char> *muon_etaLayer2STGCHoles;
-    //vector<unsigned char> *muon_MMHits;
-    //vector<unsigned char> *muon_MMHoles;
-    //vector<unsigned long> *muon_nSegments;
-    //vector<vector<float> > *muon_seg_chiSquared;
-    //vector<vector<float> > *muon_seg_numberDoF;
-    //vector<vector<int> > *muon_seg_sector;
     vector<vector<int> > *muon_seg_chamberIndex = 0;
-    //vector<vector<int> > *muon_seg_nPrecisionHits;
-    //vector<vector<int> > *muon_seg_nPhiLayers;
-    //vector<vector<int> > *muon_seg_nTrigEtaLayers;
     vector<vector<float> > *muon_seg_x = 0;
     vector<vector<float> > *muon_seg_y = 0;
     vector<vector<float> > *muon_seg_z = 0;
@@ -306,67 +215,19 @@ void L2mt_analysis_formu10(){
     vector<vector<float> > *trigger_info_etaVec = 0;
     vector<vector<float> > *trigger_info_phiVec = 0;
 
-    //vector<vector<float> > *l2mt_ptEndcapAlpha;
-    //vector<vector<float> > *l2mt_ptEndcapBeta;
-
     chain->SetBranchAddress("RunNumber", &RunNumber);
     chain->SetBranchAddress("LumiBlock", &LumiBlock);
     chain->SetBranchAddress("EventNumber", &EventNumber);
     chain->SetBranchAddress("pass_HLT_mu10_l2mt_L1MU10BOM", &pass_HLT_mu10_l2mt_L1MU10BOM);
-    //chain->SetBranchAddress("mcEventWeight", &mcEventWeight);
-    //chain->SetBranchAddress("actualInteractionsPerCrossing", &actualInteractionsPerCrossing);
-    //chain->SetBranchAddress("averageInteractionsPerCrossing", &averageInteractionsPerCrossing);
     chain->SetBranchAddress("muon_e", &muon_e);
     chain->SetBranchAddress("muon_pt", &muon_pt);
     chain->SetBranchAddress("muon_eta", &muon_eta);
     chain->SetBranchAddress("muon_phi", &muon_phi);
     chain->SetBranchAddress("muon_charge", &muon_charge);
     chain->SetBranchAddress("muon_quality", &muon_quality);
-    //chain->SetBranchAddress("muon_isBadMuon_other", &muon_isBadMuon_other);
-    //chain->SetBranchAddress("muon_truthType", &muon_truthType);
-    //chain->SetBranchAddress("muon_truthTypeMCTC", &muon_truthTypeMCTC);
-    //chain->SetBranchAddress("muon_truthOriginMCTC", &muon_truthOriginMCTC);
-    //chain->SetBranchAddress("muon_IFFtruthType", &muon_IFFtruthType);
     chain->SetBranchAddress("muon_muonType", &muon_muonType);
     chain->SetBranchAddress("muon_author", &muon_author);
-    //chain->SetBranchAddress("truthmuon_e", &truthmuon_e);
-    //chain->SetBranchAddress("truthmuon_pt", &truthmuon_pt);
-    //chain->SetBranchAddress("truthmuon_eta", &truthmuon_eta);
-    //chain->SetBranchAddress("truthmuon_phi", &truthmuon_phi);
-    //chain->SetBranchAddress("truthmuon_pdgId", &truthmuon_pdgId);
-    //chain->SetBranchAddress("muon_mePt", &muon_mePt);
-    //chain->SetBranchAddress("muon_idPt", &muon_idPt);
-    //chain->SetBranchAddress("muon_cbPt", &muon_cbPt);
-    //chain->SetBranchAddress("muon_meP", &muon_meP);
-    //chain->SetBranchAddress("muon_idP", &muon_idP);
-    //chain->SetBranchAddress("muon_etaMS", &muon_etaMS);
-    //chain->SetBranchAddress("muon_phiMS", &muon_phiMS);
-    //chain->SetBranchAddress("muon_innerSmallHits", &muon_innerSmallHits);
-    //chain->SetBranchAddress("muon_innerLargeHits", &muon_innerLargeHits);
-    //chain->SetBranchAddress("muon_middleSmallHits", &muon_middleSmallHits);
-    //chain->SetBranchAddress("muon_middleLargeHits", &muon_middleLargeHits);
-    //chain->SetBranchAddress("muon_outerSmallHits", &muon_outerSmallHits);
-    //chain->SetBranchAddress("muon_outerLargeHits", &muon_outerLargeHits);
-    //chain->SetBranchAddress("muon_extendedSmallHits", &muon_extendedSmallHits);
-    //chain->SetBranchAddress("muon_extendedLargeHits", &muon_extendedLargeHits);
-    //chain->SetBranchAddress("muon_phiLayer1STGCHits", &muon_phiLayer1STGCHits);
-    //chain->SetBranchAddress("muon_phiLayer2STGCHits", &muon_phiLayer2STGCHits);
-    //chain->SetBranchAddress("muon_etaLayer1STGCHits", &muon_etaLayer1STGCHits);
-    //chain->SetBranchAddress("muon_etaLayer2STGCHits", &muon_etaLayer2STGCHits);
-    //chain->SetBranchAddress("muon_phiLayer1STGCHoles", &muon_phiLayer1STGCHoles);
-    //chain->SetBranchAddress("muon_phiLayer2STGCHoles", &muon_phiLayer2STGCHoles);
-    //chain->SetBranchAddress("muon_etaLayer1STGCHoles", &muon_etaLayer1STGCHoles);
-    //chain->SetBranchAddress("muon_etaLayer2STGCHoles", &muon_etaLayer2STGCHoles);
-    //chain->SetBranchAddress("muon_MMHits", &muon_MMHits);
-    //chain->SetBranchAddress("muon_MMHoles", &muon_MMHoles);
-    //chain->SetBranchAddress("muon_nSegments", &muon_nSegments);
-    //chain->SetBranchAddress("muon_seg_chiSquared", &muon_seg_chiSquared);
-    //chain->SetBranchAddress("muon_seg_numberDoF", &muon_seg_numberDoF);
-    //chain->SetBranchAddress("muon_seg_sector", &muon_seg_sector);
     chain->SetBranchAddress("muon_seg_chamberIndex", &muon_seg_chamberIndex);
-    //chain->SetBranchAddress("muon_seg_nPrecisionHits", &muon_seg_nPrecisionHits);
-    //chain->SetBranchAddress("muon_seg_nPhiLayers", &muon_seg_nPhiLayers);
-    //chain->SetBranchAddress("muon_seg_nTrigEtaLayers", &muon_seg_nTrigEtaLayers);
     chain->SetBranchAddress("muon_seg_x", &muon_seg_x);
     chain->SetBranchAddress("muon_seg_y", &muon_seg_y);
     chain->SetBranchAddress("muon_seg_z", &muon_seg_z);
@@ -433,9 +294,6 @@ void L2mt_analysis_formu10(){
     chain->SetBranchAddress("trigger_info_etaVec", &trigger_info_etaVec);
     chain->SetBranchAddress("trigger_info_phiVec", &trigger_info_phiVec);
 
-    //chain->SetBranchAddress("l2mt_ptEndcapAlpha", &l2mt_ptEndcapAlpha, &b_l2mt_ptEndcapAlpha);
-    //chain->SetBranchAddress("l2mt_ptEndcapBeta", &l2mt_ptEndcapBeta, &b_l2mt_ptEndcapBeta);
-
     TH1D *offline1_L1_deltaR_hist = new TH1D("offline1_L1_deltaR_hist", "offline1_L1_deltaR_hist", 20, 0, 1);
     TH1D *match_offline1_L1_deltaR_hist = new TH1D("match_offline1_L1_deltaR_hist", "match_offline1_L1_deltaR_hist", 20, 0, 1);
     TH1D *offline2_L1_deltaR_hist = new TH1D("offline2_L1_deltaR_hist", "offline2_L1_deltaR_hist", 20, 0, 1);
@@ -475,30 +333,22 @@ void L2mt_analysis_formu10(){
     TH1D *cut_min_pt_hist_2mu10 = new TH1D("cut_min_pt_hist_2mu10", "cut_min_pt_hist_2mu10", 50, 0, 100);
     TH1D *cut_max_pt_hist_2mu10 = new TH1D("cut_max_pt_hist_2mu10", "cut_max_pt_hist_2mu10", 50, 0, 100);
 
-    TH1D *singleMuonPt_hist = new TH1D("singleMuonPt_hist", "singleMuonPt_hist", 20, 0, 100);
-    TH1D *cut_singleMuonPt_hist = new TH1D("cut_singleMuonPt_hist", "cut_singleMuonPt_hist", 20, 0, 100);
-    TH1D *singleMuonEta_hist = new TH1D("singleMuonEta_hist", "singleMuonEta_hist", 30, -1.5, 1.5);
-    TH1D *cut_singleMuonEta_hist = new TH1D("cut_singleMuonEta_hist", "cut_singleMuonEta_hist", 30, -1.5, 1.5);
-    TH1D *singleMuonPhi_hist = new TH1D("singleMuonPhi_hist", "singleMuonPhi_hist", 30, -1.5, 1.5);
-    TH1D *cut_singleMuonPhi_hist = new TH1D("cut_singleMuonPhi_hist", "cut_singleMuonPhi_hist", 30, -1.5, 1.5);
-    
-    TH1D *HLTmuons_hist = new TH1D("HLTmuons_hist", "HLTmuons_hist", 5, 0, 5);
-    TH1D *HLTmuons_withl2mtpass_hist = new TH1D("HLTmuons_withl2mtpass_hist", "HLTmuons_withl2mtpass_hist", 5, 0, 5);
-    TH1D *l2mtpass_withl1flag_hist = new TH1D("l2mtpass_withl1flag_hist", "l2mtpass_withl1flag_hist", 2, 0, 2);
-    TH1D *l2mtpass_withl1BOM_hist = new TH1D("l2mtpass_withl1BOM_hist", "l2mtpass_withl1BOM_hist", 2, 0, 2);
-    TH1D *l1BOM_withl2mtpass_hist = new TH1D("l1BOM_withl2mtpass_hist", "l1BOM_withl2mtpass_hist", 2, 0, 2);
-
-    TH1D *l1thrNum_hist = new TH1D("l1thrNum_hist", "l1thrNum_hist", 7, 0, 7);
-
-    TH1D *l2mtmuons_hist = new TH1D("l2mtmuons_hist", "l2mtmuons_hist", 8, 0, 8);
-
     TH1D *offline1_seg_deltaEta = new TH1D("offline1_seg_deltaEta", "offline1_seg_deltaEta", 60, -3, 3);
     TH1D *offline1_seg_deltaPhi = new TH1D("offline1_seg_deltaPhi", "offline1_seg_deltaPhi", 60, -3, 3);
     TH1D *offline2_seg_deltaEta = new TH1D("offline2_seg_deltaEta", "offline2_seg_deltaEta", 60, -3, 3);
     TH1D *offline2_seg_deltaPhi = new TH1D("offline2_seg_deltaPhi", "offline2_seg_deltaPhi", 60, -3, 3);
 
+    TH1D *singleMuonPt_hist = new TH1D("singleMuonPt_hist", "singleMuonPt_hist", 25, 0, 100);
+    TH1D *cut_singleMuonPt_hist = new TH1D("cut_singleMuonPt_hist", "cut_singleMuonPt_hist", 25, 0, 100);
+    TH1D *singleMuonEta_hist = new TH1D("singleMuonEta_hist", "singleMuonEta_hist", 30, -1.5, 1.5);
+    TH1D *cut_singleMuonEta_hist = new TH1D("cut_singleMuonEta_hist", "cut_singleMuonEta_hist", 30, -1.5, 1.5);
+    TH1D *singleMuonPhi_hist = new TH1D("singleMuonPhi_hist", "singleMuonPhi_hist", 30, -1.5, 1.5);
+    TH1D *cut_singleMuonPhi_hist = new TH1D("cut_singleMuonPhi_hist", "cut_singleMuonPhi_hist", 30, -1.5, 1.5);
+
     //TFile hist_file("img0829/hist0829_ext_mu10L2mt_v2.root", "RECREATE");
-    TFile hist_file("img0907/hist0907_mu10L2mt.root", "RECREATE");
+    //TFile hist_file("img0910/hist0910_mu10L2mt_v2.root", "RECREATE");
+    TFile hist_file("img0915/hist0915_singlemuon_MC.root", "RECREATE");
+
     //TFile hist_file("img0905/hist0905_mu10L2mt_Zmumu.root", "RECREATE");
 
     Long64_t nentries = chain->GetEntries();
@@ -506,7 +356,13 @@ void L2mt_analysis_formu10(){
     cout << nentries << endl;
 
     int countBeforeL2mtcut = 0;
-    int countBeforeL2mtcut = 0;
+    int countAfterL2mtcut = 0;
+
+    int countL2mtEvent = 0;
+
+    int countAfterSeg1 = 0;
+    int countBeforeSeg2 = 0;
+    int countAfterSeg2 = 0;
 
     int countSingleMuonMatchROI = 0;
     int count1L2mtMatchROI = 0;
@@ -549,6 +405,8 @@ void L2mt_analysis_formu10(){
                     if(offline_HLT_DeltaR < deltaR_thr) matching_offline_HLT = true;
                 }
                 if(matching_offline_HLT == false) continue;
+
+                if(muon_pt->at(i_offline) < 24) continue;
 
                 //offline muon matching with BOM ROI
                 for(int i_roi = 0; i_roi < trig_L1_mu_eta->size(); i_roi++){
@@ -594,9 +452,11 @@ void L2mt_analysis_formu10(){
                 }
             }
         }
-
+/*
         //mu10 2muon efficiency
         if(pass_HLT_mu10_l2mt_L1MU10BOM == true){
+
+            countL2mtEvent++;
 
             for(int i_roi = 0; i_roi < trig_L1_mu_eta->size(); i_roi++){
 
@@ -644,6 +504,8 @@ void L2mt_analysis_formu10(){
 
                         if(mu1_seg_eta > 900) continue;
 
+                        countAfterSeg1++;
+
                         TLorentzVector mu1;
                         mu1.SetPtEtaPhiE(muon_pt->at(i_offline), muon_eta->at(i_offline), muon_phi->at(i_offline), muon_e->at(i_offline));
 
@@ -690,8 +552,11 @@ void L2mt_analysis_formu10(){
                                         mu2_seg_eta = seg_muon2.Eta();
                                     }
                                 }
+                                countBeforeSeg2++;
 
                                 if(mu2_seg_phi > 900) continue;
+
+                                countAfterSeg2++;
 
                                 TLorentzVector mu2;
                                 mu2.SetPtEtaPhiE(muon_pt->at(j_offline), muon_eta->at(j_offline), muon_phi->at(j_offline), muon_e->at(j_offline));
@@ -729,15 +594,15 @@ void L2mt_analysis_formu10(){
                                     if(muon_pt->at(i_offline) < muon_pt->at(j_offline)){
                                         max_pt = muon_pt->at(j_offline);
                                         min_pt = muon_pt->at(i_offline);
-                                        min_pt_muon_num = i_offline;
                                         max_pt_muon_num = j_offline;
+                                        min_pt_muon_num = i_offline;
                                     }
 
                                     else{
                                         max_pt = muon_pt->at(i_offline);
                                         min_pt = muon_pt->at(j_offline);
-                                        min_pt_muon_num = j_offline;
                                         max_pt_muon_num = i_offline;
+                                        min_pt_muon_num = j_offline;
                                     }
                                     
                                     if(max_pt > 10){
@@ -812,13 +677,15 @@ void L2mt_analysis_formu10(){
                 }
             }
         }
+    */
     }
 
-    //cout << countSingleMuonMatchROI << endl;
-    //cout << count1L2mtMatchROI << endl;
-
+    cout << "L2mt pass event = " << countL2mtEvent << endl; 
+    cout << "offline with segment at MS = " << countAfterSeg1 << endl;
+    cout << "2 offline = " << countBeforeSeg2 << endl;
+    cout << "offline with segment at MS = " << countAfterSeg2 << endl;
     cout << "before L2mt cut = " << countBeforeL2mtcut << endl; 
-    cout <<<< "after L2mt cut" << endl;
+    cout << "after L2mt cut = " << countAfterL2mtcut << endl;
 
     hist_file.cd();
 
@@ -828,6 +695,7 @@ void L2mt_analysis_formu10(){
     cut_singleMuonPt_hist->Write();
     cut_singleMuonEta_hist->Write();
     cut_singleMuonPhi_hist->Write();
+
     offline1_seg_deltaEta->Write();
     offline1_seg_deltaPhi->Write();
     offline2_seg_deltaEta->Write();
@@ -868,13 +736,6 @@ void L2mt_analysis_formu10(){
     cut_pair_pt_hist_2mu10->Write();
     cut_min_pt_hist_2mu10->Write();
     cut_max_pt_hist_2mu10->Write();
-    l1thrNum_hist->Write();
-    HLTmuons_hist->Write();
-    l2mtmuons_hist->Write();
-    HLTmuons_withl2mtpass_hist->Write();
-    l2mtpass_withl1flag_hist->Write();
-    l2mtpass_withl1BOM_hist->Write();
-    l1BOM_withl2mtpass_hist->Write();
     
     hist_file.Close();
 }

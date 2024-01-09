@@ -110,8 +110,8 @@ import AthenaPoolCnvSvc.ReadAthenaPool
 #    '/gpfs/fs8001/toyamash/valid1.601190.PhPy8EG_AZNLO_Zmumu.recon.AOD.e8514_e8528_s4111_s4114_r14706_tid33639678_00/AOD.33639678._000001.poo9.root.1',
 #    '/gpfs/fs8001/toyamash/valid1.601190.PhPy8EG_AZNLO_Zmumu.recon.AOD.e8514_e8528_s4111_s4114_r14706_tid33639678_00/AOD.33639678._000001.poo10.root.1']
 
-ServiceMgr.EventSelector.InputCollections = [
-    '/gpfs/fs8001/toyamash/L2mt/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185._lb0296._0011.1']
+#ServiceMgr.EventSelector.InputCollections = [
+#    '/gpfs/fs8001/toyamash/L2mt/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185._lb0296._0011.1']
 #    '/gpfs/fs8001/toyamash/L2mt/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185._lb0423._0011.1',
 #   '/gpfs/fs8001/toyamash/L2mt/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185._lb0704._0007.1',
 #    '/gpfs/fs8001/toyamash/L2mt/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185._lb0366._0001.1',
@@ -123,14 +123,18 @@ ServiceMgr.EventSelector.InputCollections = [
 #    '/gpfs/fs8001/toyamash/L2mt/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185/data23_13p6TeV.00456164.physics_Main.merge.AOD.f1369_m2185._lb0630._0010.1']
 
 ServiceMgr.EventSelector.InputCollections = [
-    '/eos/user/t/toyamash/L2mt/data23_13p6TeV.00454083.physics_Main.merge.AOD.f1360_m2179/data23_13p6TeV.00454083.physics_Main.merge.AOD.f1360_m2179._lb1251._0003.1']
+    #'/home/toyamash/NtupleforNSW/run_1206/data23_13p6TeV.00460096.physics_Main.merge.AOD.r15081_r15082_tid35283096_00._0001.pool.root']
+    #'/home/toyamash/MakeAODforNSW/run_1218/data23_13p6TeV.00460096.physics_Main.recon.AOD.r15081_r15082_tid35283096_00._0001.pool.root']
+    #'/eos/user/t/toyamash/L2mt/data23_13p6TeV.00454083.physics_Main.merge.AOD.f1360_m2179/data23_13p6TeV.00454083.physics_Main.merge.AOD.f1360_m2179._lb1251._0003.1']
+    '/home/toyamash/CreateAODforNSW/run/data23_13p6TeV.00460096.physics_Main.recon.AOD.r15081_r15082_tid35283096_00._0001.pool.root']
+
 
 
 # output file
 ServiceMgr += CfgMgr.THistSvc()
 ServiceMgr.THistSvc.Output += [
     #"ANALYSIS DATAFILE='MyxAODAnalysis_valid1.601190.PhPy8EG_AZNLO_Zmumu.output.root' OPT='RECREATE'"
-    "ANALYSIS DATAFILE='MyxAODAnalysis_forl2mt.output_20230811.root' OPT='RECREATE'"
+    "ANALYSIS DATAFILE='MyxAODAnalysis_00460096_L2mt_1219.root' OPT='RECREATE'"
     ]
 ServiceMgr.THistSvc.MaxFileSize=-1 #speeds up jobs that output lots of histograms
 
